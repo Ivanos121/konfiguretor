@@ -12,8 +12,9 @@
 #include <QString>
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
-#include "mytableview.h"
+#include "aligndelegate.h"
 #include <QTableView>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,14 +34,16 @@ signals:
 private slots:
     void on_pushButton_7_clicked();
     void on_pushButton_clicked();
+    void on_pushButton_2_clicked();
     void on_pushButton_9_clicked();
-    void changeStateCheckBox(QModelIndex index);
     void timerTimeout();
 
 private:
     Ui::MainWindow *ui;
     QSqlDatabase sdb;
-    MyTableView *tableViews;
+    QToolBar *topToolBar;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
     void crc_schet();
     QTimer timer;
 };

@@ -14,7 +14,7 @@ void CheckBoxDelegate::paint (QPainter * painter, const QStyleOptionViewItem & o
 {
   QStyleOptionViewItem viewItemOption(option);
   // Only do this if we are accessing the column with boolean variables.
-  if (index.column() == 0 || index.column() == 1)
+  if (index.column() == 1 || index.column() == 2)
   {
     // This basically changes the rectangle in which the check box is drawn.
     const int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;

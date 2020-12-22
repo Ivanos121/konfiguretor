@@ -15,6 +15,7 @@
 #include <QLinearGradient>
 #include <QTableView>
 #include <QHeaderView>
+#include <QToolBar>
 
 #define MODEL_ROWS 64            //Количество строк модели
 //#define DELEGATE_COLUMN 1
@@ -25,57 +26,50 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    //создание инструментальной панели
+    topToolBar=new QToolBar(tr("&toolBar"));
+    addToolBar(Qt::TopToolBarArea,topToolBar);
+    pushButton_2=new QPushButton(tr("&Сохранить изменения"));
+    pushButton_3=new QPushButton(tr("&Запуск/стоп"));
+    topToolBar->addWidget(pushButton_2);
+    topToolBar->addWidget(pushButton_3);
+
+    //инициализация базы данных sqlite3
     sdb = QSqlDatabase::addDatabase("QSQLITE");
     sdb.setDatabaseName(QFileInfo("netdb.db").absoluteFilePath());
-
     QSqlTableModel *model = new Model;
     model->setTable("Net settings");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     model->select();
     ui->tableView->setModel(model);
+    ui->tableView->hideColumn(0);
 
     CheckBoxDelegate* checkBoxDelegate = new CheckBoxDelegate;
-    ui->tableView->setItemDelegateForColumn(0, checkBoxDelegate);
     ui->tableView->setItemDelegateForColumn(1, checkBoxDelegate);
+    ui->tableView->setItemDelegateForColumn(2, checkBoxDelegate);
 
     ComboBoxDelegate* comboBoxDelegate = new ComboBoxDelegate;
-    ui->tableView->setItemDelegateForColumn(3, comboBoxDelegate);
-    CheckBoxHeader* header = new CheckBoxHeader(Qt::Horizontal, ui->tableView);
-    ui->tableView->setHorizontalHeader(header);
+    ui->tableView->setItemDelegateForColumn(4, comboBoxDelegate);
+
+  //  CheckBoxHeader* header = new CheckBoxHeader(Qt::Horizontal, ui->tableView);
+  //  ui->tableView->setHorizontalHeader(header);
 
     QHeaderView *headers = ui->tableWidget->horizontalHeader();
     headers->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    //connect(ui->tableView, SIGNAL(clickToCheck(QModelIndex)), this, SLOT(changeStateCheckBox(QModelIndex)));
-   // ui->tableView->setItemDelegateForColumn(6, new AlignDelegate(ui->tableView));
-ui->tableView->setColumnWidth(0,500);
-
-    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows); //выделение строки
-    ui->tableView->setSelectionMode(QAbstractItemView::SingleSelection); //выделение одной строки
+    ui->tableView->setEditTriggers(QAbstractItemView::DoubleClicked);
     ui->tableView->resizeColumnsToContents();
 
-
-    for (int i=0; i<64; i++)
-{
-    for (int j=6; j<15; j++)
-    {
-        //model->setData(model->index(i,j),int(Qt::AlignRight | Qt::AlignCenter), Qt::TextAlignmentRole);
-    }
-}
-
-
-
-
-
+    //настройка таблицы вывода данных
     ui->tableWidget->setRowCount(32);
     ui->tableWidget->setColumnCount(6);
     QStringList name;
     name << "№" << "Свойство" << "Значение" << "№" << "Свойство" << "Значение";
     ui->tableWidget->setHorizontalHeaderLabels(name);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableWidget->setSelectionBehavior(QAbstractItemView :: SelectRows);
-    ui->tableWidget->setSelectionMode(QAbstractItemView :: SingleSelection);
+    //ui->tableWidget->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    //ui->tableWidget->setSelectionMode(QAbstractItemView :: SingleSelection);
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->resizeColumnsToContents();
     for(int row = 0; row<ui->tableWidget->rowCount(); row++)
@@ -244,13 +238,17 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::changeStateCheckBox(QModelIndex index)
+void MainWindow::on_pushButton_2_clicked()
 {
     QSqlTableModel *model = new Model;
-    int state = index.model()->data(index).toBool();
-    QVariant value = !state;
-    model->setData(index, value);
+    model->database().transaction();
+    if(model->submitAll())
+        model->database().commit();
+    else
+        model->database().rollback();
 }
+
+
 
 void MainWindow::on_pushButton_7_clicked()
 {
@@ -482,6 +480,38 @@ void MainWindow::timerTimeout()
                     ui->tableWidget->item(i, 1)->setText(QString("%1").arg(convertedValue.floatValue));
                     ui->tableWidget->item(i, 1)->setTextAlignment(Qt::AlignCenter);
                 }
+
+            }
+        }
+        for (int i=0; i<64; i++)
+        {
+            if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
+            {
+                /*  QFile f(filename);
+
+                      if( f.open( QIODevice::WriteOnly ) )
+                      {
+                          QTextStream ts( &f );
+                          QStringList strList;
+
+                          strList << "\" \"";
+                          for( int c = 0; c < ui->tableView->horizontalHeader()->count(); ++c )
+                              strList << "\""+ui->tableView->model()->headerData(c, Qt::Horizontal).toString()+"\"";
+                          ts << strList.join( ";" )+"\n";
+
+                          for( int r = 0; r < ui->tableView->verticalHeader()->count(); ++r )
+                          {
+                              strList.clear();
+                              strList << "\""+ui->tableView->model()->headerData(r, Qt::Vertical).toString()+"\"";
+                              for( int c = 0; c < ui->tableView->horizontalHeader()->count(); ++c )
+                              {
+                                  strList << "\""+ui->tableView->model()->data(ui->tableView->model()->index(r, c), Qt::DisplayRole).toString()+"\"";
+                              }
+                              ts << strList.join( ";" )+"\n";
+                          }
+                          f.close();
+                      }*/
+
             }
         }
 }

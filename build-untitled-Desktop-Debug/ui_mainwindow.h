@@ -66,6 +66,7 @@ public:
     QLabel *label_7;
     QComboBox *comboBox_6;
     QPushButton *pushButton_9;
+    QPushButton *pushButton_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -131,7 +132,7 @@ public:
         groupBox->setMaximumSize(QSize(300, 16777215));
         label_4 = new QLabel(groupBox);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(130, 20, 161, 17));
+        label_4->setGeometry(QRect(70, 20, 161, 17));
         layoutWidget = new QWidget(groupBox);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
         layoutWidget->setGeometry(QRect(10, 60, 271, 339));
@@ -224,6 +225,9 @@ public:
 
         gridLayout_6->addLayout(gridLayout_5, 1, 0, 1, 1);
 
+        pushButton_2 = new QPushButton(groupBox);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setGeometry(QRect(30, 430, 85, 33));
 
         gridLayout_3->addWidget(groupBox, 1, 1, 1, 1);
 
@@ -262,6 +266,7 @@ public:
         label_6->setText(QCoreApplication::translate("MainWindow", "\320\241\321\202\320\276\320\277\320\276\320\262\321\213\320\265 \320\261\320\270\321\202\321\213", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindow", "\320\243\320\277\321\200\320\260\320\262\320\273\320\265\320\275\320\270\320\265 \320\277\320\276\321\202\320\276\320\272\320\276\320\274", nullptr));
         pushButton_9->setText(QCoreApplication::translate("MainWindow", "\320\237\321\203\321\201\320\272/\320\241\321\202\320\276\320\277", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
     } // retranslateUi
 
 };

@@ -7,7 +7,7 @@ Model::Model()
 
 Qt::ItemFlags  Model::flags(const QModelIndex & index) const{
   // Column 0 always records the mark variable (our boolean).
-  if (index.column() == 0 || index.column() == 1) {
+  if (index.column() == 1 || index.column() == 2) {
     // Make sure that this item is checkable.
     return QSqlTableModel::flags(index) | Qt::ItemIsUserCheckable;
   }
@@ -18,7 +18,7 @@ Qt::ItemFlags  Model::flags(const QModelIndex & index) const{
 
 QVariant Model::data(const QModelIndex &index, int role) const
 {
-    if (index.column() == 0 || index.column() == 1)
+    if (index.column() == 1 || index.column() == 2)
     {
       if (role == Qt::CheckStateRole)
     {
@@ -55,7 +55,7 @@ bool Model::setData(const QModelIndex & index, const QVariant & value, int role)
      (always column 7), and whether we are trying to set data under the
      Qt::CheckStateRole.
   */
-  if ((index.column() == 0 && role == Qt::CheckStateRole) || (index.column() == 1 && role == Qt::CheckStateRole))
+  if ((index.column() == 1 && role == Qt::CheckStateRole) || (index.column() == 2 && role == Qt::CheckStateRole))
     {
       // Writing the data when the check box is set to checked.
       if (value == Qt::Checked)

@@ -12,7 +12,7 @@ void CheckBoxHeader::paintSection(QPainter* painter, const QRect& rect, int logi
     painter->save();
     QHeaderView::paintSection(painter, rect, logicalIndex);
     painter->restore();
-    if (logicalIndex == 0 || logicalIndex == 1)
+    if (logicalIndex == 1)
     {
         QStyleOptionButton option;
 

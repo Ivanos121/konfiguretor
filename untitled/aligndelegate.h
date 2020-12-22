@@ -16,7 +16,7 @@
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
 
-class AlignDelegate: public QSqlTableModel
+class AlignDelegate: public QItemDelegate
 {
 public:
     AlignDelegate(QObject *parent = nullptr);

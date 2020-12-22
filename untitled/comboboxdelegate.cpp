@@ -14,7 +14,7 @@ ComboBoxDelegate::ComboBoxDelegate(QObject *parent) : QStyledItemDelegate(parent
 QWidget* ComboBoxDelegate::createEditor(QWidget* parent,
     const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
-    if(index.column() == 3)
+    if(index.column() == 4)
     {
         QComboBox* editor = new QComboBox(parent);
         editor->insertItem(0, "RTU");
@@ -28,7 +28,7 @@ QWidget* ComboBoxDelegate::createEditor(QWidget* parent,
 
 void ComboBoxDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
 {
-    if(index.column() == 3)
+    if(index.column() == 4)
     {
         QString value = index.model()->data(index, Qt::EditRole).toString();
         QComboBox* comboBox = static_cast<QComboBox*>(editor);
@@ -48,7 +48,7 @@ void ComboBoxDelegate::setEditorData(QWidget* editor, const QModelIndex& index) 
 void ComboBoxDelegate::setModelData(QWidget* editor, QAbstractItemModel* model,
                                     const QModelIndex& index) const
 {
-    if(index.column() == 3)
+    if(index.column() == 4)
     {
         QComboBox* comboBox = static_cast<QComboBox*>(editor);
         QString value = comboBox->currentText();
@@ -67,9 +67,9 @@ void ComboBoxDelegate::updateEditorGeometry(QWidget* editor,
 
 
 
-void ComboBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+/*void ComboBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    if (index.column() == 3) // show combobox only in the second column
+    if (index.column() == 4) // show combobox only in the second column
     {
         QStyleOptionComboBox box;
         box.state = option.state;
@@ -83,3 +83,4 @@ void ComboBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem &opti
     }
     QStyledItemDelegate::paint(painter, option, index);
 }
+*/

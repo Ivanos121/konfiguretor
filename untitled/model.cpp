@@ -11,7 +11,6 @@ Qt::ItemFlags  Model::flags(const QModelIndex & index) const{
     // Make sure that this item is checkable.
     return QSqlTableModel::flags(index) | Qt::ItemIsUserCheckable;
   }
-
   // Default behaviour in all other cases.
   return QSqlTableModel::flags(index);
 }
@@ -45,11 +44,19 @@ QVariant Model::data(const QModelIndex &index, int role) const
        return QSqlTableModel::data(index, role);
     }
 
-return QVariant(); // This prevents a compiler warning.
-}
+    if (index.column() == 5 && role == Qt::TextAlignmentRole)
+    {
+        return Qt::AlignRight;
+    }
+    else
+    {
+        return QSqlTableModel::data(index, role);
+    }
+ }
 
 bool Model::setData(const QModelIndex & index, const QVariant & value, int role)
 {
+
   /*
      Let's check whether the selected column is the column with our boolean variable
      (always column 7), and whether we are trying to set data under the
@@ -70,8 +77,7 @@ bool Model::setData(const QModelIndex & index, const QVariant & value, int role)
       return setData(index, 0);
     }
     }
-
-  // In all other situations revert to default behaviour.
+    // In all other situations revert to default behaviour.
   return QSqlTableModel::setData(index, value, role);
 }
 

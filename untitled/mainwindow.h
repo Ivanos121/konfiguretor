@@ -12,7 +12,7 @@
 #include <QString>
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
-#include "aligndelegate.h"
+#include "align.h"
 #include <QTableView>
 #include <QPushButton>
 

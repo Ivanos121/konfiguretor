@@ -6,7 +6,7 @@
 #include "qcustomplot.h"
 #include "checkboxdelegate.h"
 #include "comboboxdelegate.h"
-#include "aligndelegate.h"
+#include "align.h"
 #include "checkboxheader.h"
 #include <qdebug.h>
 #include <QCheckBox>
@@ -29,20 +29,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    //создание инструментальной панели
-    //topToolBar=new QToolBar(tr("&toolBar"));
-    //addToolBar(Qt::TopToolBarArea,topToolBar);
-    //pushButton_2=new QPushButton(tr("&Сохранить изменения"));
-    //pushButton_3=new QPushButton(tr("&Запуск/стоп"));
-    //topToolBar->addWidget(pushButton_2);
-    //topToolBar->addWidget(pushButton_3);
-
     //инициализация базы данных sqlite3
     sdb = QSqlDatabase::addDatabase("QSQLITE");
     sdb.setDatabaseName(QFileInfo("netdb.db").absoluteFilePath());
     model = new Model;
     model->setTable("Net settings");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    //model->setData(model->index(5,5),int(Qt::AlignVCenter),Qt::TextAlignmentRole);
     model->select();
     ui->tableView->setModel(model);
     ui->tableView->hideColumn(0);
@@ -61,6 +54,8 @@ MainWindow::MainWindow(QWidget *parent)
     headers->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     ui->tableView->setEditTriggers(QAbstractItemView::DoubleClicked);
+    ui->tableView->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableView->setSelectionMode(QAbstractItemView :: SingleSelection);
     ui->tableView->resizeColumnsToContents();
 
     //настройка таблицы вывода данных
@@ -70,8 +65,8 @@ MainWindow::MainWindow(QWidget *parent)
     name << "№" << "Свойство" << "Значение" << "№" << "Свойство" << "Значение";
     ui->tableWidget->setHorizontalHeaderLabels(name);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    //ui->tableWidget->setSelectionBehavior(QAbstractItemView :: SelectRows);
-    //ui->tableWidget->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget->setSelectionBehavior(QAbstractItemView :: SelectRows);
+    ui->tableWidget->setSelectionMode(QAbstractItemView :: SingleSelection);
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->resizeColumnsToContents();
     for(int row = 0; row<ui->tableWidget->rowCount(); row++)
@@ -109,106 +104,106 @@ MainWindow::MainWindow(QWidget *parent)
             }
         }
 
+
     ui->widget_3->setBufferDevicePixelRatio(.5);
 
-      //  time=new QElapsedTimer();
-        ui->widget_3->setMaximumSize(ui->widget_3->maximumWidth(), ui->widget_3->maximumHeight());
-        ui->widget_3->setOpenGl(true);
+    ui->widget_3->setMaximumSize(ui->widget_3->maximumWidth(), ui->widget_3->maximumHeight());
+    ui->widget_3->setOpenGl(true);
 
-        ui->widget_3->legend->setVisible(true);
-        ui->widget_3->legend->setFont(QFont("Hevlrtika",9));
-        ui->widget_3->setLocale(QLocale(QLocale::Russian, QLocale::Russia));
-        ui->widget_3->clearGraphs();
-        ui->widget_3->setInteractions(QCP::iRangeDrag|QCP::iRangeZoom);
+    ui->widget_3->legend->setVisible(true);
+    ui->widget_3->legend->setFont(QFont("Hevlrtika",9));
+    ui->widget_3->setLocale(QLocale(QLocale::Russian, QLocale::Russia));
+    ui->widget_3->clearGraphs();
+    ui->widget_3->setInteractions(QCP::iRangeDrag|QCP::iRangeZoom);
 
-        QLinearGradient plotGradient;
-        plotGradient.setStart(0, 0);
-        plotGradient.setFinalStop(0, 350);
-        plotGradient.setColorAt(0, QColor(80, 80, 80));
-        plotGradient.setColorAt(1, QColor(50, 50, 50));
-        ui->widget_3->setBackground(plotGradient);
+    QLinearGradient plotGradient;
+    plotGradient.setStart(0, 0);
+    plotGradient.setFinalStop(0, 350);
+    plotGradient.setColorAt(0, QColor(80, 80, 80));
+    plotGradient.setColorAt(1, QColor(50, 50, 50));
+    ui->widget_3->setBackground(plotGradient);
 
-        ui->widget_3->setMouseTracking(true);
-        ui->widget_3->addGraph();
-        ui->widget_3->graph(0)->setName("Подшипниковый узел справа впереди");
-        ui->widget_3->graph(0)->setPen(QPen(Qt::blue));
-        ui->widget_3->addGraph();
-        ui->widget_3->graph(1)->setName("Подшипниковый узел слева сзади");
-        ui->widget_3->graph(1)->setPen(QPen(Qt::red));
-        ui->widget_3->addGraph();
-        ui->widget_3->graph(2)->setName("Лобовая часть справа сзади");
-        ui->widget_3->graph(2)->setPen(QPen(Qt::green));
-        ui->widget_3->addGraph();
-        ui->widget_3->graph(3)->setName("Магнитопровод статора");
-        ui->widget_3->graph(3)->setPen(QPen(Qt::cyan));
-        ui->widget_3->addGraph();
-        ui->widget_3->graph(4)->setName("Станина");
-        ui->widget_3->graph(4)->setPen(QPen(QColor(47, 15, 163)));
-        ui->widget_3->addGraph();
-        ui->widget_3->graph(5)->setName("Лобовая часть справа впереди");
-        ui->widget_3->graph(5)->setPen(QPen(QColor(47, 15, 163)));
-        ui->widget_3->addGraph();
-        ui->widget_3->graph(6)->setName("Станина");
-        ui->widget_3->graph(6)->setPen(QPen(QColor(102, 245, 7)));
-        ui->widget_3->addGraph();
-        ui->widget_3->graph(7)->setName("Момент");
-        ui->widget_3->graph(7)->setPen(QPen(QColor(102, 245, 7)));
-        ui->widget_3->addGraph();
-        ui->widget_3->graph(8)->setName("Подшипниковый узел справа сзади");
-        ui->widget_3->graph(8)->setPen(QPen(QColor(103, 245, 7)));
-        ui->widget_3->addGraph();
-        ui->widget_3->graph(9)->setName("Лобовая часть слева впереди");
-        ui->widget_3->graph(9)->setPen(QPen(QColor(104, 245, 7)));
-        ui->widget_3->addGraph();
-        ui->widget_3->graph(10)->setName("Подшипниковый узел слева впереди");
-        ui->widget_3->graph(10)->setPen(QPen(QColor(132, 245, 7)));
-        ui->widget_3->addGraph();
-        ui->widget_3->graph(11)->setName("Лобовая часть слева сзади");
-        ui->widget_3->graph(11)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->setMouseTracking(true);
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(0)->setName("Подшипниковый узел справа впереди");
+    ui->widget_3->graph(0)->setPen(QPen(Qt::blue));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(1)->setName("Подшипниковый узел слева сзади");
+    ui->widget_3->graph(1)->setPen(QPen(Qt::red));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(2)->setName("Лобовая часть справа сзади");
+    ui->widget_3->graph(2)->setPen(QPen(Qt::green));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(3)->setName("Магнитопровод статора");
+    ui->widget_3->graph(3)->setPen(QPen(Qt::cyan));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(4)->setName("Станина");
+    ui->widget_3->graph(4)->setPen(QPen(QColor(47, 15, 163)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(5)->setName("Лобовая часть справа впереди");
+    ui->widget_3->graph(5)->setPen(QPen(QColor(47, 15, 163)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(6)->setName("Станина");
+    ui->widget_3->graph(6)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(7)->setName("Момент");
+    ui->widget_3->graph(7)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(8)->setName("Подшипниковый узел справа сзади");
+    ui->widget_3->graph(8)->setPen(QPen(QColor(103, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(9)->setName("Лобовая часть слева впереди");
+    ui->widget_3->graph(9)->setPen(QPen(QColor(104, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(10)->setName("Подшипниковый узел слева впереди");
+    ui->widget_3->graph(10)->setPen(QPen(QColor(132, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(11)->setName("Лобовая часть слева сзади");
+    ui->widget_3->graph(11)->setPen(QPen(QColor(102, 245, 7)));
 
-        QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
-        timeTicker->setTimeFormat("%h:%m:%s");
-        ui->widget_3->xAxis->setTicker(timeTicker);
-        ui->widget_3->xAxis->setBasePen(QPen(Qt::white, 4));
-        ui->widget_3->yAxis->setBasePen(QPen(Qt::white, 4));
-        ui->widget_3->xAxis->setTickPen(QPen(Qt::white, 1));
-        ui->widget_3->yAxis->setTickPen(QPen(Qt::white, 1));
-        ui->widget_3->xAxis->setSubTickPen(QPen(Qt::white, 1));
-        ui->widget_3->yAxis->setSubTickPen(QPen(Qt::white, 1));
-        ui->widget_3->xAxis->setTickLabelColor(Qt::white);
-        ui->widget_3->yAxis->setTickLabelColor(Qt::white);
-        ui->widget_3->xAxis->grid()->setVisible(true);
-        ui->widget_3->xAxis->grid()->setSubGridVisible(true);
-        ui->widget_3->xAxis->grid()->setAntialiased(true);
-        ui->widget_3->xAxis->grid()->setAntialiasedSubGrid(true);
-        ui->widget_3->yAxis->setRange(-1.2, 1.2);
-        ui->widget_3->xAxis->grid()->setPen(QPen(Qt::white, 1, Qt::SolidLine));
-        ui->widget_3->xAxis->grid()->setSubGridPen(QPen(Qt::white, 0.5, Qt::DotLine));
-        ui->widget_3->yAxis->grid()->setVisible(true);
-        ui->widget_3->yAxis->grid()->setSubGridVisible(true);
-        ui->widget_3->yAxis->grid()->setAntialiased(true);
-        ui->widget_3->yAxis->grid()->setAntialiasedSubGrid(true);
-        ui->widget_3->yAxis->grid()->setPen(QPen(Qt::white, 1, Qt::SolidLine));
-        ui->widget_3->yAxis->grid()->setSubGridPen(QPen(Qt::white, 0.5, Qt::DotLine));
+    QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
+    timeTicker->setTimeFormat("%h:%m:%s");
+    ui->widget_3->xAxis->setTicker(timeTicker);
+    ui->widget_3->xAxis->setBasePen(QPen(Qt::white, 4));
+    ui->widget_3->yAxis->setBasePen(QPen(Qt::white, 4));
+    ui->widget_3->xAxis->setTickPen(QPen(Qt::white, 1));
+    ui->widget_3->yAxis->setTickPen(QPen(Qt::white, 1));
+    ui->widget_3->xAxis->setSubTickPen(QPen(Qt::white, 1));
+    ui->widget_3->yAxis->setSubTickPen(QPen(Qt::white, 1));
+    ui->widget_3->xAxis->setTickLabelColor(Qt::white);
+    ui->widget_3->yAxis->setTickLabelColor(Qt::white);
+    ui->widget_3->xAxis->grid()->setVisible(true);
+    ui->widget_3->xAxis->grid()->setSubGridVisible(true);
+    ui->widget_3->xAxis->grid()->setAntialiased(true);
+    ui->widget_3->xAxis->grid()->setAntialiasedSubGrid(true);
+    ui->widget_3->yAxis->setRange(-1.2, 1.2);
+    ui->widget_3->xAxis->grid()->setPen(QPen(Qt::white, 1, Qt::SolidLine));
+    ui->widget_3->xAxis->grid()->setSubGridPen(QPen(Qt::white, 0.5, Qt::DotLine));
+    ui->widget_3->yAxis->grid()->setVisible(true);
+    ui->widget_3->yAxis->grid()->setSubGridVisible(true);
+    ui->widget_3->yAxis->grid()->setAntialiased(true);
+    ui->widget_3->yAxis->grid()->setAntialiasedSubGrid(true);
+    ui->widget_3->yAxis->grid()->setPen(QPen(Qt::white, 1, Qt::SolidLine));
+    ui->widget_3->yAxis->grid()->setSubGridPen(QPen(Qt::white, 0.5, Qt::DotLine));
 
-        ui->widget_3->xAxis2->setBasePen(QPen(Qt::white, 4));
-        ui->widget_3->yAxis2->setBasePen(QPen(Qt::white, 4));
-        ui->widget_3->xAxis2->setTickPen(QPen(Qt::white, 1));
-        ui->widget_3->yAxis2->setTickPen(QPen(Qt::white, 1));
-        ui->widget_3->xAxis2->setSubTickPen(QPen(Qt::white, 1));
-        ui->widget_3->yAxis2->setSubTickPen(QPen(Qt::white, 1));
-        ui->widget_3->xAxis2->setTickLabelColor(Qt::white);
-        ui->widget_3->yAxis2->setTickLabelColor(Qt::white);
-        ui->widget_3->yAxis2->grid()->setVisible(true);
-        ui->widget_3->yAxis2->grid()->setSubGridVisible(true);
-        ui->widget_3->yAxis2->grid()->setAntialiased(true);
-        ui->widget_3->yAxis2->grid()->setAntialiasedSubGrid(true);
-        ui->widget_3->yAxis2->grid()->setPen(QPen(Qt::white, 1, Qt::SolidLine));
-        ui->widget_3->yAxis2->grid()->setSubGridPen(QPen(Qt::white, 0.5, Qt::DotLine));
-        ui->widget_3->axisRect()->setupFullAxesBox();
+    ui->widget_3->xAxis2->setBasePen(QPen(Qt::white, 4));
+    ui->widget_3->yAxis2->setBasePen(QPen(Qt::white, 4));
+    ui->widget_3->xAxis2->setTickPen(QPen(Qt::white, 1));
+    ui->widget_3->yAxis2->setTickPen(QPen(Qt::white, 1));
+    ui->widget_3->xAxis2->setSubTickPen(QPen(Qt::white, 1));
+    ui->widget_3->yAxis2->setSubTickPen(QPen(Qt::white, 1));
+    ui->widget_3->xAxis2->setTickLabelColor(Qt::white);
+    ui->widget_3->yAxis2->setTickLabelColor(Qt::white);
+    ui->widget_3->yAxis2->grid()->setVisible(true);
+    ui->widget_3->yAxis2->grid()->setSubGridVisible(true);
+    ui->widget_3->yAxis2->grid()->setAntialiased(true);
+    ui->widget_3->yAxis2->grid()->setAntialiasedSubGrid(true);
+    ui->widget_3->yAxis2->grid()->setPen(QPen(Qt::white, 1, Qt::SolidLine));
+    ui->widget_3->yAxis2->grid()->setSubGridPen(QPen(Qt::white, 0.5, Qt::DotLine));
+    ui->widget_3->axisRect()->setupFullAxesBox();
 
-        connect(ui->widget_3->xAxis, SIGNAL(rangeChanged(QCPRange)), ui->widget_3->xAxis2, SLOT(setRange(QCPRange)));
-        connect(ui->widget_3->yAxis, SIGNAL(rangeChanged(QCPRange)), ui->widget_3->yAxis2, SLOT(setRange(QCPRange)));
+    connect(ui->widget_3->xAxis, SIGNAL(rangeChanged(QCPRange)), ui->widget_3->xAxis2, SLOT(setRange(QCPRange)));
+    connect(ui->widget_3->yAxis, SIGNAL(rangeChanged(QCPRange)), ui->widget_3->yAxis2, SLOT(setRange(QCPRange)));
 
     ui->comboBox_2->addItem(QLatin1String("9600"), QSerialPort::Baud9600);
     ui->comboBox_2->addItem(QLatin1String("19200"), QSerialPort::Baud19200);

@@ -16,6 +16,8 @@
 #include <QTableView>
 #include <QHeaderView>
 #include <QToolBar>
+#include <iostream>
+#include <fstream>
 
 #define MODEL_ROWS 64            //Количество строк модели
 //#define DELEGATE_COLUMN 1
@@ -28,17 +30,17 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     //создание инструментальной панели
-    topToolBar=new QToolBar(tr("&toolBar"));
-    addToolBar(Qt::TopToolBarArea,topToolBar);
-    pushButton_2=new QPushButton(tr("&Сохранить изменения"));
-    pushButton_3=new QPushButton(tr("&Запуск/стоп"));
-    topToolBar->addWidget(pushButton_2);
-    topToolBar->addWidget(pushButton_3);
+    //topToolBar=new QToolBar(tr("&toolBar"));
+    //addToolBar(Qt::TopToolBarArea,topToolBar);
+    //pushButton_2=new QPushButton(tr("&Сохранить изменения"));
+    //pushButton_3=new QPushButton(tr("&Запуск/стоп"));
+    //topToolBar->addWidget(pushButton_2);
+    //topToolBar->addWidget(pushButton_3);
 
     //инициализация базы данных sqlite3
     sdb = QSqlDatabase::addDatabase("QSQLITE");
     sdb.setDatabaseName(QFileInfo("netdb.db").absoluteFilePath());
-    QSqlTableModel *model = new Model;
+    model = new Model;
     model->setTable("Net settings");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     model->select();
@@ -81,17 +83,17 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
 
-    ui->tableWidget->item(0,1)->setText("Подшипниковый узел справа спереди");
+    ui->tableWidget->item(0,1)->setText("Подшипниковый узел справа впереди");
     ui->tableWidget->item(1,1)->setText("Подшипниковый узел слева сзади");
     ui->tableWidget->item(2,1)->setText("Лобовая часть справа сзади");
     ui->tableWidget->item(3,1)->setText("Магнитопровод статора");
     ui->tableWidget->item(4,1)->setText("Станина");
-    ui->tableWidget->item(5,1)->setText("Лобовая часть справа спереди");
+    ui->tableWidget->item(5,1)->setText("Лобовая часть справа впереди");
     ui->tableWidget->item(6,1)->setText("Станина");
     ui->tableWidget->item(7,1)->setText("Момент");
     ui->tableWidget->item(8,1)->setText("Подшипниковый узел справа сзади");
-    ui->tableWidget->item(9,1)->setText("Лобовая часть слева спереди");
-    ui->tableWidget->item(10,1)->setText("Подшипниковый узел справа сзади");
+    ui->tableWidget->item(9,1)->setText("Лобовая часть слева впереди");
+    ui->tableWidget->item(10,1)->setText("Подшипниковый узел слева впереди");
     ui->tableWidget->item(11,1)->setText("Лобовая часть слева сзади");
     for (int i=0; i<32; i++)
     {
@@ -128,7 +130,7 @@ MainWindow::MainWindow(QWidget *parent)
 
         ui->widget_3->setMouseTracking(true);
         ui->widget_3->addGraph();
-        ui->widget_3->graph(0)->setName("Подшипниковый узел справа спереди");
+        ui->widget_3->graph(0)->setName("Подшипниковый узел справа впереди");
         ui->widget_3->graph(0)->setPen(QPen(Qt::blue));
         ui->widget_3->addGraph();
         ui->widget_3->graph(1)->setName("Подшипниковый узел слева сзади");
@@ -137,13 +139,13 @@ MainWindow::MainWindow(QWidget *parent)
         ui->widget_3->graph(2)->setName("Лобовая часть справа сзади");
         ui->widget_3->graph(2)->setPen(QPen(Qt::green));
         ui->widget_3->addGraph();
-        ui->widget_3->graph(3)->setName("Магнитопровод статор");
+        ui->widget_3->graph(3)->setName("Магнитопровод статора");
         ui->widget_3->graph(3)->setPen(QPen(Qt::cyan));
         ui->widget_3->addGraph();
         ui->widget_3->graph(4)->setName("Станина");
         ui->widget_3->graph(4)->setPen(QPen(QColor(47, 15, 163)));
         ui->widget_3->addGraph();
-        ui->widget_3->graph(5)->setName("Лобовая часть справа спереди");
+        ui->widget_3->graph(5)->setName("Лобовая часть справа впереди");
         ui->widget_3->graph(5)->setPen(QPen(QColor(47, 15, 163)));
         ui->widget_3->addGraph();
         ui->widget_3->graph(6)->setName("Станина");
@@ -153,8 +155,16 @@ MainWindow::MainWindow(QWidget *parent)
         ui->widget_3->graph(7)->setPen(QPen(QColor(102, 245, 7)));
         ui->widget_3->addGraph();
         ui->widget_3->graph(8)->setName("Подшипниковый узел справа сзади");
-        ui->widget_3->graph(8)->setPen(QPen(QColor(102, 245, 7)));
-
+        ui->widget_3->graph(8)->setPen(QPen(QColor(103, 245, 7)));
+        ui->widget_3->addGraph();
+        ui->widget_3->graph(9)->setName("Лобовая часть слева впереди");
+        ui->widget_3->graph(9)->setPen(QPen(QColor(104, 245, 7)));
+        ui->widget_3->addGraph();
+        ui->widget_3->graph(10)->setName("Подшипниковый узел слева впереди");
+        ui->widget_3->graph(10)->setPen(QPen(QColor(132, 245, 7)));
+        ui->widget_3->addGraph();
+        ui->widget_3->graph(11)->setName("Лобовая часть слева сзади");
+        ui->widget_3->graph(11)->setPen(QPen(QColor(102, 245, 7)));
 
         QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
         timeTicker->setTimeFormat("%h:%m:%s");
@@ -238,18 +248,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_2_clicked()
-{
-    QSqlTableModel *model = new Model;
-    model->database().transaction();
-    if(model->submitAll())
-        model->database().commit();
-    else
-        model->database().rollback();
-}
-
-
-
 void MainWindow::on_pushButton_7_clicked()
 {
     ui->comboBox->clear();
@@ -261,11 +259,6 @@ void MainWindow::on_pushButton_7_clicked()
         }
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-savesettings(ui->comboBox->currentText(), ui->comboBox_2->currentText().toInt(),ui->comboBox_3->currentText().toInt(),
-             ui->comboBox_4->currentText().toInt(), ui->comboBox_5->currentText().toInt(), ui->comboBox_6->currentText().toInt());
-}
 
 uint CRC16_2(QByteArray buf, int len)
 {
@@ -467,53 +460,58 @@ void MainWindow::timerTimeout()
                     (uint8_t)answer[i*3*2+5];
         }
 
-        for (int i=0; i<64; i++)
+        static QTime time(QTime::currentTime());
+        // calculate two new data points:
+        double key = time.elapsed()/1000.0;
+        std::ofstream fout;
+        fout.open("result.csv",std::ios::out | std::ios::app);
+        fout << key;
+        fout.close();
+
+        for (int i=0; i<11; i++)
         {
-            if(ui->tableView->model()->index(i,0).data(Qt::CheckStateRole)==Qt::Checked)
+            if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
             {
                 //запись результата в таблицу
-                if (ui->tableWidget->item(i, 1) != 0)
+                if (ui->tableWidget->item(i, 2) != 0)
                 {
                     uint32_t rawBEValue = archiverChannels[i].rawValue;
                     RawAndFloat convertedValue;
                     convertedValue.rawValue = rawBEValue;
-                    ui->tableWidget->item(i, 1)->setText(QString("%1").arg(convertedValue.floatValue));
-                    ui->tableWidget->item(i, 1)->setTextAlignment(Qt::AlignCenter);
+                    ui->tableWidget->item(i, 2)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', 2)));
+                    ui->tableWidget->item(i, 2)->setTextAlignment(Qt::AlignCenter);
+
+
                 }
 
-            }
-        }
-        for (int i=0; i<64; i++)
-        {
-            if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
-            {
-                /*  QFile f(filename);
-
-                      if( f.open( QIODevice::WriteOnly ) )
-                      {
-                          QTextStream ts( &f );
-                          QStringList strList;
-
-                          strList << "\" \"";
-                          for( int c = 0; c < ui->tableView->horizontalHeader()->count(); ++c )
-                              strList << "\""+ui->tableView->model()->headerData(c, Qt::Horizontal).toString()+"\"";
-                          ts << strList.join( ";" )+"\n";
-
-                          for( int r = 0; r < ui->tableView->verticalHeader()->count(); ++r )
-                          {
-                              strList.clear();
-                              strList << "\""+ui->tableView->model()->headerData(r, Qt::Vertical).toString()+"\"";
-                              for( int c = 0; c < ui->tableView->horizontalHeader()->count(); ++c )
-                              {
-                                  strList << "\""+ui->tableView->model()->data(ui->tableView->model()->index(r, c), Qt::DisplayRole).toString()+"\"";
-                              }
-                              ts << strList.join( ";" )+"\n";
-                          }
-                          f.close();
-                      }*/
+                uint32_t rawBEValue = archiverChannels[i].rawValue;
+                RawAndFloat convertedValue;
+                convertedValue.rawValue = rawBEValue;
+                ui->widget_3->graph(i)->addData(key, convertedValue.floatValue);
+                ui->widget_3->graph(i)->rescaleValueAxis(true);
+                ui->widget_3->xAxis->setRange(key, 8, Qt::AlignRight);
+                ui->widget_3->replot();
+                std::ofstream fout;
+                fout.open("result.csv",std::ios::out | std::ios::app);
+                fout << " " << convertedValue.floatValue;
+                fout.close();
 
             }
         }
+
+        fout.open("result.csv",std::ios::out | std::ios::app);
+        fout << std::endl;
+        fout.close();
 }
 
 
+
+void MainWindow::on_actionSave_triggered()
+{
+    //QSqlTableModel *model = new Model;
+    model->database().transaction();
+    if(model->submitAll())
+        model->database().commit();
+    else
+        model->database().rollback();
+}

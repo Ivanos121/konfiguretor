@@ -22,7 +22,7 @@
     <item row="0" column="0" rowspan="2">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -129,9 +129,12 @@
         <item row="1" column="0">
          <layout class="QGridLayout" name="gridLayout_5">
           <item row="1" column="0" colspan="2">
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="pushButton_9">
             <property name="text">
-             <string>Сохранить настройки</string>
+             <string>Пуск/Стоп</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -203,32 +206,9 @@
             </item>
            </layout>
           </item>
-          <item row="2" column="0" colspan="2">
-           <widget class="QPushButton" name="pushButton_9">
-            <property name="text">
-             <string>Пуск/Стоп</string>
-            </property>
-            <property name="checkable">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
          </layout>
         </item>
        </layout>
-      </widget>
-      <widget class="QPushButton" name="pushButton_2">
-       <property name="geometry">
-        <rect>
-         <x>30</x>
-         <y>430</y>
-         <width>85</width>
-         <height>33</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>PushButton</string>
-       </property>
       </widget>
      </widget>
     </item>
@@ -245,6 +225,32 @@
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionSave"/>
+   <addaction name="action"/>
+  </widget>
+  <action name="actionSave">
+   <property name="text">
+    <string>Сохранить</string>
+   </property>
+   <property name="toolTip">
+    <string>Сохранить изменения</string>
+   </property>
+  </action>
+  <action name="action">
+   <property name="text">
+    <string>Пуск/стоп</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

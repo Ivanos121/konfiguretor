@@ -67,9 +67,9 @@ void ComboBoxDelegate::updateEditorGeometry(QWidget* editor,
 
 
 
-/*void ComboBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void ComboBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    if (index.column() == 4) // show combobox only in the second column
+    if (index.column() == 3) // show combobox only in the second column
     {
         QStyleOptionComboBox box;
         box.state = option.state;
@@ -83,4 +83,4 @@ void ComboBoxDelegate::updateEditorGeometry(QWidget* editor,
     }
     QStyledItemDelegate::paint(painter, option, index);
 }
-*/
+

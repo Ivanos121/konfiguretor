@@ -33,17 +33,15 @@ signals:
 
 private slots:
     void on_pushButton_7_clicked();
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
     void on_pushButton_9_clicked();
     void timerTimeout();
+
+    void on_actionSave_triggered();
 
 private:
     Ui::MainWindow *ui;
     QSqlDatabase sdb;
-    QToolBar *topToolBar;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
+    QSqlTableModel *model;
     void crc_schet();
     QTimer timer;
 };

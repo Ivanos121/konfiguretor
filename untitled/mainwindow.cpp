@@ -35,7 +35,8 @@ MainWindow::MainWindow(QWidget *parent)
     model = new Model;
     model->setTable("Net settings");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    //model->setData(model->index(5,5),int(Qt::AlignVCenter),Qt::TextAlignmentRole);
+
+    model->setData(model->index(5,5),int(Qt::AlignVCenter),Qt::TextAlignmentRole);
     model->select();
     ui->tableView->setModel(model);
     ui->tableView->hideColumn(0);

@@ -19,39 +19,31 @@ QVariant Model::data(const QModelIndex &index, int role) const
 {
     if (index.column() == 1 || index.column() == 2)
     {
-      if (role == Qt::CheckStateRole)
-    {
-      int checked = QSqlTableModel::data(index).toInt();
-
-      if (checked)
+        if (role == Qt::CheckStateRole)
         {
-          return Qt::Checked;
+            int checked = QSqlTableModel::data(index).toInt();
+
+            if (checked)
+            {
+                return Qt::Checked;
+            }
+            else
+            {
+                return Qt::Unchecked;
+            }
         }
-      else
+        else
         {
-          return Qt::Unchecked;
+            return QSqlTableModel::data(index, role);
         }
     }
-      else
+    else if(role == Qt::TextAlignmentRole)
     {
-      return QVariant();
-    }
-      // Only do the below if we want to fetch a tool tip.
+        if (index.column() >= 4)
+            return int(Qt::AlignCenter);
     }
 
-  else
-    {
-       return QSqlTableModel::data(index, role);
-    }
-
-    if (index.column() == 5 && role == Qt::TextAlignmentRole)
-    {
-        return Qt::AlignRight;
-    }
-    else
-    {
-        return QSqlTableModel::data(index, role);
-    }
+    return QSqlTableModel::data(index, role);
  }
 
 bool Model::setData(const QModelIndex & index, const QVariant & value, int role)

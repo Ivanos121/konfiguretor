@@ -162,8 +162,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_3->graph(11)->setName("Лобовая часть слева сзади");
     ui->widget_3->graph(11)->setPen(QPen(QColor(102, 245, 7)));
 
-    QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
-    timeTicker->setTimeFormat("%h:%m:%s");
+    QSharedPointer<QCPAxisTickerDateTime> timeTicker(new QCPAxisTickerDateTime);
+    timeTicker->setDateTimeFormat("hh:mm:ss");
     ui->widget_3->xAxis->setTicker(timeTicker);
     ui->widget_3->xAxis->setBasePen(QPen(Qt::white, 4));
     ui->widget_3->yAxis->setBasePen(QPen(Qt::white, 4));
@@ -252,6 +252,7 @@ void MainWindow::on_pushButton_7_clicked()
           ui->comboBox->addItem(info.portName());
           ui->comboBox->addItem("ttyMP0");
           ui->comboBox->addItem("ttyMP1");
+          ui->comboBox->setCurrentIndex(1);
         }
 }
 
@@ -282,6 +283,31 @@ void MainWindow::on_pushButton_9_clicked()
     if (ui->pushButton_9->isChecked())
     {
         timer.start(1000);
+        std::ofstream fout;
+        fout.open("result.csv",std::ios::out | std::ios::app);
+        QDateTime currentDateTime = QDateTime::currentDateTime();
+        QDate currentDate = currentDateTime.date();
+        fout << std::endl << "Начало измерений " << currentDate.toString("dd.MM.yyyy").toUtf8().data() << std::endl;
+
+        for (int i=0; i<11; i++)
+        {
+            if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
+            {
+                fout << QString("Канал №%1").arg(i+1).toUtf8().data() << " - " << ui->tableView->model()->index(i,3).data().toString().toUtf8().data() << std::endl;
+            }
+        }
+
+        for (int i=0; i<11; i++)
+        {
+            if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
+            {
+                fout << QString("Канал №%1").arg(i+1).toUtf8().data() << " ";
+            }
+        }
+
+        fout << std::endl << std::endl;
+
+        fout.close();
     }
     else
     {
@@ -456,12 +482,14 @@ void MainWindow::timerTimeout()
                     (uint8_t)answer[i*3*2+5];
         }
 
-        static QTime time(QTime::currentTime());
-        // calculate two new data points:
-        double key = time.elapsed()/1000.0;
+        QDateTime currentDateTime = QDateTime::currentDateTime();
+        QTime currentTime = currentDateTime.time();
+
+        QString key = currentTime.toString("hh:mm:ss");
+
         std::ofstream fout;
         fout.open("result.csv",std::ios::out | std::ios::app);
-        fout << key;
+        fout << key.toUtf8().data();
         fout.close();
 
         for (int i=0; i<11; i++)
@@ -483,13 +511,13 @@ void MainWindow::timerTimeout()
                 uint32_t rawBEValue = archiverChannels[i].rawValue;
                 RawAndFloat convertedValue;
                 convertedValue.rawValue = rawBEValue;
-                ui->widget_3->graph(i)->addData(key, convertedValue.floatValue);
+                ui->widget_3->graph(i)->addData(currentDateTime.toTime_t(), convertedValue.floatValue);
                 ui->widget_3->graph(i)->rescaleValueAxis(true);
-                ui->widget_3->xAxis->setRange(key, 8, Qt::AlignRight);
+                ui->widget_3->xAxis->setRange(currentDateTime.toTime_t(), 8, Qt::AlignRight);
                 ui->widget_3->replot();
                 std::ofstream fout;
                 fout.open("result.csv",std::ios::out | std::ios::app);
-                fout << " " << convertedValue.floatValue;
+                fout << ";" << convertedValue.floatValue;
                 fout.close();
 
             }

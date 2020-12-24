@@ -297,15 +297,19 @@ void MainWindow::on_pushButton_9_clicked()
             }
         }
 
+        fout << std::endl;
+
+        fout << "Время;";
+
         for (int i=0; i<11; i++)
         {
             if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
             {
-                fout << QString("Канал №%1").arg(i+1).toUtf8().data() << " ";
+                fout << QString("Канал №%1").arg(i+1).toUtf8().data() << ";";
             }
         }
 
-        fout << std::endl << std::endl;
+        fout << std::endl;
 
         fout.close();
     }

@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "model.h"
 #include "port.h"
@@ -19,7 +19,7 @@
 #include <iostream>
 #include <fstream>
 
-#define MODEL_ROWS 64            //Количество строк модели
+//#define MODEL_ROWS 64            //Количество строк модели
 //#define DELEGATE_COLUMN 1
 
 
@@ -36,7 +36,11 @@ MainWindow::MainWindow(QWidget *parent)
     model->setTable("Net settings");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
-    model->setData(model->index(5,5),int(Qt::AlignVCenter),Qt::TextAlignmentRole);
+    //ui->tableView->horizontalHeader()->setModel(model);
+    CheckBoxHeader* header = new CheckBoxHeader(Qt::Horizontal, ui->tableView);
+    ui->tableView->setHorizontalHeader(header);
+   // ui->tableView->horizontalHeader()->setModel(model);
+
     model->select();
     ui->tableView->setModel(model);
     ui->tableView->hideColumn(0);
@@ -48,8 +52,7 @@ MainWindow::MainWindow(QWidget *parent)
     ComboBoxDelegate* comboBoxDelegate = new ComboBoxDelegate;
     ui->tableView->setItemDelegateForColumn(4, comboBoxDelegate);
 
-  //  CheckBoxHeader* header = new CheckBoxHeader(Qt::Horizontal, ui->tableView);
-  //  ui->tableView->setHorizontalHeader(header);
+
 
     QHeaderView *headers = ui->tableWidget->horizontalHeader();
     headers->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -70,6 +73,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->setSelectionMode(QAbstractItemView :: SingleSelection);
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->resizeColumnsToContents();
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
     for(int row = 0; row<ui->tableWidget->rowCount(); row++)
     {
         for(int column = 0; column<ui->tableWidget->columnCount(); column++)
@@ -77,7 +82,6 @@ MainWindow::MainWindow(QWidget *parent)
           ui->tableWidget->setItem(row, column, new QTableWidgetItem());
         }
     }
-
 
     ui->tableWidget->item(0,1)->setText("Подшипниковый узел справа впереди");
     ui->tableWidget->item(1,1)->setText("Подшипниковый узел слева сзади");
@@ -91,19 +95,48 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->item(9,1)->setText("Лобовая часть слева впереди");
     ui->tableWidget->item(10,1)->setText("Подшипниковый узел слева впереди");
     ui->tableWidget->item(11,1)->setText("Лобовая часть слева сзади");
+    ui->tableWidget->item(12,1)->setText("Скорость вращения ротора");
+
+    ui->tableWidget->item(13,1)->setText("Переменное напряжение фазы А");
+    ui->tableWidget->item(14,1)->setText("Переменный ток фазы А");
+    ui->tableWidget->item(15,1)->setText("Активная мощность фазы А");
+    ui->tableWidget->item(16,1)->setText("Реактивная мощность фазы А");
+    ui->tableWidget->item(17,1)->setText("Полная мощность фазы А");
+    ui->tableWidget->item(18,1)->setText("Частота фазы А");
+    ui->tableWidget->item(19,1)->setText("Коэффициент мощности фазы А");
+
+    ui->tableWidget->item(20,1)->setText("Переменное напряжение фазы B");
+    ui->tableWidget->item(21,1)->setText("Переменный ток фазы B");
+    ui->tableWidget->item(22,1)->setText("Активная мощность фазы B");
+    ui->tableWidget->item(23,1)->setText("Реактивная мощность фазы B");
+    ui->tableWidget->item(24,1)->setText("Полная мощность фазы B");
+    ui->tableWidget->item(25,1)->setText("Частота фазы B");
+    ui->tableWidget->item(26,1)->setText("Коэффициент мощности фазы B");
+
+    ui->tableWidget->item(27,1)->setText("Переменное напряжение фазы C");
+    ui->tableWidget->item(28,1)->setText("Переменный ток фазы C");
+    ui->tableWidget->item(29,1)->setText("Активная мощность фазы C");
+    ui->tableWidget->item(30,1)->setText("Реактивная мощность фазы C");
+    ui->tableWidget->item(31,1)->setText("Полная мощность фазы C");
+    ui->tableWidget->item(0, 4)->setText("Частота фазы C");
+    ui->tableWidget->item(1, 4)->setText("Коэффициент мощности фазы C");
+
     for (int i=0; i<32; i++)
     {
            if (ui->tableWidget->item(i, 0) != 0)
             {
                  ui->tableWidget->item(i, 0)->setText(QString("%1").arg(i+1));
-                 ui->tableWidget->item(i,0)->setTextAlignment(Qt::AlignCenter);
+                 ui->tableWidget->item(i, 0)->setTextAlignment(Qt::AlignCenter);
             }
-           if (ui->tableWidget->item(i, 3) != 0)
+    }
+    for (int i=32; i<64; i++)
+    {
+           if (ui->tableWidget->item(i-32, 3) != 0)
             {
-                 ui->tableWidget->item(i, 3)->setText(QString("%1").arg(i+33));
-                 ui->tableWidget->item(i,3)->setTextAlignment(Qt::AlignCenter);
+                 ui->tableWidget->item(i-32, 3)->setText(QString("%1").arg(i+1));
+                 ui->tableWidget->item(i-32, 3)->setTextAlignment(Qt::AlignCenter);
             }
-        }
+    }
 
 
     ui->widget_3->setBufferDevicePixelRatio(.5);
@@ -161,6 +194,53 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_3->addGraph();
     ui->widget_3->graph(11)->setName("Лобовая часть слева сзади");
     ui->widget_3->graph(11)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(12)->setName("Скорость вращения ротора");
+    // ui->widget_3->graph(12)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(13)->setName("Переменное напряжение фазы А");
+    // ui->widget_3->graph(13)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(14)->setName("Переменный ток фазы А");
+    // ui->widget_3->graph(14)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(15)->setName("Активная мощность фазы А");
+    // ui->widget_3->graph(15)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(16)->setName("Реактивная мощность фазы А");
+    // ui->widget_3->graph(16)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(17)->setName("Полная мощность фазы А");
+    // ui->widget_3->graph(17)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(18)->setName("Частота фазы А");
+    // ui->widget_3->graph(18)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(19)->setName("Коэффициент мощности фазы А");
+    // ui->widget_3->graph(19)->setPen(QPen(QColor(102, 245, 7)));
+
+    // ui->widget_3->graph(20)->setName("Переменное напряжение фазы B");
+    // ui->widget_3->graph(20)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(21)->setName("Переменный ток фазы B");
+    // ui->widget_3->graph(21)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(22)->setName("Активная мощность фазы B");
+    // ui->widget_3->graph(22)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(23)->setName("Реактивная мощность фазы B");
+    // ui->widget_3->graph(23)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(24)->setName("Полная мощность фазы B");
+    // ui->widget_3->graph(24)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(25)->setName("Частота фазы B");
+    // ui->widget_3->graph(25)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(26)->setName("Коэффициент мощности фазы B");
+    // ui->widget_3->graph(26)->setPen(QPen(QColor(102, 245, 7)));
+
+    // ui->widget_3->graph(27)->setName("Переменное напряжение фазы C");
+    // ui->widget_3->graph(27)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(28)->setName("Переменный ток фазы C");
+    // ui->widget_3->graph(28)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(29)->setName("Активная мощность фазы C");
+    // ui->widget_3->graph(29)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(30)->setName("Реактивная мощность фазы C");
+    // ui->widget_3->graph(30)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(31)->setName("Полная мощность фазы C");
+    // ui->widget_3->graph(31)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(32)->setName("Частота фазы C");
+    // ui->widget_3->graph(32)->setPen(QPen(QColor(102, 245, 7)));
+    // ui->widget_3->graph(33)->setName("Коэффициент мощности фазы C");
+    // ui->widget_3->graph(33)->setPen(QPen(QColor(102, 245, 7)));
+
 
     QSharedPointer<QCPAxisTickerDateTime> timeTicker(new QCPAxisTickerDateTime);
     timeTicker->setDateTimeFormat("hh:mm:ss");
@@ -536,7 +616,6 @@ void MainWindow::timerTimeout()
 
 void MainWindow::on_actionSave_triggered()
 {
-    //QSqlTableModel *model = new Model;
     model->database().transaction();
     if(model->submitAll())
         model->database().commit();

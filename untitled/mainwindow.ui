@@ -22,7 +22,7 @@
     <item row="0" column="0" rowspan="2">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -130,6 +130,9 @@
          <layout class="QGridLayout" name="gridLayout_5">
           <item row="1" column="0" colspan="2">
            <widget class="QPushButton" name="pushButton_9">
+            <property name="focusPolicy">
+             <enum>Qt::NoFocus</enum>
+            </property>
             <property name="text">
              <string>Пуск/Стоп</string>
             </property>

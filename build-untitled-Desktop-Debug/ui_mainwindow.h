@@ -155,6 +155,7 @@ public:
         gridLayout_5->setObjectName(QString::fromUtf8("gridLayout_5"));
         pushButton_9 = new QPushButton(layoutWidget);
         pushButton_9->setObjectName(QString::fromUtf8("pushButton_9"));
+        pushButton_9->setFocusPolicy(Qt::NoFocus);
         pushButton_9->setCheckable(true);
 
         gridLayout_5->addWidget(pushButton_9, 1, 0, 1, 2);
@@ -247,7 +248,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
         comboBox_2->setCurrentIndex(-1);
 
 

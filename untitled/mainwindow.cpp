@@ -194,52 +194,72 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_3->addGraph();
     ui->widget_3->graph(11)->setName("Лобовая часть слева сзади");
     ui->widget_3->graph(11)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(12)->setName("Скорость вращения ротора");
-    // ui->widget_3->graph(12)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(13)->setName("Переменное напряжение фазы А");
-    // ui->widget_3->graph(13)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(14)->setName("Переменный ток фазы А");
-    // ui->widget_3->graph(14)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(15)->setName("Активная мощность фазы А");
-    // ui->widget_3->graph(15)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(16)->setName("Реактивная мощность фазы А");
-    // ui->widget_3->graph(16)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(17)->setName("Полная мощность фазы А");
-    // ui->widget_3->graph(17)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(18)->setName("Частота фазы А");
-    // ui->widget_3->graph(18)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(19)->setName("Коэффициент мощности фазы А");
-    // ui->widget_3->graph(19)->setPen(QPen(QColor(102, 245, 7)));
-
-    // ui->widget_3->graph(20)->setName("Переменное напряжение фазы B");
-    // ui->widget_3->graph(20)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(21)->setName("Переменный ток фазы B");
-    // ui->widget_3->graph(21)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(22)->setName("Активная мощность фазы B");
-    // ui->widget_3->graph(22)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(23)->setName("Реактивная мощность фазы B");
-    // ui->widget_3->graph(23)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(24)->setName("Полная мощность фазы B");
-    // ui->widget_3->graph(24)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(25)->setName("Частота фазы B");
-    // ui->widget_3->graph(25)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(26)->setName("Коэффициент мощности фазы B");
-    // ui->widget_3->graph(26)->setPen(QPen(QColor(102, 245, 7)));
-
-    // ui->widget_3->graph(27)->setName("Переменное напряжение фазы C");
-    // ui->widget_3->graph(27)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(28)->setName("Переменный ток фазы C");
-    // ui->widget_3->graph(28)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(29)->setName("Активная мощность фазы C");
-    // ui->widget_3->graph(29)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(30)->setName("Реактивная мощность фазы C");
-    // ui->widget_3->graph(30)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(31)->setName("Полная мощность фазы C");
-    // ui->widget_3->graph(31)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(32)->setName("Частота фазы C");
-    // ui->widget_3->graph(32)->setPen(QPen(QColor(102, 245, 7)));
-    // ui->widget_3->graph(33)->setName("Коэффициент мощности фазы C");
-    // ui->widget_3->graph(33)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(12)->setName("Скорость вращения ротора");
+    ui->widget_3->graph(12)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(13)->setName("Переменное напряжение фазы А");
+    ui->widget_3->graph(13)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(14)->setName("Переменный ток фазы А");
+    ui->widget_3->graph(14)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(15)->setName("Активная мощность фазы А");
+    ui->widget_3->graph(15)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(16)->setName("Реактивная мощность фазы А");
+    ui->widget_3->graph(16)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(17)->setName("Полная мощность фазы А");
+    ui->widget_3->graph(17)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(18)->setName("Частота фазы А");
+    ui->widget_3->graph(18)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(19)->setName("Коэффициент мощности фазы А");
+    ui->widget_3->graph(19)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(20)->setName("Переменное напряжение фазы B");
+    ui->widget_3->graph(20)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(21)->setName("Переменный ток фазы B");
+    ui->widget_3->graph(21)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(22)->setName("Активная мощность фазы B");
+    ui->widget_3->graph(22)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(23)->setName("Реактивная мощность фазы B");
+    ui->widget_3->graph(23)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(24)->setName("Полная мощность фазы B");
+    ui->widget_3->graph(24)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(25)->setName("Частота фазы B");
+    ui->widget_3->graph(25)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(26)->setName("Коэффициент мощности фазы B");
+    ui->widget_3->graph(26)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(27)->setName("Переменное напряжение фазы C");
+    ui->widget_3->graph(27)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(28)->setName("Переменный ток фазы C");
+    ui->widget_3->graph(28)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(29)->setName("Активная мощность фазы C");
+    ui->widget_3->graph(29)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(30)->setName("Реактивная мощность фазы C");
+    ui->widget_3->graph(30)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(31)->setName("Полная мощность фазы C");
+    ui->widget_3->graph(31)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(32)->setName("Частота фазы C");
+    ui->widget_3->graph(32)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->addGraph();
+    ui->widget_3->graph(33)->setName("Коэффициент мощности фазы C");
+    ui->widget_3->graph(33)->setPen(QPen(QColor(102, 245, 7)));
 
 
     QSharedPointer<QCPAxisTickerDateTime> timeTicker(new QCPAxisTickerDateTime);
@@ -369,7 +389,7 @@ void MainWindow::on_pushButton_9_clicked()
         QDate currentDate = currentDateTime.date();
         fout << std::endl << "Начало измерений " << currentDate.toString("dd.MM.yyyy").toUtf8().data() << std::endl;
 
-        for (int i=0; i<11; i++)
+        for (int i=0; i<34; i++)
         {
             if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
             {
@@ -381,7 +401,7 @@ void MainWindow::on_pushButton_9_clicked()
 
         fout << "Время;";
 
-        for (int i=0; i<11; i++)
+        for (int i=0; i<34; i++)
         {
             if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
             {
@@ -493,7 +513,12 @@ void MainWindow::timerTimeout()
         QByteArray answer;
         do
         {
-            port->waitForReadyRead(100);
+            if (!port->waitForReadyRead(100))
+            {
+                stopGetData();
+                port->close();
+                return;
+            }
             QByteArray ansBuf = port->readAll();
 
             if (answerLength == 0)
@@ -533,7 +558,12 @@ void MainWindow::timerTimeout()
 
         do
         {
-            port->waitForReadyRead(100);
+            if (!port->waitForReadyRead(100))
+            {
+                stopGetData();
+                port->close();
+                return;
+            }
             QByteArray ansBuf = port->readAll();
 
             if (answerLength == 0)
@@ -576,7 +606,7 @@ void MainWindow::timerTimeout()
         fout << key.toUtf8().data();
         fout.close();
 
-        for (int i=0; i<11; i++)
+        for (int i=0; i<34; i++)
         {
             if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
             {
@@ -621,4 +651,10 @@ void MainWindow::on_actionSave_triggered()
         model->database().commit();
     else
         model->database().rollback();
+}
+
+void MainWindow::stopGetData()
+{
+    timer.stop();
+    QMessageBox::critical(this, "Ошибка связи!", "Нет ответа от Архиватора!");
 }

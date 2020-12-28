@@ -44,6 +44,7 @@ private:
     QSqlTableModel *model;
     void crc_schet();
     QTimer timer;
+    void stopGetData();
 };
 
 

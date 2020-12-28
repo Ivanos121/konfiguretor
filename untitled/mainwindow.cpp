@@ -36,10 +36,17 @@ MainWindow::MainWindow(QWidget *parent)
     model->setTable("Net settings");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
-    //ui->tableView->horizontalHeader()->setModel(model);
     CheckBoxHeader* header = new CheckBoxHeader(Qt::Horizontal, ui->tableView);
     ui->tableView->setHorizontalHeader(header);
-   // ui->tableView->horizontalHeader()->setModel(model);
+
+    for (int i=0; i<33; i++ )
+    {
+        if(ui->tableView->model()->index(0,1).data(Qt::CheckStateRole)==Qt::Checked)
+        {
+          ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked;
+        }
+    }
+
 
     model->select();
     ui->tableView->setModel(model);

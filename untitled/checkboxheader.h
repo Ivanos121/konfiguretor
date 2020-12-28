@@ -15,6 +15,7 @@ public:
 
     bool isChecked() const { return isChecked_; }
     void setIsChecked(bool val);
+    void mousePressEvent(QMouseEvent* event);
 
 signals:
     void checkBoxClicked(bool state);
@@ -22,7 +23,7 @@ signals:
 protected:
     void paintSection(QPainter* painter, const QRect& rect, int logicalIndex) const;
 
-    void mousePressEvent(QMouseEvent* event);
+
 
 private:
     bool isChecked_;

@@ -14,5 +14,6 @@ public:
     virtual QVariant data(const QModelIndex &index, int role) const;
     virtual bool setData(const QModelIndex & index, const QVariant & value, int role = Qt::EditRole);
     QVariant data2 ( const QModelIndex & index, int role = Qt::DisplayRole );
+    void onChecked(int index, int orientation);
 };
 #endif // MODEL_H

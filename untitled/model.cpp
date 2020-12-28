@@ -73,6 +73,16 @@ bool Model::setData(const QModelIndex & index, const QVariant & value, int role)
   return QSqlTableModel::setData(index, value, role);
 }
 
+void Model::onChecked(int index, int orientation)
+{
+    int m_row=16;
+    int m_column=64;
+    if (orientation == Qt::Horizontal)
+        emit dataChanged(createIndex(0, index), createIndex(m_row - 1, index), { Qt::DisplayRole });
+    else
+        emit dataChanged(createIndex(index, 0), createIndex(index, m_column - 1), { Qt::DisplayRole });
+}
+
 
 
 

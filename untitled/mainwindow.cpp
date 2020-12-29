@@ -14,8 +14,8 @@
 #include <QMessageBox>
 #include <QLinearGradient>
 #include <QTableView>
-#include <QHeaderView>
 #include <QToolBar>
+#include <QHeaderView>
 #include <iostream>
 #include <fstream>
 
@@ -36,16 +36,17 @@ MainWindow::MainWindow(QWidget *parent)
     model->setTable("Net settings");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
-    CheckBoxHeader* header = new CheckBoxHeader(Qt::Horizontal, ui->tableView);
+    header = new CheckBoxHeader(Qt::Horizontal, ui->tableView);
     ui->tableView->setHorizontalHeader(header);
-
-    for (int i=0; i<33; i++ )
+    connect(header, &CheckBoxHeader::checkBoxClicked, this, &MainWindow::onCheckBoxHeaderClick);
+//connect(header,SIGNAL(isChecked),this,SLOT(onchecked()));
+   /* for (int i=0; i<33; i++ )
     {
         if(ui->tableView->model()->index(0,1).data(Qt::CheckStateRole)==Qt::Checked)
         {
           ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked;
         }
-    }
+    }*/
 
 
     model->select();
@@ -613,7 +614,7 @@ void MainWindow::timerTimeout()
         fout << key.toUtf8().data();
         fout.close();
 
-        for (int i=0; i<34; i++)
+        for (int i=0; i<32; i++)
         {
             if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
             {
@@ -625,6 +626,37 @@ void MainWindow::timerTimeout()
                     convertedValue.rawValue = rawBEValue;
                     ui->tableWidget->item(i, 2)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', 2)));
                     ui->tableWidget->item(i, 2)->setTextAlignment(Qt::AlignCenter);
+
+
+                }
+
+                uint32_t rawBEValue = archiverChannels[i].rawValue;
+                RawAndFloat convertedValue;
+                convertedValue.rawValue = rawBEValue;
+                ui->widget_3->graph(i)->addData(currentDateTime.toTime_t(), convertedValue.floatValue);
+                ui->widget_3->graph(i)->rescaleValueAxis(true);
+                ui->widget_3->xAxis->setRange(currentDateTime.toTime_t(), 8, Qt::AlignRight);
+                ui->widget_3->replot();
+                std::ofstream fout;
+                fout.open("result.csv",std::ios::out | std::ios::app);
+                fout << ";" << convertedValue.floatValue;
+                fout.close();
+
+            }
+        }
+
+        for (int i=32; i<64; i++)
+        {
+            if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
+            {
+                //запись результата в таблицу
+                if (ui->tableWidget->item(i-32, 5) != 0)
+                {
+                    uint32_t rawBEValue = archiverChannels[i].rawValue;
+                    RawAndFloat convertedValue;
+                    convertedValue.rawValue = rawBEValue;
+                    ui->tableWidget->item(i-32, 5)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', 2)));
+                    ui->tableWidget->item(i-32, 5)->setTextAlignment(Qt::AlignCenter);
 
 
                 }
@@ -664,4 +696,22 @@ void MainWindow::stopGetData()
 {
     timer.stop();
     QMessageBox::critical(this, "Ошибка связи!", "Нет ответа от Архиватора!");
+}
+
+void MainWindow::onCheckBoxHeaderClick()
+{
+    if(header->isChecked())
+    {
+        for (int i=0; i<33; i++ )
+        {
+            ui->tableView->model()->setData(ui->tableView->model()->index(i,1), Qt::Checked, Qt::CheckStateRole);
+        }
+    }
+    else
+    {
+        for (int i=0; i<33; i++ )
+        {
+            ui->tableView->model()->setData(ui->tableView->model()->index(i,1), Qt::Unchecked, Qt::CheckStateRole);
+        }
+    }
 }

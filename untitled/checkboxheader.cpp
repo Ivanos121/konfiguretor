@@ -4,7 +4,7 @@
 CheckBoxHeader::CheckBoxHeader(Qt::Orientation orientation, QWidget* parent /*= 0*/)
     : QHeaderView(orientation, parent)
 {
-    isChecked_ = true;
+    isChecked_ = false;
 }
 
 void CheckBoxHeader::paintSection(QPainter* painter, const QRect& rect, int logicalIndex) const

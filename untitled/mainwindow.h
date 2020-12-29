@@ -15,6 +15,7 @@
 #include "align.h"
 #include <QTableView>
 #include <QPushButton>
+#include "checkboxheader.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -38,12 +39,16 @@ private slots:
 
     void on_actionSave_triggered();
 
+    void onCheckBoxHeaderClick();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase sdb;
     QSqlTableModel *model;
     void crc_schet();
     QTimer timer;
+    CheckBoxHeader* header;
+
     void stopGetData();
 };
 

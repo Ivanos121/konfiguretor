@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[13];
-    char stringdata0[161];
+    QByteArrayData data[14];
+    char stringdata0[183];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -44,13 +44,15 @@ QT_MOC_LITERAL(8, 64, 11), // "FlowControl"
 QT_MOC_LITERAL(9, 76, 23), // "on_pushButton_7_clicked"
 QT_MOC_LITERAL(10, 100, 23), // "on_pushButton_9_clicked"
 QT_MOC_LITERAL(11, 124, 12), // "timerTimeout"
-QT_MOC_LITERAL(12, 137, 23) // "on_actionSave_triggered"
+QT_MOC_LITERAL(12, 137, 23), // "on_actionSave_triggered"
+QT_MOC_LITERAL(13, 161, 21) // "onCheckBoxHeaderClick"
 
     },
     "MainWindow\0savesettings\0\0name\0baudrate\0"
     "DataBits\0Parity\0StopBits\0FlowControl\0"
     "on_pushButton_7_clicked\0on_pushButton_9_clicked\0"
-    "timerTimeout\0on_actionSave_triggered"
+    "timerTimeout\0on_actionSave_triggered\0"
+    "onCheckBoxHeaderClick"
 };
 #undef QT_MOC_LITERAL
 
@@ -60,7 +62,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -68,18 +70,20 @@ static const uint qt_meta_data_MainWindow[] = {
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    6,   39,    2, 0x06 /* Public */,
+       1,    6,   44,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       9,    0,   52,    2, 0x08 /* Private */,
-      10,    0,   53,    2, 0x08 /* Private */,
-      11,    0,   54,    2, 0x08 /* Private */,
-      12,    0,   55,    2, 0x08 /* Private */,
+       9,    0,   57,    2, 0x08 /* Private */,
+      10,    0,   58,    2, 0x08 /* Private */,
+      11,    0,   59,    2, 0x08 /* Private */,
+      12,    0,   60,    2, 0x08 /* Private */,
+      13,    0,   61,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int,    3,    4,    5,    6,    7,    8,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -99,6 +103,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 2: _t->on_pushButton_9_clicked(); break;
         case 3: _t->timerTimeout(); break;
         case 4: _t->on_actionSave_triggered(); break;
+        case 5: _t->onCheckBoxHeaderClick(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -142,13 +147,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 6)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }

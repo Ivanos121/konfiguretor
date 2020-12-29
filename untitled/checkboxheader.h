@@ -12,7 +12,6 @@ class CheckBoxHeader : public QHeaderView
 
 public:
     CheckBoxHeader(Qt::Orientation orientation, QWidget* parent = 0);
-
     bool isChecked() const { return isChecked_; }
     void setIsChecked(bool val);
     void mousePressEvent(QMouseEvent* event);
@@ -23,11 +22,8 @@ signals:
 protected:
     void paintSection(QPainter* painter, const QRect& rect, int logicalIndex) const;
 
-
-
 private:
     bool isChecked_;
-
     void redrawCheckBox();
 };
 

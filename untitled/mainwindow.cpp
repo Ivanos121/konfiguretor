@@ -6,6 +6,7 @@
 #include "qcustomplot.h"
 #include "checkboxdelegate.h"
 #include "comboboxdelegate.h"
+#include "comboboxvardelegate.h"
 #include "align.h"
 #include "checkboxheader.h"
 #include <qdebug.h>
@@ -36,18 +37,11 @@ MainWindow::MainWindow(QWidget *parent)
     model->setTable("Net settings");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
-    header = new CheckBoxHeader(Qt::Horizontal, ui->tableView);
-    ui->tableView->setHorizontalHeader(header);
-    connect(header, &CheckBoxHeader::checkBoxClicked, this, &MainWindow::onCheckBoxHeaderClick);
-//connect(header,SIGNAL(isChecked),this,SLOT(onchecked()));
-   /* for (int i=0; i<33; i++ )
-    {
-        if(ui->tableView->model()->index(0,1).data(Qt::CheckStateRole)==Qt::Checked)
-        {
-          ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked;
-        }
-    }*/
-
+    headerr = new CheckBoxHeader(Qt::Horizontal,ui->tableView);
+    // ui->tableView->horizontalHeader()->model()->setHeaderData(2,Qt::Horizontal, QVariant(QVariant::String, headerr));
+    ui->tableView->setHorizontalHeader(headerr);
+    model->setHeaderData(2,Qt::Horizontal, tr("NAME"),Qt::DisplayRole);
+    connect(headerr, &CheckBoxHeader::checkBoxClicked, this, &MainWindow::onCheckBoxHeaderClick);
 
     model->select();
     ui->tableView->setModel(model);
@@ -60,7 +54,8 @@ MainWindow::MainWindow(QWidget *parent)
     ComboBoxDelegate* comboBoxDelegate = new ComboBoxDelegate;
     ui->tableView->setItemDelegateForColumn(4, comboBoxDelegate);
 
-
+    ComboBoxVarDelegate* comboBoxVarDelegate = new ComboBoxVarDelegate;
+    ui->tableView->setItemDelegateForColumn(7, comboBoxVarDelegate);
 
     QHeaderView *headers = ui->tableWidget->horizontalHeader();
     headers->setSectionResizeMode(QHeaderView::ResizeToContents);
@@ -345,11 +340,37 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(&timer, &QTimer::timeout, this, &MainWindow::timerTimeout);
 
+    //индикация работы связи с архиватором
+    label=new QLabel(this);
+    label2=new QLabel(this);
+    ui->toolBar->addWidget(label);
+    ui->toolBar->addWidget(label2);
+    label->setPixmap(QPixmap("IM_24_red"));
+    label2->setText("Связи нет");
+    connect(&timer, &QTimer::timeout, this, &MainWindow::on_pushButton_9_clicked);
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::on_pushButton_9_toggled(bool checked)
+{
+    if(checked)
+    {
+        label->clear();
+        label->setPixmap(QPixmap("IM_24_blue"));
+        label2->setText("Связь установлена");
+
+     }
+    else
+    {
+        label->setPixmap(QPixmap("IM_24_red"));
+        label2->setText("Связи нет");
+
+    }
 }
 
 void MainWindow::on_pushButton_7_clicked()
@@ -700,7 +721,7 @@ void MainWindow::stopGetData()
 
 void MainWindow::onCheckBoxHeaderClick()
 {
-    if(header->isChecked())
+    if(headerr->isChecked())
     {
         for (int i=0; i<33; i++ )
         {

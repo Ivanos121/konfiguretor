@@ -17,6 +17,7 @@ SOURCES += \
     checkboxdelegate.cpp \
     checkboxheader.cpp \
     comboboxdelegate.cpp \
+    comboboxvardelegate.cpp \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     checkboxdelegate.h \
     checkboxheader.h \
     comboboxdelegate.h \
+    comboboxvardelegate.h \
     mainwindow.h \
     model.h \
     qcustomplot.h

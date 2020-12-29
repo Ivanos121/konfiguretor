@@ -35,6 +35,7 @@ signals:
 private slots:
     void on_pushButton_7_clicked();
     void on_pushButton_9_clicked();
+    void on_pushButton_9_toggled(bool checked);
     void timerTimeout();
 
     void on_actionSave_triggered();
@@ -47,7 +48,10 @@ private:
     QSqlTableModel *model;
     void crc_schet();
     QTimer timer;
-    CheckBoxHeader* header;
+    CheckBoxHeader* headerr;
+    QLabel* label;
+    QLabel* label2;
+    QTimer *tmr;
 
     void stopGetData();
 };

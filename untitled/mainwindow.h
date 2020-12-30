@@ -35,7 +35,6 @@ signals:
 private slots:
     void on_pushButton_7_clicked();
     void on_pushButton_9_clicked();
-    void on_pushButton_9_toggled(bool checked);
     void timerTimeout();
 
     void on_actionSave_triggered();

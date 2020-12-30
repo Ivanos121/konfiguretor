@@ -148,6 +148,7 @@ public:
         gridLayout_6->setContentsMargins(0, 0, 0, 0);
         pushButton_7 = new QPushButton(layoutWidget);
         pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
+        pushButton_7->setFocusPolicy(Qt::NoFocus);
 
         gridLayout_6->addWidget(pushButton_7, 0, 0, 1, 1);
 

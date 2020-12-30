@@ -346,31 +346,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->toolBar->addWidget(label);
     ui->toolBar->addWidget(label2);
     label->setPixmap(QPixmap("IM_24_red"));
-    label2->setText("Связи нет");
-    connect(&timer, &QTimer::timeout, this, &MainWindow::on_pushButton_9_clicked);
-
+    label2->setText("  Связи нет");
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::on_pushButton_9_toggled(bool checked)
-{
-    if(checked)
-    {
-        label->clear();
-        label->setPixmap(QPixmap("IM_24_blue"));
-        label2->setText("Связь установлена");
-
-     }
-    else
-    {
-        label->setPixmap(QPixmap("IM_24_red"));
-        label2->setText("Связи нет");
-
-    }
 }
 
 void MainWindow::on_pushButton_7_clicked()
@@ -445,6 +426,8 @@ void MainWindow::on_pushButton_9_clicked()
     else
     {
         timer.stop();
+        label->setPixmap(QPixmap("IM_24_red"));
+        label2->setText("  Связи нет");
     }
 }
 
@@ -700,6 +683,10 @@ void MainWindow::timerTimeout()
         fout.open("result.csv",std::ios::out | std::ios::app);
         fout << std::endl;
         fout.close();
+
+        label->clear();
+        label->setPixmap(QPixmap("IM_24_blue"));
+        label2->setText("  Связь установлена");
 }
 
 
@@ -716,7 +703,8 @@ void MainWindow::on_actionSave_triggered()
 void MainWindow::stopGetData()
 {
     timer.stop();
-    QMessageBox::critical(this, "Ошибка связи!", "Нет ответа от Архиватора!");
+    label->setPixmap(QPixmap("IM_24_red"));
+    label2->setText("  Связи нет");
 }
 
 void MainWindow::onCheckBoxHeaderClick()

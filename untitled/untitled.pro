@@ -17,6 +17,8 @@ SOURCES += \
     checkboxdelegate.cpp \
     checkboxheader.cpp \
     comboboxdelegate.cpp \
+    comboboxerrorarchivedelegate.cpp \
+    comboboxmodbusdelegate.cpp \
     comboboxvardelegate.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -29,6 +31,8 @@ HEADERS += \
     checkboxdelegate.h \
     checkboxheader.h \
     comboboxdelegate.h \
+    comboboxerrorarchivedelegate.h \
+    comboboxmodbusdelegate.h \
     comboboxvardelegate.h \
     mainwindow.h \
     model.h \

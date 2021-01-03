@@ -7,6 +7,8 @@
 #include "checkboxdelegate.h"
 #include "comboboxdelegate.h"
 #include "comboboxvardelegate.h"
+#include "comboboxmodbusdelegate.h"
+#include "comboboxerrorarchivedelegate.h"
 #include "align.h"
 #include "checkboxheader.h"
 #include <qdebug.h>
@@ -20,10 +22,6 @@
 #include <iostream>
 #include <fstream>
 
-//#define MODEL_ROWS 64            //Количество строк модели
-//#define DELEGATE_COLUMN 1
-
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -31,49 +29,60 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     //инициализация базы данных sqlite3
-    sdb = QSqlDatabase::addDatabase("QSQLITE");
-    sdb.setDatabaseName(QFileInfo("netdb.db").absoluteFilePath());
-    model = new Model;
-    model->setTable("Net settings");
-    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    sdb = QSqlDatabase::addDatabase("QSQLITE"); //объявление базы данных sqlite3
+    sdb.setDatabaseName(QFileInfo("netdb.db").absoluteFilePath()); //подключение к базе данных
+    model = new Model; //создание модели QSqlTableModel
+    model->setTable("Net settings"); //Установка для таблицы базы данных, с которой работает модель, tableName
+    model->setEditStrategy(QSqlTableModel::OnManualSubmit); //Все изменения будут кэшироваться в модели до тех пор, пока не будет вызван сигнал submitAll()
 
-    headerr = new CheckBoxHeader(Qt::Horizontal,ui->tableView);
-    // ui->tableView->horizontalHeader()->model()->setHeaderData(2,Qt::Horizontal, QVariant(QVariant::String, headerr));
-    ui->tableView->setHorizontalHeader(headerr);
-    model->setHeaderData(2,Qt::Horizontal, tr("NAME"),Qt::DisplayRole);
-    connect(headerr, &CheckBoxHeader::checkBoxClicked, this, &MainWindow::onCheckBoxHeaderClick);
+    //подключение заголовка таблицы
+    headerr = new CheckBoxHeader(Qt::Horizontal,ui->tableView);  //создание заголовка tableview
+    ui->tableView->setHorizontalHeader(headerr); //установка заголовка tableview и checkbox в первый столбец
+    connect(headerr, &CheckBoxHeader::checkBoxClicked, this, &MainWindow::onCheckBoxHeaderClick); //подключение головного чекбокса к чекбоксам в первом столбце
 
-    model->select();
-    ui->tableView->setModel(model);
-    ui->tableView->hideColumn(0);
+    //загрузка данных в таблицу tableview
+    model->select(); //Заполняет модель данными из таблицы, которая была установлена ​​с помощью setTable(), используя указанный фильтр и условие сортировки
+    ui->tableView->setModel(model); //Устанавливает модель для представления
+    ui->tableView->hideColumn(0); //скрытие столбца id
 
-    CheckBoxDelegate* checkBoxDelegate = new CheckBoxDelegate;
-    ui->tableView->setItemDelegateForColumn(1, checkBoxDelegate);
-    ui->tableView->setItemDelegateForColumn(2, checkBoxDelegate);
+    //делегаты для создания чекбоксов
+    CheckBoxDelegate* checkBoxDelegate = new CheckBoxDelegate; //создание делегата для создания чекбоксов
+    ui->tableView->setItemDelegateForColumn(1, checkBoxDelegate); //загрузка делегата в первый столбец
+    ui->tableView->setItemDelegateForColumn(2, checkBoxDelegate); //загрузка делегата во второй столбец
 
-    ComboBoxDelegate* comboBoxDelegate = new ComboBoxDelegate;
-    ui->tableView->setItemDelegateForColumn(4, comboBoxDelegate);
+    //делегаты для создания комбобоксов
+    ComboBoxDelegate* comboBoxDelegate = new ComboBoxDelegate; //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(4, comboBoxDelegate); //загрузка делегата в четвертый столбец
 
-    ComboBoxVarDelegate* comboBoxVarDelegate = new ComboBoxVarDelegate;
-    ui->tableView->setItemDelegateForColumn(7, comboBoxVarDelegate);
+    //делегаты для создания комбобоксов
+    ComboBoxVarDelegate* comboBoxVarDelegate = new ComboBoxVarDelegate; //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(7, comboBoxVarDelegate); //загрузка делегата в седьмой столбец
 
-    QHeaderView *headers = ui->tableWidget->horizontalHeader();
-    headers->setSectionResizeMode(QHeaderView::ResizeToContents);
+    //делегаты для создания комбобоксов
+    ComboBoxModbusDelegate* comboboxmodbusdelegate = new ComboBoxModbusDelegate; //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(11, comboboxmodbusdelegate); //загрузка делегата в одиннадцатый столбец
 
-    ui->tableView->setEditTriggers(QAbstractItemView::DoubleClicked);
-    ui->tableView->setSelectionBehavior(QAbstractItemView :: SelectRows);
-    ui->tableView->setSelectionMode(QAbstractItemView :: SingleSelection);
-    ui->tableView->resizeColumnsToContents();
+    //делегаты для создания комбобоксов
+    ComboBoxErrorArchiveDelegate* comboboxerrorarchivedelegate = new ComboBoxErrorArchiveDelegate; //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(9, comboboxerrorarchivedelegate); //загрузка делегата в одиннадцатый столбец
+
+    //настройка ширины столбцов
+    QHeaderView *headers = ui->tableWidget->horizontalHeader(); //объявление указателя на горизонтальный заголовок
+    headers->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
+
+    //настройки таблицы tableview
+    ui->tableView->setEditTriggers(QAbstractItemView::DoubleClicked); //Редактирование начинается при двойном щелчке по элементу
+    ui->tableView->setSelectionMode(QAbstractItemView :: NoSelection); //нет выделения ячеек
+    ui->tableView->resizeColumnsToContents(); //Изменяет размер всех столбцов на основе подсказок размера делегата, используемого для визуализации каждого элемента в столбцах
 
     //настройка таблицы вывода данных
-    ui->tableWidget->setRowCount(32);
-    ui->tableWidget->setColumnCount(6);
-    QStringList name;
-    name << "№" << "Свойство" << "Значение" << "№" << "Свойство" << "Значение";
-    ui->tableWidget->setHorizontalHeaderLabels(name);
-    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    ui->tableWidget->setSelectionBehavior(QAbstractItemView :: SelectRows);
-    ui->tableWidget->setSelectionMode(QAbstractItemView :: SingleSelection);
+    ui->tableWidget->setRowCount(32); //задание количества строк таблицы
+    ui->tableWidget->setColumnCount(6); //задание количества столбцов
+    QStringList name; //объявление указателя на тип QStringList
+    name << "№" << "Свойство" << "Значение" << "№" << "Свойство" << "Значение"; //перечисление заголовков
+    ui->tableWidget->setHorizontalHeaderLabels(name); //установка заголовков в таблицу
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
+    ui->tableWidget->setSelectionMode(QAbstractItemView :: NoSelection);
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->resizeColumnsToContents();
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -622,13 +631,15 @@ void MainWindow::timerTimeout()
         {
             if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
             {
+
                 //запись результата в таблицу
                 if (ui->tableWidget->item(i, 2) != 0)
                 {
+                    int k=ui->tableView->model()->data(ui->tableView->currentIndex()).toInt();
                     uint32_t rawBEValue = archiverChannels[i].rawValue;
                     RawAndFloat convertedValue;
                     convertedValue.rawValue = rawBEValue;
-                    ui->tableWidget->item(i, 2)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', 2)));
+                    ui->tableWidget->item(i, 2)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', k)));
                     ui->tableWidget->item(i, 2)->setTextAlignment(Qt::AlignCenter);
 
 

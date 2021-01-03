@@ -18,8 +18,12 @@ QWidget* ComboBoxDelegate::createEditor(QWidget* parent,
     {
         QComboBox* editor = new QComboBox(parent);
         editor->insertItem(0, "RTU");
-        editor->insertItem(1, "Токовая петля");
-        editor->insertItem(2, "TCP");
+        editor->insertItem(1, "ASCII");
+        editor->insertItem(2, "ОВЕН");
+        editor->insertItem(3, "Токовый вход 1");
+        editor->insertItem(4, "Токовый вход 2");
+        editor->insertItem(5, "Токовый вход 3");
+        editor->insertItem(6, "Токовый вход 4");
         return editor;
     }
 
@@ -34,10 +38,20 @@ void ComboBoxDelegate::setEditorData(QWidget* editor, const QModelIndex& index) 
         QComboBox* comboBox = static_cast<QComboBox*>(editor);
         if(value == "RTU")
             comboBox->setCurrentIndex(0);
-        else if(value == "Токовая петля")
+        else if(value == "ASCII")
             comboBox->setCurrentIndex(1);
-        else if(value == "TCP")
+        else if(value == "ОВЕН")
             comboBox->setCurrentIndex(2);
+        else if(value == "Токовый вход 1")
+            comboBox->setCurrentIndex(3);
+        else if(value == "Токовый вход 2")
+            comboBox->setCurrentIndex(4);
+        else if(value == "Токовый вход 3")
+            comboBox->setCurrentIndex(5);
+        else if(value == "Токовый вход 4")
+            comboBox->setCurrentIndex(6);
+        int width=comboBox->minimumSizeHint().width();
+        comboBox->view()->setMinimumWidth(width);
 
     }else
     {
@@ -64,8 +78,6 @@ void ComboBoxDelegate::updateEditorGeometry(QWidget* editor,
 {
     editor->setGeometry(option.rect);
 }
-
-
 
 void ComboBoxDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {

@@ -69,6 +69,8 @@ void ComboBoxVarDelegate::setEditorData(QWidget* editor, const QModelIndex& inde
             comboBox->setCurrentIndex(11);
         else if(value == "FLOAT32(Middle-endian)")
             comboBox->setCurrentIndex(12);
+        int width=comboBox->minimumSizeHint().width();
+        comboBox->view()->setMinimumWidth(width);
     }else
     {
         QStyledItemDelegate::setEditorData(editor, index);

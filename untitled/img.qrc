@@ -4,5 +4,9 @@
         <file>img/IM_48x48.png</file>
         <file>img/IM_24x24.png</file>
         <file>img/IM_16x16.png</file>
+        <file>img/IM_24_red.png</file>
+        <file>img/IM_24_blue.png</file>
+        <file>img/IM_48_blue.png</file>
+        <file>img/IM_48_red.png</file>
     </qresource>
 </RCC>

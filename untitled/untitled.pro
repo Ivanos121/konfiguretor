@@ -16,6 +16,7 @@ SOURCES += \
     archiverchannel.cpp \
     checkboxdelegate.cpp \
     checkboxheader.cpp \
+    comboboxbitdelegate.cpp \
     comboboxdelegate.cpp \
     comboboxerrorarchivedelegate.cpp \
     comboboxmodbusdelegate.cpp \
@@ -30,6 +31,7 @@ HEADERS += \
     archiverchannel.h \
     checkboxdelegate.h \
     checkboxheader.h \
+    comboboxbitdelegate.h \
     comboboxdelegate.h \
     comboboxerrorarchivedelegate.h \
     comboboxmodbusdelegate.h \

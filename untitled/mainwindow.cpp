@@ -9,6 +9,7 @@
 #include "comboboxvardelegate.h"
 #include "comboboxmodbusdelegate.h"
 #include "comboboxerrorarchivedelegate.h"
+#include "comboboxbitdelegate.h"
 #include "align.h"
 #include "checkboxheader.h"
 #include <qdebug.h>
@@ -21,6 +22,7 @@
 #include <QHeaderView>
 #include <iostream>
 #include <fstream>
+#include <QPixmap>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -62,6 +64,10 @@ MainWindow::MainWindow(QWidget *parent)
     //делегаты для создания комбобоксов
     ComboBoxModbusDelegate* comboboxmodbusdelegate = new ComboBoxModbusDelegate; //создание делегата для создания комбобоксов
     ui->tableView->setItemDelegateForColumn(11, comboboxmodbusdelegate); //загрузка делегата в одиннадцатый столбец
+
+    //делегаты для создания комбобоксов
+    ComboBoxBitDelegate* comboboxbitdelegate = new ComboBoxBitDelegate; //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(14, comboboxbitdelegate); //загрузка делегата в одиннадцатый столбец
 
     //делегаты для создания комбобоксов
     ComboBoxErrorArchiveDelegate* comboboxerrorarchivedelegate = new ComboBoxErrorArchiveDelegate; //создание делегата для создания комбобоксов
@@ -355,7 +361,10 @@ MainWindow::MainWindow(QWidget *parent)
     label2=new QLabel(this);
     ui->toolBar->addWidget(label);
     ui->toolBar->addWidget(label2);
-    label->setPixmap(QPixmap("IM_24_red"));
+    //label->setPixmap(QPixmap("IM_24_red"));
+    QPixmap pic1 = QPixmap(":resourse/img/IM_24_red.png");
+    qDebug() << pic1.load("wall.bmp");
+    label->setPixmap(QPixmap(pic1));
     label2->setText("  Связи нет");
 }
 
@@ -436,7 +445,8 @@ void MainWindow::on_pushButton_9_clicked()
     else
     {
         timer.stop();
-        label->setPixmap(QPixmap("IM_24_red"));
+        //label->setPixmap(QPixmap("IM_24_red"));
+        label->setPixmap(QPixmap(": /img/IM_24_red"));
         label2->setText("  Связи нет");
     }
 }
@@ -697,7 +707,8 @@ void MainWindow::timerTimeout()
         fout.close();
 
         label->clear();
-        label->setPixmap(QPixmap("IM_24_blue"));
+       // label->setPixmap(QPixmap("IM_24_blue"));
+        label->setPixmap(QPixmap(": /img/IM_24_blue"));
         label2->setText("  Связь установлена");
 }
 
@@ -715,7 +726,8 @@ void MainWindow::on_actionSave_triggered()
 void MainWindow::stopGetData()
 {
     timer.stop();
-    label->setPixmap(QPixmap("IM_24_red"));
+    //label->setPixmap(QPixmap("IM_24_red"));
+    label->setPixmap(QPixmap(": /img/IM_24_red"));
     label2->setText("  Связи нет");
 }
 

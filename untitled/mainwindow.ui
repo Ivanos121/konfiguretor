@@ -243,10 +243,11 @@
    </attribute>
    <addaction name="actionSave"/>
    <addaction name="action"/>
+   <addaction name="action_2"/>
   </widget>
   <action name="actionSave">
    <property name="text">
-    <string>Сохранить</string>
+    <string>Сохранить в БД</string>
    </property>
    <property name="toolTip">
     <string>Сохранить изменения</string>
@@ -254,7 +255,12 @@
   </action>
   <action name="action">
    <property name="text">
-    <string>Пуск/стоп</string>
+    <string>Загрузить данные в МСД-200</string>
+   </property>
+  </action>
+  <action name="action_2">
+   <property name="text">
+    <string>Считать данные из МСД-200</string>
    </property>
   </action>
  </widget>

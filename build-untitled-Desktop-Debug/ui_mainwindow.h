@@ -36,6 +36,7 @@ class Ui_MainWindow
 public:
     QAction *actionSave;
     QAction *action;
+    QAction *action_2;
     QWidget *centralwidget;
     QGridLayout *gridLayout_3;
     QTabWidget *tabWidget;
@@ -85,6 +86,8 @@ public:
         actionSave->setObjectName(QString::fromUtf8("actionSave"));
         action = new QAction(MainWindow);
         action->setObjectName(QString::fromUtf8("action"));
+        action_2 = new QAction(MainWindow);
+        action_2->setObjectName(QString::fromUtf8("action_2"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         gridLayout_3 = new QGridLayout(centralwidget);
@@ -246,6 +249,7 @@ public:
 
         toolBar->addAction(actionSave);
         toolBar->addAction(action);
+        toolBar->addAction(action_2);
 
         retranslateUi(MainWindow);
 
@@ -259,11 +263,12 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "\320\232\320\276\320\275\321\204\320\270\320\263\321\203\321\200\320\260\321\202\320\276\321\200 \320\270\320\267\320\274\320\265\321\200\320\270\321\202\320\265\320\273\321\214\320\275\321\213\321\205 \320\277\321\200\320\270\320\261\320\276\321\200\320\276\320\262", nullptr));
-        actionSave->setText(QCoreApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214", nullptr));
+        actionSave->setText(QCoreApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214 \320\262 \320\221\320\224", nullptr));
 #if QT_CONFIG(tooltip)
         actionSave->setToolTip(QCoreApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214 \320\270\320\267\320\274\320\265\320\275\320\265\320\275\320\270\321\217", nullptr));
 #endif // QT_CONFIG(tooltip)
-        action->setText(QCoreApplication::translate("MainWindow", "\320\237\321\203\321\201\320\272/\321\201\321\202\320\276\320\277", nullptr));
+        action->setText(QCoreApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \320\264\320\260\320\275\320\275\321\213\320\265 \320\262 \320\234\320\241\320\224-200", nullptr));
+        action_2->setText(QCoreApplication::translate("MainWindow", "\320\241\321\207\320\270\321\202\320\260\321\202\321\214 \320\264\320\260\320\275\320\275\321\213\320\265 \320\270\320\267 \320\234\320\241\320\224-200", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("MainWindow", "\320\235\320\260\321\201\321\202\321\200\320\276\320\271\320\272\320\270 \320\272\320\260\320\275\320\260\320\273\320\276\320\262", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QCoreApplication::translate("MainWindow", "\320\222\321\213\320\262\320\276\320\264 \320\270\320\267\320\274\320\265\321\200\320\265\320\275\320\275\321\213\321\205 \320\264\320\260\320\275\320\275\321\213\321\205", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_3), QCoreApplication::translate("MainWindow", "\320\236\321\202\320\276\320\261\321\200\320\260\320\266\320\265\320\275\320\270\320\265 \320\263\321\200\320\260\321\204\320\270\320\272\320\276\320\262", nullptr));

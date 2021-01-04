@@ -39,7 +39,8 @@ private slots:
 
     void on_actionSave_triggered();
 
-    void onCheckBoxHeaderClick();
+    void onCheckBoxHeaderClick1();
+    void onCheckBoxHeaderClick2();
 
 private:
     Ui::MainWindow *ui;

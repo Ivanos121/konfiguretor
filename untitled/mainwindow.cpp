@@ -38,7 +38,8 @@ MainWindow::MainWindow(QWidget *parent)
     //подключение заголовка таблицы
     headerr = new CheckBoxHeader(Qt::Horizontal,ui->tableView);  //создание заголовка tableview
     ui->tableView->setHorizontalHeader(headerr); //установка заголовка tableview и checkbox в первый столбец
-    connect(headerr, &CheckBoxHeader::checkBoxClicked, this, &MainWindow::onCheckBoxHeaderClick); //подключение головного чекбокса к чекбоксам в первом столбце
+    connect(headerr, &CheckBoxHeader::checkBoxClicked1, this, &MainWindow::onCheckBoxHeaderClick1); //подключение головного чекбокса к чекбоксам в первом столбце
+    connect(headerr, &CheckBoxHeader::checkBoxClicked2, this, &MainWindow::onCheckBoxHeaderClick2); //подключение головного чекбокса к чекбоксам в первом столбце
 
     //загрузка данных в таблицу tableview
     model->select(); //Заполняет модель данными из таблицы, которая была установлена ​​с помощью setTable(), используя указанный фильтр и условие сортировки
@@ -635,7 +636,7 @@ void MainWindow::timerTimeout()
                 //запись результата в таблицу
                 if (ui->tableWidget->item(i, 2) != 0)
                 {
-                    int k=ui->tableView->model()->data(ui->tableView->currentIndex()).toInt();
+                    int k=ui->tableView->model()->data(ui->tableView->model()->index(i, 8) ).toInt();
                     uint32_t rawBEValue = archiverChannels[i].rawValue;
                     RawAndFloat convertedValue;
                     convertedValue.rawValue = rawBEValue;
@@ -718,9 +719,9 @@ void MainWindow::stopGetData()
     label2->setText("  Связи нет");
 }
 
-void MainWindow::onCheckBoxHeaderClick()
+void MainWindow::onCheckBoxHeaderClick1()
 {
-    if(headerr->isChecked())
+    if(headerr->isChecked1())
     {
         for (int i=0; i<33; i++ )
         {
@@ -732,6 +733,24 @@ void MainWindow::onCheckBoxHeaderClick()
         for (int i=0; i<33; i++ )
         {
             ui->tableView->model()->setData(ui->tableView->model()->index(i,1), Qt::Unchecked, Qt::CheckStateRole);
+        }
+    }
+}
+
+void MainWindow::onCheckBoxHeaderClick2()
+{
+    if(headerr->isChecked2())
+    {
+        for (int i=0; i<33; i++ )
+        {
+            ui->tableView->model()->setData(ui->tableView->model()->index(i,2), Qt::Checked, Qt::CheckStateRole);
+        }
+    }
+    else
+    {
+        for (int i=0; i<33; i++ )
+        {
+            ui->tableView->model()->setData(ui->tableView->model()->index(i,2), Qt::Unchecked, Qt::CheckStateRole);
         }
     }
 }

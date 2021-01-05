@@ -17,8 +17,8 @@ QWidget* ComboBoxErrorArchiveDelegate::createEditor(QWidget* parent,
     if(index.column() == 9)
     {
         QComboBox* editor = new QComboBox(parent);
-        editor->insertItem(0, "no");
-        editor->insertItem(1, "yes");
+        editor->insertItem(0, "выкл");
+        editor->insertItem(1, "вкл");
         return editor;
     }
 
@@ -31,9 +31,9 @@ void ComboBoxErrorArchiveDelegate::setEditorData(QWidget* editor, const QModelIn
     {
         QString value = index.model()->data(index, Qt::EditRole).toString();
         QComboBox* comboBox = static_cast<QComboBox*>(editor);
-        if(value == "no")
+        if(value == "выкл")
             comboBox->setCurrentIndex(0);
-        else if(value == "yes")
+        else if(value == "вкл")
             comboBox->setCurrentIndex(1);
           int width=comboBox->minimumSizeHint().width();
         comboBox->view()->setMinimumWidth(width);

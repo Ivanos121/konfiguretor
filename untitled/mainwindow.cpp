@@ -361,10 +361,7 @@ MainWindow::MainWindow(QWidget *parent)
     label2=new QLabel(this);
     ui->toolBar->addWidget(label);
     ui->toolBar->addWidget(label2);
-    //label->setPixmap(QPixmap("IM_24_red"));
-    QPixmap pic1 = QPixmap(":resourse/img/IM_24_red.png");
-    qDebug() << pic1.load("wall.bmp");
-    label->setPixmap(QPixmap(pic1));
+    label->setPixmap(QPixmap(":/new/prefix1/img/IM_24_red"));
     label2->setText("  Связи нет");
 }
 
@@ -445,8 +442,7 @@ void MainWindow::on_pushButton_9_clicked()
     else
     {
         timer.stop();
-        //label->setPixmap(QPixmap("IM_24_red"));
-        label->setPixmap(QPixmap(": /img/IM_24_red"));
+        label->setPixmap(QPixmap(":/new/prefix1/img/IM_24_red"));
         label2->setText("  Связи нет");
     }
 }
@@ -707,8 +703,7 @@ void MainWindow::timerTimeout()
         fout.close();
 
         label->clear();
-       // label->setPixmap(QPixmap("IM_24_blue"));
-        label->setPixmap(QPixmap(": /img/IM_24_blue"));
+        label->setPixmap(QPixmap(":/new/prefix1/img/IM_24_blue"));
         label2->setText("  Связь установлена");
 }
 
@@ -726,8 +721,7 @@ void MainWindow::on_actionSave_triggered()
 void MainWindow::stopGetData()
 {
     timer.stop();
-    //label->setPixmap(QPixmap("IM_24_red"));
-    label->setPixmap(QPixmap(": /img/IM_24_red"));
+    label->setPixmap(QPixmap(":/new/prefix1/img/IM_24_red"));
     label2->setText("  Связи нет");
 }
 

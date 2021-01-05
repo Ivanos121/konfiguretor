@@ -82,6 +82,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableView->setSelectionMode(QAbstractItemView :: NoSelection); //нет выделения ячеек
     ui->tableView->resizeColumnsToContents(); //Изменяет размер всех столбцов на основе подсказок размера делегата, используемого для визуализации каждого элемента в столбцах
 
+
     //настройка таблицы вывода данных
     ui->tableWidget->setRowCount(32); //задание количества строк таблицы
     ui->tableWidget->setColumnCount(6); //задание количества столбцов
@@ -92,7 +93,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->setSelectionMode(QAbstractItemView :: NoSelection);
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->resizeColumnsToContents();
-    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->setEditTriggers(QAbstractItemView::AllEditTriggers);
 
     for(int row = 0; row<ui->tableWidget->rowCount(); row++)
     {
@@ -101,6 +102,7 @@ MainWindow::MainWindow(QWidget *parent)
           ui->tableWidget->setItem(row, column, new QTableWidgetItem());
         }
     }
+    connect(model, SIGNAL(doubleClicked), this, SLOT(onTableViewDoubleClicked));
 
     ui->tableWidget->item(0,1)->setText("Подшипниковый узел справа впереди");
     ui->tableWidget->item(1,1)->setText("Подшипниковый узел слева сзади");
@@ -115,30 +117,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->item(10,1)->setText("Подшипниковый узел слева впереди");
     ui->tableWidget->item(11,1)->setText("Лобовая часть слева сзади");
     ui->tableWidget->item(12,1)->setText("Скорость вращения ротора");
-
     ui->tableWidget->item(13,1)->setText("Переменное напряжение фазы А");
     ui->tableWidget->item(14,1)->setText("Переменный ток фазы А");
-    ui->tableWidget->item(15,1)->setText("Активная мощность фазы А");
-    ui->tableWidget->item(16,1)->setText("Реактивная мощность фазы А");
-    ui->tableWidget->item(17,1)->setText("Полная мощность фазы А");
-    ui->tableWidget->item(18,1)->setText("Частота фазы А");
-    ui->tableWidget->item(19,1)->setText("Коэффициент мощности фазы А");
-
-    ui->tableWidget->item(20,1)->setText("Переменное напряжение фазы B");
-    ui->tableWidget->item(21,1)->setText("Переменный ток фазы B");
-    ui->tableWidget->item(22,1)->setText("Активная мощность фазы B");
-    ui->tableWidget->item(23,1)->setText("Реактивная мощность фазы B");
-    ui->tableWidget->item(24,1)->setText("Полная мощность фазы B");
-    ui->tableWidget->item(25,1)->setText("Частота фазы B");
-    ui->tableWidget->item(26,1)->setText("Коэффициент мощности фазы B");
-
-    ui->tableWidget->item(27,1)->setText("Переменное напряжение фазы C");
-    ui->tableWidget->item(28,1)->setText("Переменный ток фазы C");
-    ui->tableWidget->item(29,1)->setText("Активная мощность фазы C");
-    ui->tableWidget->item(30,1)->setText("Реактивная мощность фазы C");
-    ui->tableWidget->item(31,1)->setText("Полная мощность фазы C");
-    ui->tableWidget->item(0, 4)->setText("Частота фазы C");
-    ui->tableWidget->item(1, 4)->setText("Коэффициент мощности фазы C");
+    ui->tableWidget->item(15,1)->setText("Коэффициент мощности фазы А");
+    ui->tableWidget->item(16,1)->setText("Переменное напряжение фазы B");
+    ui->tableWidget->item(17,1)->setText("Переменный ток фазы B");
+    ui->tableWidget->item(18,1)->setText("Коэффициент мощности фазы B");
+    ui->tableWidget->item(19,1)->setText("Переменное напряжение фазы C");
+    ui->tableWidget->item(20,1)->setText("Переменный ток фазы C");
+    ui->tableWidget->item(21,1)->setText("Коэффициент мощности фазы C");
 
     for (int i=0; i<32; i++)
     {
@@ -760,3 +747,16 @@ void MainWindow::onCheckBoxHeaderClick2()
         }
     }
 }
+
+void MainWindow::onTableViewDoubleClicked()
+{
+   int index = ui->tableView->selectionModel()->currentIndex().row();
+    staff_id=model->data(model->index(ui->tableView->currentIndex().row(),3)).toString();
+
+
+    if (ui->tableWidget->item(index,2) != 0)
+    {
+        ui->tableWidget->item(index,2)->setText(staff_id);
+    }
+}
+

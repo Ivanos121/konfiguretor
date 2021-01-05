@@ -31,16 +31,16 @@ public:
 
 signals:
     void savesettings(QString name, int baudrate, int DataBits, int Parity, int StopBits, int FlowControl);
+    void doubleClicked(QModelIndex);
 
 private slots:
     void on_pushButton_7_clicked();
     void on_pushButton_9_clicked();
     void timerTimeout();
-
     void on_actionSave_triggered();
-
     void onCheckBoxHeaderClick1();
     void onCheckBoxHeaderClick2();
+    void onTableViewDoubleClicked();
 
 private:
     Ui::MainWindow *ui;
@@ -52,6 +52,8 @@ private:
     QLabel* label;
     QLabel* label2;
     QTimer *tmr;
+    QString staff_id;
+
 
     void stopGetData();
 };

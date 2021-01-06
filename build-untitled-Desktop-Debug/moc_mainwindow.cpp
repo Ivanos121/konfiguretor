@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[18];
-    char stringdata0[258];
+    char stringdata0[263];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -49,7 +49,7 @@ QT_MOC_LITERAL(13, 150, 12), // "timerTimeout"
 QT_MOC_LITERAL(14, 163, 23), // "on_actionSave_triggered"
 QT_MOC_LITERAL(15, 187, 22), // "onCheckBoxHeaderClick1"
 QT_MOC_LITERAL(16, 210, 22), // "onCheckBoxHeaderClick2"
-QT_MOC_LITERAL(17, 233, 24) // "onTableViewDoubleClicked"
+QT_MOC_LITERAL(17, 233, 29) // "copyChannelNamesToTableWidget"
 
     },
     "MainWindow\0savesettings\0\0name\0baudrate\0"
@@ -58,7 +58,7 @@ QT_MOC_LITERAL(17, 233, 24) // "onTableViewDoubleClicked"
     "on_pushButton_7_clicked\0on_pushButton_9_clicked\0"
     "timerTimeout\0on_actionSave_triggered\0"
     "onCheckBoxHeaderClick1\0onCheckBoxHeaderClick2\0"
-    "onTableViewDoubleClicked"
+    "copyChannelNamesToTableWidget"
 };
 #undef QT_MOC_LITERAL
 
@@ -118,7 +118,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 5: _t->on_actionSave_triggered(); break;
         case 6: _t->onCheckBoxHeaderClick1(); break;
         case 7: _t->onCheckBoxHeaderClick2(); break;
-        case 8: _t->onTableViewDoubleClicked(); break;
+        case 8: _t->copyChannelNamesToTableWidget(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

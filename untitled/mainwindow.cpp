@@ -102,30 +102,8 @@ MainWindow::MainWindow(QWidget *parent)
           ui->tableWidget->setItem(row, column, new QTableWidgetItem());
         }
     }
-    connect(model, SIGNAL(doubleClicked), this, SLOT(onTableViewDoubleClicked));
 
-    ui->tableWidget->item(0,1)->setText("Подшипниковый узел справа впереди");
-    ui->tableWidget->item(1,1)->setText("Подшипниковый узел слева сзади");
-    ui->tableWidget->item(2,1)->setText("Лобовая часть справа сзади");
-    ui->tableWidget->item(3,1)->setText("Магнитопровод статора");
-    ui->tableWidget->item(4,1)->setText("Станина");
-    ui->tableWidget->item(5,1)->setText("Лобовая часть справа впереди");
-    ui->tableWidget->item(6,1)->setText("Станина");
-    ui->tableWidget->item(7,1)->setText("Момент");
-    ui->tableWidget->item(8,1)->setText("Подшипниковый узел справа сзади");
-    ui->tableWidget->item(9,1)->setText("Лобовая часть слева впереди");
-    ui->tableWidget->item(10,1)->setText("Подшипниковый узел слева впереди");
-    ui->tableWidget->item(11,1)->setText("Лобовая часть слева сзади");
-    ui->tableWidget->item(12,1)->setText("Скорость вращения ротора");
-    ui->tableWidget->item(13,1)->setText("Переменное напряжение фазы А");
-    ui->tableWidget->item(14,1)->setText("Переменный ток фазы А");
-    ui->tableWidget->item(15,1)->setText("Коэффициент мощности фазы А");
-    ui->tableWidget->item(16,1)->setText("Переменное напряжение фазы B");
-    ui->tableWidget->item(17,1)->setText("Переменный ток фазы B");
-    ui->tableWidget->item(18,1)->setText("Коэффициент мощности фазы B");
-    ui->tableWidget->item(19,1)->setText("Переменное напряжение фазы C");
-    ui->tableWidget->item(20,1)->setText("Переменный ток фазы C");
-    ui->tableWidget->item(21,1)->setText("Коэффициент мощности фазы C");
+    copyChannelNamesToTableWidget();
 
     for (int i=0; i<32; i++)
     {
@@ -395,6 +373,7 @@ void MainWindow::on_pushButton_9_clicked()
 {
     if (ui->pushButton_9->isChecked())
     {
+        copyChannelNamesToTableWidget();
         timer.start(1000);
         std::ofstream fout;
         fout.open("result.csv",std::ios::out | std::ios::app);
@@ -748,7 +727,7 @@ void MainWindow::onCheckBoxHeaderClick2()
     }
 }
 
-void MainWindow::onTableViewDoubleClicked()
+/*void MainWindow::onTableViewDoubleClicked()
 {
    int index = ui->tableView->selectionModel()->currentIndex().row();
     staff_id=model->data(model->index(ui->tableView->currentIndex().row(),3)).toString();
@@ -758,5 +737,28 @@ void MainWindow::onTableViewDoubleClicked()
     {
         ui->tableWidget->item(index,2)->setText(staff_id);
     }
-}
+}*/
 
+void MainWindow::copyChannelNamesToTableWidget()
+{
+
+    for (int i = 0; i < 32; i++)
+    {
+        QString text = model->data(model->index(i,3)).toString();
+
+        if (ui->tableWidget->item(i,1) != 0)
+        {
+            ui->tableWidget->item(i,1)->setText(text);
+        }
+    }
+
+    for (int i = 32; i < 64; i++)
+    {
+        QString text = model->data(model->index(i,3)).toString();
+
+        if (ui->tableWidget->item(i-32,4) != 0)
+        {
+            ui->tableWidget->item(i-32,4)->setText(text);
+        }
+    }
+}

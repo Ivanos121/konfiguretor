@@ -40,7 +40,7 @@ private slots:
     void on_actionSave_triggered();
     void onCheckBoxHeaderClick1();
     void onCheckBoxHeaderClick2();
-    void onTableViewDoubleClicked();
+    void copyChannelNamesToTableWidget();
 
 private:
     Ui::MainWindow *ui;
@@ -52,8 +52,6 @@ private:
     QLabel* label;
     QLabel* label2;
     QTimer *tmr;
-    QString staff_id;
-
 
     void stopGetData();
 };

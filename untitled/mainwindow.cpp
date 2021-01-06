@@ -610,12 +610,43 @@ void MainWindow::timerTimeout()
                 {
                     int k=ui->tableView->model()->data(ui->tableView->model()->index(i, 8) ).toInt();
                     uint32_t rawBEValue = archiverChannels[i].rawValue;
-                    RawAndFloat convertedValue;
-                    convertedValue.rawValue = rawBEValue;
-                    ui->tableWidget->item(i, 2)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', k)));
+
+                    QString value = ui->tableView->model()->data(ui->tableView->model()->index(i, 7) ).toString();
+
+                    if(value == "INT16(Little-endian)")
+                    {}
+                    else if(value == "WORD16(Little-endian)")
+                    {}
+                    else if(value == "LONGINT32(Little-endian)")
+                    {
+                        ui->tableWidget->item(i, 2)->setText(QString("%1").arg(QString::number((double)rawBEValue / pow(10,k), 'f', k)));
+                    }
+                    else if(value == "DWORD32(Little-endian)")
+                    {}
+                    else if(value == "FLOAT32(Little-endian)")
+                    {
+                        RawAndFloat convertedValue;
+                        convertedValue.rawValue = rawBEValue;
+                        ui->tableWidget->item(i, 2)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', k)));
+                    }
+                    else if(value == "INT16(Big-endian)")
+                    {}
+                    else if(value == "WORD16(Big-endian)")
+                    {}
+                    else if(value == "LONGINT32(Big-endian)")
+                    {}
+                    else if(value == "DWORD32(Big-endian)")
+                    {}
+                    else if(value == "FLOAT32(Big-endian)")
+                    {}
+                    else if(value == "LONGINT32(Middle-endian)")
+                    {}
+                    else if(value == "DWORD32(Middle-endian)")
+                    {}
+                    else if(value == "FLOAT32(Middle-endian)")
+                    {}
+
                     ui->tableWidget->item(i, 2)->setTextAlignment(Qt::AlignCenter);
-
-
                 }
 
                 uint32_t rawBEValue = archiverChannels[i].rawValue;

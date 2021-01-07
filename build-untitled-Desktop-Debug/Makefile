@@ -64,6 +64,8 @@ SOURCES       = ../untitled/align.cpp \
 		../untitled/main.cpp \
 		../untitled/mainwindow.cpp \
 		../untitled/model.cpp \
+		../untitled/paintdelegate.cpp \
+		../untitled/pointcolumndelegate.cpp \
 		../untitled/qcustomplot.cpp qrc_img.cpp \
 		moc_checkboxheader.cpp \
 		moc_mainwindow.cpp \
@@ -80,6 +82,8 @@ OBJECTS       = align.o \
 		main.o \
 		mainwindow.o \
 		model.o \
+		paintdelegate.o \
+		pointcolumndelegate.o \
 		qcustomplot.o \
 		qrc_img.o \
 		moc_checkboxheader.o \
@@ -100,6 +104,7 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiMime.pri \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiNotes.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiSocialUtils.pri \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiWidgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiXml.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Attica.pri \
@@ -114,12 +119,13 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_KActivities.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KActivitiesStats.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KaddressbookGrantlee.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KAddressbookImportExport.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KaddressbookImportExport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KAddressbookImportExport.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAlarmCal.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KArchive.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAuth.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAuthCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KBlog.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KBookmarks.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCalendarCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCalUtils.pri \
@@ -127,7 +133,6 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_KChart.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCMUtils.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCodecs.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KCompactDisc.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCompletion.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KConfigCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KConfigGui.pri \
@@ -142,6 +147,8 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_KDEWebKit.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDGantt2.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDNSSD.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDSoapClient.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDSoapServer.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KEmoticons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KFileMetaData.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KGantt.pri \
@@ -224,6 +231,8 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_lib_concurrent_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_core.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_core_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_datavisualization.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_datavisualization_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_dbus.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_dbus_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_designer.pri \
@@ -284,6 +293,16 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_quick.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3d.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3d_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_quick_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
@@ -332,6 +351,8 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_lib_webkit_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_websockets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_websockets_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_widgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_widgets_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_x11extras.pri \
@@ -360,6 +381,7 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_PimCommonAkonadi.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Prison.pri \
 		/usr/lib/qt/mkspecs/modules/qt_QGpgme.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Qt5Keychain.pri \
 		/usr/lib/qt/mkspecs/modules/qt_QuickAddons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Solid.pri \
 		/usr/lib/qt/mkspecs/modules/qt_SonnetCore.pri \
@@ -404,6 +426,8 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		../untitled/comboboxvardelegate.h \
 		../untitled/mainwindow.h \
 		../untitled/model.h \
+		../untitled/paintdelegate.h \
+		../untitled/pointcolumndelegate.h \
 		../untitled/qcustomplot.h ../untitled/align.cpp \
 		../untitled/archiverchannel.cpp \
 		../untitled/checkboxdelegate.cpp \
@@ -416,6 +440,8 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		../untitled/main.cpp \
 		../untitled/mainwindow.cpp \
 		../untitled/model.cpp \
+		../untitled/paintdelegate.cpp \
+		../untitled/pointcolumndelegate.cpp \
 		../untitled/qcustomplot.cpp
 QMAKE_TARGET  = untitled
 DESTDIR       = 
@@ -443,6 +469,7 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiMime.pri \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiNotes.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiSocialUtils.pri \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiWidgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiXml.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Attica.pri \
@@ -457,12 +484,13 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_KActivities.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KActivitiesStats.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KaddressbookGrantlee.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KAddressbookImportExport.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KaddressbookImportExport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KAddressbookImportExport.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAlarmCal.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KArchive.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAuth.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAuthCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KBlog.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KBookmarks.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCalendarCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCalUtils.pri \
@@ -470,7 +498,6 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_KChart.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCMUtils.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCodecs.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KCompactDisc.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCompletion.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KConfigCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KConfigGui.pri \
@@ -485,6 +512,8 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_KDEWebKit.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDGantt2.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDNSSD.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDSoapClient.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDSoapServer.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KEmoticons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KFileMetaData.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KGantt.pri \
@@ -567,6 +596,8 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_lib_concurrent_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_core.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_core_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_datavisualization.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_datavisualization_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_dbus.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_dbus_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_designer.pri \
@@ -627,6 +658,16 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_quick.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3d.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3d_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_quick_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
@@ -675,6 +716,8 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_lib_webkit_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_websockets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_websockets_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_widgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_widgets_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_x11extras.pri \
@@ -703,6 +746,7 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_PimCommonAkonadi.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Prison.pri \
 		/usr/lib/qt/mkspecs/modules/qt_QGpgme.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Qt5Keychain.pri \
 		/usr/lib/qt/mkspecs/modules/qt_QuickAddons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Solid.pri \
 		/usr/lib/qt/mkspecs/modules/qt_SonnetCore.pri \
@@ -754,6 +798,7 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_AkonadiCore.pri:
 /usr/lib/qt/mkspecs/modules/qt_AkonadiMime.pri:
 /usr/lib/qt/mkspecs/modules/qt_AkonadiNotes.pri:
+/usr/lib/qt/mkspecs/modules/qt_AkonadiSocialUtils.pri:
 /usr/lib/qt/mkspecs/modules/qt_AkonadiWidgets.pri:
 /usr/lib/qt/mkspecs/modules/qt_AkonadiXml.pri:
 /usr/lib/qt/mkspecs/modules/qt_Attica.pri:
@@ -768,12 +813,13 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_KActivities.pri:
 /usr/lib/qt/mkspecs/modules/qt_KActivitiesStats.pri:
 /usr/lib/qt/mkspecs/modules/qt_KaddressbookGrantlee.pri:
-/usr/lib/qt/mkspecs/modules/qt_KAddressbookImportExport.pri:
 /usr/lib/qt/mkspecs/modules/qt_KaddressbookImportExport.pri:
+/usr/lib/qt/mkspecs/modules/qt_KAddressbookImportExport.pri:
 /usr/lib/qt/mkspecs/modules/qt_KAlarmCal.pri:
 /usr/lib/qt/mkspecs/modules/qt_KArchive.pri:
 /usr/lib/qt/mkspecs/modules/qt_KAuth.pri:
 /usr/lib/qt/mkspecs/modules/qt_KAuthCore.pri:
+/usr/lib/qt/mkspecs/modules/qt_KBlog.pri:
 /usr/lib/qt/mkspecs/modules/qt_KBookmarks.pri:
 /usr/lib/qt/mkspecs/modules/qt_KCalendarCore.pri:
 /usr/lib/qt/mkspecs/modules/qt_KCalUtils.pri:
@@ -781,7 +827,6 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_KChart.pri:
 /usr/lib/qt/mkspecs/modules/qt_KCMUtils.pri:
 /usr/lib/qt/mkspecs/modules/qt_KCodecs.pri:
-/usr/lib/qt/mkspecs/modules/qt_KCompactDisc.pri:
 /usr/lib/qt/mkspecs/modules/qt_KCompletion.pri:
 /usr/lib/qt/mkspecs/modules/qt_KConfigCore.pri:
 /usr/lib/qt/mkspecs/modules/qt_KConfigGui.pri:
@@ -796,6 +841,8 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_KDEWebKit.pri:
 /usr/lib/qt/mkspecs/modules/qt_KDGantt2.pri:
 /usr/lib/qt/mkspecs/modules/qt_KDNSSD.pri:
+/usr/lib/qt/mkspecs/modules/qt_KDSoapClient.pri:
+/usr/lib/qt/mkspecs/modules/qt_KDSoapServer.pri:
 /usr/lib/qt/mkspecs/modules/qt_KEmoticons.pri:
 /usr/lib/qt/mkspecs/modules/qt_KFileMetaData.pri:
 /usr/lib/qt/mkspecs/modules/qt_KGantt.pri:
@@ -878,6 +925,8 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_lib_concurrent_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_core.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_core_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_datavisualization.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_datavisualization_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_dbus.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_dbus_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_designer.pri:
@@ -938,6 +987,16 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_quick.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3d.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3d_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_quick_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2_private.pri:
@@ -986,6 +1045,8 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_lib_webkit_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_websockets.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_websockets_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_widgets.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_widgets_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_x11extras.pri:
@@ -1014,6 +1075,7 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_PimCommonAkonadi.pri:
 /usr/lib/qt/mkspecs/modules/qt_Prison.pri:
 /usr/lib/qt/mkspecs/modules/qt_QGpgme.pri:
+/usr/lib/qt/mkspecs/modules/qt_Qt5Keychain.pri:
 /usr/lib/qt/mkspecs/modules/qt_QuickAddons.pri:
 /usr/lib/qt/mkspecs/modules/qt_Solid.pri:
 /usr/lib/qt/mkspecs/modules/qt_SonnetCore.pri:
@@ -1065,8 +1127,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../untitled/img.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../untitled/align.h ../untitled/archiverchannel.h ../untitled/checkboxdelegate.h ../untitled/checkboxheader.h ../untitled/comboboxbitdelegate.h ../untitled/comboboxdelegate.h ../untitled/comboboxerrorarchivedelegate.h ../untitled/comboboxmodbusdelegate.h ../untitled/comboboxvardelegate.h ../untitled/mainwindow.h ../untitled/model.h ../untitled/qcustomplot.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../untitled/align.cpp ../untitled/archiverchannel.cpp ../untitled/checkboxdelegate.cpp ../untitled/checkboxheader.cpp ../untitled/comboboxbitdelegate.cpp ../untitled/comboboxdelegate.cpp ../untitled/comboboxerrorarchivedelegate.cpp ../untitled/comboboxmodbusdelegate.cpp ../untitled/comboboxvardelegate.cpp ../untitled/main.cpp ../untitled/mainwindow.cpp ../untitled/model.cpp ../untitled/qcustomplot.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../untitled/align.h ../untitled/archiverchannel.h ../untitled/checkboxdelegate.h ../untitled/checkboxheader.h ../untitled/comboboxbitdelegate.h ../untitled/comboboxdelegate.h ../untitled/comboboxerrorarchivedelegate.h ../untitled/comboboxmodbusdelegate.h ../untitled/comboboxvardelegate.h ../untitled/mainwindow.h ../untitled/model.h ../untitled/paintdelegate.h ../untitled/pointcolumndelegate.h ../untitled/qcustomplot.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../untitled/align.cpp ../untitled/archiverchannel.cpp ../untitled/checkboxdelegate.cpp ../untitled/checkboxheader.cpp ../untitled/comboboxbitdelegate.cpp ../untitled/comboboxdelegate.cpp ../untitled/comboboxerrorarchivedelegate.cpp ../untitled/comboboxmodbusdelegate.cpp ../untitled/comboboxvardelegate.cpp ../untitled/main.cpp ../untitled/mainwindow.cpp ../untitled/model.cpp ../untitled/paintdelegate.cpp ../untitled/pointcolumndelegate.cpp ../untitled/qcustomplot.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../untitled/mainwindow.ui $(DISTDIR)/
 
 
@@ -1123,6 +1185,7 @@ moc_checkboxheader.cpp: ../untitled/checkboxheader.h \
 moc_mainwindow.cpp: ../untitled/mainwindow.h \
 		../untitled/align.h \
 		../untitled/checkboxheader.h \
+		../untitled/paintdelegate.h \
 		moc_predefs.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include /home/elf/konfiguretor/build-untitled-Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/elf/konfiguretor/untitled -I/usr/include/qt -I/usr/include/qt/QtWebKitWidgets -I/usr/include/qt/QtPrintSupport -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtWebKit -I/usr/include/qt/QtGui -I/usr/include/qt/QtSerialPort -I/usr/include/qt/QtSql -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtCore -I. -I/usr/include/c++/10.1.0 -I/usr/include/c++/10.1.0/x86_64-pc-linux-gnu -I/usr/include/c++/10.1.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include-fixed -I/usr/include ../untitled/mainwindow.h -o moc_mainwindow.cpp
@@ -1183,12 +1246,14 @@ comboboxvardelegate.o: ../untitled/comboboxvardelegate.cpp ../untitled/comboboxv
 
 main.o: ../untitled/main.cpp ../untitled/mainwindow.h \
 		../untitled/align.h \
-		../untitled/checkboxheader.h
+		../untitled/checkboxheader.h \
+		../untitled/paintdelegate.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../untitled/main.cpp
 
 mainwindow.o: ../untitled/mainwindow.cpp ../untitled/mainwindow.h \
 		../untitled/align.h \
 		../untitled/checkboxheader.h \
+		../untitled/paintdelegate.h \
 		ui_mainwindow.h \
 		../untitled/qcustomplot.h \
 		../untitled/model.h \
@@ -1199,11 +1264,18 @@ mainwindow.o: ../untitled/mainwindow.cpp ../untitled/mainwindow.h \
 		../untitled/comboboxvardelegate.h \
 		../untitled/comboboxmodbusdelegate.h \
 		../untitled/comboboxerrorarchivedelegate.h \
-		../untitled/comboboxbitdelegate.h
+		../untitled/comboboxbitdelegate.h \
+		../untitled/pointcolumndelegate.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../untitled/mainwindow.cpp
 
 model.o: ../untitled/model.cpp ../untitled/model.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o model.o ../untitled/model.cpp
+
+paintdelegate.o: ../untitled/paintdelegate.cpp ../untitled/paintdelegate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o paintdelegate.o ../untitled/paintdelegate.cpp
+
+pointcolumndelegate.o: ../untitled/pointcolumndelegate.cpp ../untitled/pointcolumndelegate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pointcolumndelegate.o ../untitled/pointcolumndelegate.cpp
 
 qcustomplot.o: ../untitled/qcustomplot.cpp ../untitled/qcustomplot.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qcustomplot.o ../untitled/qcustomplot.cpp

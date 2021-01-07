@@ -15,5 +15,10 @@ public:
     virtual bool setData(const QModelIndex & index, const QVariant & value, int role = Qt::EditRole);
     QVariant data2 ( const QModelIndex & index, int role = Qt::DisplayRole );
     void onChecked(int index, int orientation);
+    void getColorForRow(const QModelIndex &row);
+
+signals:
+    //void dataChanged(const QModelIndex &, const QModelIndex &, const QVector <int> &);
+
 };
 #endif // MODEL_H

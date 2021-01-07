@@ -16,6 +16,7 @@
 #include <QTableView>
 #include <QPushButton>
 #include "checkboxheader.h"
+#include "paintdelegate.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -41,6 +42,8 @@ private slots:
     void onCheckBoxHeaderClick1();
     void onCheckBoxHeaderClick2();
     void copyChannelNamesToTableWidget();
+    void selectRows();
+
 
 private:
     Ui::MainWindow *ui;
@@ -52,6 +55,7 @@ private:
     QLabel* label;
     QLabel* label2;
     QTimer *tmr;
+    PaintDelegate* paintdelegate;
 
     void stopGetData();
 };

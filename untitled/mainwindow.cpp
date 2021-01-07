@@ -23,6 +23,9 @@
 #include <iostream>
 #include <fstream>
 #include <QPixmap>
+#include "paintdelegate.h"
+#include "pointcolumndelegate.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -79,7 +82,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     //настройки таблицы tableview
     ui->tableView->setEditTriggers(QAbstractItemView::DoubleClicked); //Редактирование начинается при двойном щелчке по элементу
-    ui->tableView->setSelectionMode(QAbstractItemView :: NoSelection); //нет выделения ячеек
+    ui->tableView->setSelectionMode(QAbstractItemView :: SingleSelection); //нет выделения ячеек
+ //  ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableView->resizeColumnsToContents(); //Изменяет размер всех столбцов на основе подсказок размера делегата, используемого для визуализации каждого элемента в столбцах
 
 
@@ -328,6 +332,49 @@ MainWindow::MainWindow(QWidget *parent)
     ui->toolBar->addWidget(label2);
     label->setPixmap(QPixmap(":/new/prefix1/img/IM_24_red"));
     label2->setText("  Связи нет");
+
+    connect(model, &QSqlTableModel::dataChanged,this, &MainWindow::selectRows);
+
+    for (int i=0; i<64; i++)
+    {
+        if (ui->tableWidget->item(i, 4) != 0)
+        {
+            QString valuee = ui->tableView->model()->data(ui->tableView->model()->index(i, 4) ).toString();
+            if(valuee == "RTU")
+            {
+                PointColumnDelegate* pointcolumndelegate = new PointColumnDelegate; //создание делегата для создания чекбоксов
+                ui->tableView->setItemDelegateForColumn(3, pointcolumndelegate); //загрузка делегата в первый столбец
+                ui->tableView->setItemDelegateForColumn(5, pointcolumndelegate); //загрузка делегата во второй столбец
+                ui->tableView->setItemDelegateForColumn(6, pointcolumndelegate); //загрузка делегата во второй столбец
+
+            }
+            else if(valuee == "ASCII")
+            {
+
+            }
+            else if(valuee == "ОВЕН")
+            {
+
+            }
+            else if(valuee == "Токовый вход 1")
+            {
+
+            }
+            else if(valuee == "Токовый вход 2")
+            {
+
+            }
+            else if(valuee == "Токовый вход 3")
+            {
+
+            }
+            else if(valuee == "Токовый вход 4")
+            {
+
+            }
+        }
+
+    }
 }
 
 MainWindow::~MainWindow()
@@ -713,6 +760,19 @@ void MainWindow::on_actionSave_triggered()
         model->database().commit();
     else
         model->database().rollback();
+ /* //  QAbstractItemDelegate* delegate = ui->tableView->itemDelegateForColumn( 14 );
+    paintdelegate = new PaintDelegate; //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForRow( 14, NULL );
+    delete paintdelegate;*/
+    if(ui->tableView->model())
+
+           for(int i=0;i<ui->tableView->model()->rowCount();i++)
+           {
+               QAbstractItemDelegate* delegate = ui->tableView->itemDelegateForRow( i );
+                //Remove the delegate from the view
+               ui->tableView->setItemDelegateForRow( i, NULL );
+               delete delegate;
+           }
 }
 
 void MainWindow::stopGetData()
@@ -792,4 +852,28 @@ void MainWindow::copyChannelNamesToTableWidget()
             ui->tableWidget->item(i-32,4)->setText(text);
         }
     }
+}
+
+void MainWindow::selectRows()
+{
+    int ind = ui->tableView->selectionModel()->currentIndex().row();
+
+  /*  QItemSelectionModel *qw = ui->tableView->selectionModel();
+
+      QModelIndex topLeft;
+      QModelIndex bottomRight;
+
+      topLeft = model->index(ind, 0, QModelIndex());
+      bottomRight = model->index(ind,16, QModelIndex());
+
+      QItemSelection selection(topLeft, bottomRight);
+      qw->select(selection, QItemSelectionModel::Select);
+      for(int i=0; i < ui->tableView->model()->columnCount(); i++)
+            {
+                 ui->tableView->model()->setData(ui->tableView->model()->index(ind, i), QVariant(QBrush (QColor(Qt::green))), Qt::BackgroundRole);
+                }*/
+      paintdelegate = new PaintDelegate; //создание делегата для создания комбобоксов
+      ui->tableView->setItemDelegateForRow(ind, paintdelegate);
+
+
 }

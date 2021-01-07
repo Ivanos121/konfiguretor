@@ -24,6 +24,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     model.cpp \
+    paintdelegate.cpp \
+    pointcolumndelegate.cpp \
     qcustomplot.cpp
 
 HEADERS += \
@@ -38,6 +40,8 @@ HEADERS += \
     comboboxvardelegate.h \
     mainwindow.h \
     model.h \
+    paintdelegate.h \
+    pointcolumndelegate.h \
     qcustomplot.h
 
 FORMS += \

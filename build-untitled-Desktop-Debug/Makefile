@@ -104,7 +104,6 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiMime.pri \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiNotes.pri \
-		/usr/lib/qt/mkspecs/modules/qt_AkonadiSocialUtils.pri \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiWidgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiXml.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Attica.pri \
@@ -119,13 +118,12 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_KActivities.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KActivitiesStats.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KaddressbookGrantlee.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KaddressbookImportExport.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAddressbookImportExport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KaddressbookImportExport.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAlarmCal.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KArchive.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAuth.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAuthCore.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KBlog.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KBookmarks.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCalendarCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCalUtils.pri \
@@ -133,6 +131,7 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_KChart.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCMUtils.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCodecs.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCompactDisc.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCompletion.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KConfigCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KConfigGui.pri \
@@ -144,8 +143,6 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_KDBusAddons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDeclarative.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDESu.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KDEWebKit.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KDGantt2.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDNSSD.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDSoapClient.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDSoapServer.pri \
@@ -173,7 +170,6 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_KIOFileWidgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KIOGui.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KIOWidgets.pri \
-		/usr/lib/qt/mkspecs/modules/qt_Kirigami.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Kirigami2.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KItemModels.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KItemViews.pri \
@@ -221,6 +217,30 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_KXmlGui.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KXmlRpcClient.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Ldap.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3danimation.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3danimation_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dcore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dcore_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dextras.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dextras_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dinput.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dinput_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dlogic.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dlogic_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquick.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquick_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickanimation.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickanimation_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickextras.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickextras_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickinput.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickinput_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickrender.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickrender_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickscene2d.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickscene2d_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3drender.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3drender_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_accessibility_support_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_av.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_av_private.pri \
@@ -231,8 +251,6 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_lib_concurrent_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_core.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_core_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_datavisualization.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_datavisualization_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_dbus.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_dbus_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_designer.pri \
@@ -351,8 +369,6 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_lib_webkit_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_websockets.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_websockets_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_widgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_widgets_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_x11extras.pri \
@@ -369,19 +385,14 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_MailImporter.pri \
 		/usr/lib/qt/mkspecs/modules/qt_MailImporterAkonadi.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Marble.pri \
-		/usr/lib/qt/mkspecs/modules/qt_MediaWiki.pri \
 		/usr/lib/qt/mkspecs/modules/qt_MessageComposer.pri \
 		/usr/lib/qt/mkspecs/modules/qt_MessageCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_MessageList.pri \
 		/usr/lib/qt/mkspecs/modules/qt_MessageViewer.pri \
-		/usr/lib/qt/mkspecs/modules/qt_OktetaCore.pri \
-		/usr/lib/qt/mkspecs/modules/qt_OktetaGui.pri \
 		/usr/lib/qt/mkspecs/modules/qt_phonon4qt5.pri \
 		/usr/lib/qt/mkspecs/modules/qt_PimCommon.pri \
 		/usr/lib/qt/mkspecs/modules/qt_PimCommonAkonadi.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Prison.pri \
-		/usr/lib/qt/mkspecs/modules/qt_QGpgme.pri \
-		/usr/lib/qt/mkspecs/modules/qt_Qt5Keychain.pri \
 		/usr/lib/qt/mkspecs/modules/qt_QuickAddons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Solid.pri \
 		/usr/lib/qt/mkspecs/modules/qt_SonnetCore.pri \
@@ -469,7 +480,6 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiMime.pri \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiNotes.pri \
-		/usr/lib/qt/mkspecs/modules/qt_AkonadiSocialUtils.pri \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiWidgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_AkonadiXml.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Attica.pri \
@@ -484,13 +494,12 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_KActivities.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KActivitiesStats.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KaddressbookGrantlee.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KaddressbookImportExport.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAddressbookImportExport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KaddressbookImportExport.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAlarmCal.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KArchive.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAuth.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAuthCore.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KBlog.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KBookmarks.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCalendarCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCalUtils.pri \
@@ -498,6 +507,7 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_KChart.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCMUtils.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCodecs.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCompactDisc.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KCompletion.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KConfigCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KConfigGui.pri \
@@ -509,8 +519,6 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_KDBusAddons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDeclarative.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDESu.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KDEWebKit.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KDGantt2.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDNSSD.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDSoapClient.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDSoapServer.pri \
@@ -538,7 +546,6 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_KIOFileWidgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KIOGui.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KIOWidgets.pri \
-		/usr/lib/qt/mkspecs/modules/qt_Kirigami.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Kirigami2.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KItemModels.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KItemViews.pri \
@@ -586,6 +593,30 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_KXmlGui.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KXmlRpcClient.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Ldap.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3danimation.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3danimation_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dcore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dcore_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dextras.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dextras_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dinput.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dinput_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dlogic.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dlogic_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquick.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquick_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickanimation.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickanimation_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickextras.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickextras_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickinput.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickinput_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickrender.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickrender_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickscene2d.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3dquickscene2d_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3drender.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_3drender_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_accessibility_support_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_av.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_av_private.pri \
@@ -596,8 +627,6 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_lib_concurrent_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_core.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_core_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_datavisualization.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_datavisualization_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_dbus.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_dbus_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_designer.pri \
@@ -716,8 +745,6 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_lib_webkit_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets_private.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_websockets.pri \
-		/usr/lib/qt/mkspecs/modules/qt_lib_websockets_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_widgets.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_widgets_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_x11extras.pri \
@@ -734,19 +761,14 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_MailImporter.pri \
 		/usr/lib/qt/mkspecs/modules/qt_MailImporterAkonadi.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Marble.pri \
-		/usr/lib/qt/mkspecs/modules/qt_MediaWiki.pri \
 		/usr/lib/qt/mkspecs/modules/qt_MessageComposer.pri \
 		/usr/lib/qt/mkspecs/modules/qt_MessageCore.pri \
 		/usr/lib/qt/mkspecs/modules/qt_MessageList.pri \
 		/usr/lib/qt/mkspecs/modules/qt_MessageViewer.pri \
-		/usr/lib/qt/mkspecs/modules/qt_OktetaCore.pri \
-		/usr/lib/qt/mkspecs/modules/qt_OktetaGui.pri \
 		/usr/lib/qt/mkspecs/modules/qt_phonon4qt5.pri \
 		/usr/lib/qt/mkspecs/modules/qt_PimCommon.pri \
 		/usr/lib/qt/mkspecs/modules/qt_PimCommonAkonadi.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Prison.pri \
-		/usr/lib/qt/mkspecs/modules/qt_QGpgme.pri \
-		/usr/lib/qt/mkspecs/modules/qt_Qt5Keychain.pri \
 		/usr/lib/qt/mkspecs/modules/qt_QuickAddons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Solid.pri \
 		/usr/lib/qt/mkspecs/modules/qt_SonnetCore.pri \
@@ -798,7 +820,6 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_AkonadiCore.pri:
 /usr/lib/qt/mkspecs/modules/qt_AkonadiMime.pri:
 /usr/lib/qt/mkspecs/modules/qt_AkonadiNotes.pri:
-/usr/lib/qt/mkspecs/modules/qt_AkonadiSocialUtils.pri:
 /usr/lib/qt/mkspecs/modules/qt_AkonadiWidgets.pri:
 /usr/lib/qt/mkspecs/modules/qt_AkonadiXml.pri:
 /usr/lib/qt/mkspecs/modules/qt_Attica.pri:
@@ -813,13 +834,12 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_KActivities.pri:
 /usr/lib/qt/mkspecs/modules/qt_KActivitiesStats.pri:
 /usr/lib/qt/mkspecs/modules/qt_KaddressbookGrantlee.pri:
-/usr/lib/qt/mkspecs/modules/qt_KaddressbookImportExport.pri:
 /usr/lib/qt/mkspecs/modules/qt_KAddressbookImportExport.pri:
+/usr/lib/qt/mkspecs/modules/qt_KaddressbookImportExport.pri:
 /usr/lib/qt/mkspecs/modules/qt_KAlarmCal.pri:
 /usr/lib/qt/mkspecs/modules/qt_KArchive.pri:
 /usr/lib/qt/mkspecs/modules/qt_KAuth.pri:
 /usr/lib/qt/mkspecs/modules/qt_KAuthCore.pri:
-/usr/lib/qt/mkspecs/modules/qt_KBlog.pri:
 /usr/lib/qt/mkspecs/modules/qt_KBookmarks.pri:
 /usr/lib/qt/mkspecs/modules/qt_KCalendarCore.pri:
 /usr/lib/qt/mkspecs/modules/qt_KCalUtils.pri:
@@ -827,6 +847,7 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_KChart.pri:
 /usr/lib/qt/mkspecs/modules/qt_KCMUtils.pri:
 /usr/lib/qt/mkspecs/modules/qt_KCodecs.pri:
+/usr/lib/qt/mkspecs/modules/qt_KCompactDisc.pri:
 /usr/lib/qt/mkspecs/modules/qt_KCompletion.pri:
 /usr/lib/qt/mkspecs/modules/qt_KConfigCore.pri:
 /usr/lib/qt/mkspecs/modules/qt_KConfigGui.pri:
@@ -838,8 +859,6 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_KDBusAddons.pri:
 /usr/lib/qt/mkspecs/modules/qt_KDeclarative.pri:
 /usr/lib/qt/mkspecs/modules/qt_KDESu.pri:
-/usr/lib/qt/mkspecs/modules/qt_KDEWebKit.pri:
-/usr/lib/qt/mkspecs/modules/qt_KDGantt2.pri:
 /usr/lib/qt/mkspecs/modules/qt_KDNSSD.pri:
 /usr/lib/qt/mkspecs/modules/qt_KDSoapClient.pri:
 /usr/lib/qt/mkspecs/modules/qt_KDSoapServer.pri:
@@ -867,7 +886,6 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_KIOFileWidgets.pri:
 /usr/lib/qt/mkspecs/modules/qt_KIOGui.pri:
 /usr/lib/qt/mkspecs/modules/qt_KIOWidgets.pri:
-/usr/lib/qt/mkspecs/modules/qt_Kirigami.pri:
 /usr/lib/qt/mkspecs/modules/qt_Kirigami2.pri:
 /usr/lib/qt/mkspecs/modules/qt_KItemModels.pri:
 /usr/lib/qt/mkspecs/modules/qt_KItemViews.pri:
@@ -915,6 +933,30 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_KXmlGui.pri:
 /usr/lib/qt/mkspecs/modules/qt_KXmlRpcClient.pri:
 /usr/lib/qt/mkspecs/modules/qt_Ldap.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3danimation.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3danimation_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dcore.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dcore_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dextras.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dextras_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dinput.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dinput_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dlogic.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dlogic_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dquick.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dquick_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dquickanimation.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dquickanimation_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dquickextras.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dquickextras_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dquickinput.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dquickinput_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dquickrender.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dquickrender_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dquickscene2d.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3dquickscene2d_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3drender.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_3drender_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_accessibility_support_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_av.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_av_private.pri:
@@ -925,8 +967,6 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_lib_concurrent_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_core.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_core_private.pri:
-/usr/lib/qt/mkspecs/modules/qt_lib_datavisualization.pri:
-/usr/lib/qt/mkspecs/modules/qt_lib_datavisualization_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_dbus.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_dbus_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_designer.pri:
@@ -1045,8 +1085,6 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_lib_webkit_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets_private.pri:
-/usr/lib/qt/mkspecs/modules/qt_lib_websockets.pri:
-/usr/lib/qt/mkspecs/modules/qt_lib_websockets_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_widgets.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_widgets_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_x11extras.pri:
@@ -1063,19 +1101,14 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_MailImporter.pri:
 /usr/lib/qt/mkspecs/modules/qt_MailImporterAkonadi.pri:
 /usr/lib/qt/mkspecs/modules/qt_Marble.pri:
-/usr/lib/qt/mkspecs/modules/qt_MediaWiki.pri:
 /usr/lib/qt/mkspecs/modules/qt_MessageComposer.pri:
 /usr/lib/qt/mkspecs/modules/qt_MessageCore.pri:
 /usr/lib/qt/mkspecs/modules/qt_MessageList.pri:
 /usr/lib/qt/mkspecs/modules/qt_MessageViewer.pri:
-/usr/lib/qt/mkspecs/modules/qt_OktetaCore.pri:
-/usr/lib/qt/mkspecs/modules/qt_OktetaGui.pri:
 /usr/lib/qt/mkspecs/modules/qt_phonon4qt5.pri:
 /usr/lib/qt/mkspecs/modules/qt_PimCommon.pri:
 /usr/lib/qt/mkspecs/modules/qt_PimCommonAkonadi.pri:
 /usr/lib/qt/mkspecs/modules/qt_Prison.pri:
-/usr/lib/qt/mkspecs/modules/qt_QGpgme.pri:
-/usr/lib/qt/mkspecs/modules/qt_Qt5Keychain.pri:
 /usr/lib/qt/mkspecs/modules/qt_QuickAddons.pri:
 /usr/lib/qt/mkspecs/modules/qt_Solid.pri:
 /usr/lib/qt/mkspecs/modules/qt_SonnetCore.pri:

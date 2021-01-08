@@ -21,6 +21,8 @@ class PointColumnDelegate : public QStyledItemDelegate
 public:
     PointColumnDelegate(QObject *parent = nullptr);
     void paint(QPainter *painter, const QStyleOptionViewItem &option,const QModelIndex &index) const;
-    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index ) const;};
+    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index ) const;
+};
+
 
 #endif // POINTCOLUMNDELEGATE_H

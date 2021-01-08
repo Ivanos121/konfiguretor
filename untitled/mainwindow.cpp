@@ -334,19 +334,17 @@ MainWindow::MainWindow(QWidget *parent)
     label2->setText("  Связи нет");
 
     connect(model, &QSqlTableModel::dataChanged,this, &MainWindow::selectRows);
+    connect(model, &QSqlTableModel::dataChanged,this, &MainWindow::PaintCell);
+
+    //НАСТРОЙКА ЦВЕТНОСТИ РТУ
 
     for (int i=0; i<64; i++)
     {
-        if (ui->tableWidget->item(i, 4) != 0)
-        {
+            int inds = ui->tableView->selectionModel()->currentIndex().column();
             QString valuee = ui->tableView->model()->data(ui->tableView->model()->index(i, 4) ).toString();
             if(valuee == "RTU")
             {
-                PointColumnDelegate* pointcolumndelegate = new PointColumnDelegate; //создание делегата для создания чекбоксов
-                ui->tableView->setItemDelegateForColumn(3, pointcolumndelegate); //загрузка делегата в первый столбец
-                ui->tableView->setItemDelegateForColumn(5, pointcolumndelegate); //загрузка делегата во второй столбец
-                ui->tableView->setItemDelegateForColumn(6, pointcolumndelegate); //загрузка делегата во второй столбец
-
+               PaintCell();
             }
             else if(valuee == "ASCII")
             {
@@ -372,9 +370,7 @@ MainWindow::MainWindow(QWidget *parent)
             {
 
             }
-        }
-
-    }
+     }
 }
 
 MainWindow::~MainWindow()
@@ -876,4 +872,10 @@ void MainWindow::selectRows()
       ui->tableView->setItemDelegateForRow(ind, paintdelegate);
 
 
+}
+
+void MainWindow::PaintCell()
+{
+    //PointColumnDelegate* pointcolumndelegate = new PointColumnDelegate; //создание делегата для создания чекбоксов
+    //ui->tableView->setItemDelegateForColumn(3, pointcolumndelegate); //загрузка делегата в первый столбец
 }

@@ -43,6 +43,7 @@ private slots:
     void onCheckBoxHeaderClick2();
     void copyChannelNamesToTableWidget();
     void selectRows();
+    void PaintCell();
 
 
 private:

@@ -21,6 +21,7 @@ void PointColumnDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
 
         // Paint text
         QStyledItemDelegate::paint(painter, option, index);
+
 }
 
 QWidget* PointColumnDelegate::createEditor(QWidget* parent,
@@ -33,3 +34,5 @@ QWidget* PointColumnDelegate::createEditor(QWidget* parent,
 
         return editor;
     }
+
+

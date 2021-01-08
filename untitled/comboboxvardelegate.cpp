@@ -5,15 +5,22 @@
 #include <QApplication>
 #include <QComboBox>
 #include <QStyledItemDelegate>
+#include <QPainter>
+#include "mainwindow.h"
 
 ComboBoxVarDelegate::ComboBoxVarDelegate(QObject *parent) : QStyledItemDelegate(parent)
 {
-
+    mainWindow = (MainWindow*)parent;
 }
 
 QWidget* ComboBoxVarDelegate::createEditor(QWidget* parent,
     const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
+    if (mainWindow->disabledCells.contains(QPoint(index.row(), index.column())))
+    {
+        return nullptr;
+    }
+
     if(index.column() == 7)
     {
         QComboBox* editor = new QComboBox(parent);
@@ -101,17 +108,18 @@ void ComboBoxVarDelegate::updateEditorGeometry(QWidget* editor,
 
 void ComboBoxVarDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    if (index.column() == 3) // show combobox only in the second column
+    if (index.column() == 7)
     {
-        QStyleOptionComboBox box;
-        box.state = option.state;
-
-        box.rect = option.rect;
-        box.currentText = index.data(Qt::EditRole).toString();
-
-        QApplication::style()->drawComplexControl(QStyle::CC_ComboBox, &box, painter, 0);
-        QApplication::style()->drawControl(QStyle::CE_ComboBoxLabel, &box, painter, 0);
-        return;
+        if (mainWindow->changedRows.contains(index.row()))
+        {
+           QColor background = mainWindow->changedColumnBackgroundColor; // RGB value: https://www.rapidtables.com/web/color/blue-color.html
+           painter->fillRect(option.rect, background);
+        }
+        else if (mainWindow->disabledCells.contains(QPoint(index.row(), index.column())))
+        {
+            QColor background = mainWindow->disabledCellBackgroundColor; // RGB value: https://www.rapidtables.com/web/color/blue-color.html
+            painter->fillRect(option.rect, background);
+        }
     }
     QStyledItemDelegate::paint(painter, option, index);
 }

@@ -4,10 +4,13 @@
 #include <QMouseEvent>
 #include <QApplication>
 #include <QStyledItemDelegate>
+#include <QPainter>
+
+#include "mainwindow.h"
 
 CheckBoxDelegate::CheckBoxDelegate(QObject *parent) : QStyledItemDelegate(parent)
 {
-
+    mainWindow = (MainWindow*)parent;
 }
 
 void CheckBoxDelegate::paint (QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index ) const
@@ -16,6 +19,16 @@ void CheckBoxDelegate::paint (QPainter * painter, const QStyleOptionViewItem & o
   // Only do this if we are accessing the column with boolean variables.
   if (index.column() == 1 || index.column() == 2)
   {
+     if (mainWindow->changedRows.contains(index.row()))
+     {
+        QColor background = mainWindow->changedColumnBackgroundColor; // RGB value: https://www.rapidtables.com/web/color/blue-color.html
+        painter->fillRect(option.rect, background);
+     }
+     else if (mainWindow->disabledCells.contains(QPoint(index.row(), index.column())))
+     {
+         QColor background = mainWindow->disabledCellBackgroundColor; // RGB value: https://www.rapidtables.com/web/color/blue-color.html
+         painter->fillRect(option.rect, background);
+     }
     // This basically changes the rectangle in which the check box is drawn.
     const int textMargin = QApplication::style()->pixelMetric(QStyle::PM_FocusFrameHMargin) + 1;
     QRect newRect = QStyle::alignedRect(option.direction, Qt::AlignCenter,

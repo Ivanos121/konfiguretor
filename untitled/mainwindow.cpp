@@ -29,6 +29,8 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
+    , disabledCellBackgroundColor(180, 180, 180)
+    , changedColumnBackgroundColor(144,238,144)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -52,29 +54,59 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableView->hideColumn(0); //скрытие столбца id
 
     //делегаты для создания чекбоксов
-    CheckBoxDelegate* checkBoxDelegate = new CheckBoxDelegate; //создание делегата для создания чекбоксов
+    CheckBoxDelegate* checkBoxDelegate = new CheckBoxDelegate(this); //создание делегата для создания чекбоксов
     ui->tableView->setItemDelegateForColumn(1, checkBoxDelegate); //загрузка делегата в первый столбец
     ui->tableView->setItemDelegateForColumn(2, checkBoxDelegate); //загрузка делегата во второй столбец
 
     //делегаты для создания комбобоксов
-    ComboBoxDelegate* comboBoxDelegate = new ComboBoxDelegate; //создание делегата для создания комбобоксов
+    ComboBoxDelegate* comboBoxDelegate = new ComboBoxDelegate(this); //создание делегата для создания комбобоксов
     ui->tableView->setItemDelegateForColumn(4, comboBoxDelegate); //загрузка делегата в четвертый столбец
 
     //делегаты для создания комбобоксов
-    ComboBoxVarDelegate* comboBoxVarDelegate = new ComboBoxVarDelegate; //создание делегата для создания комбобоксов
+    ComboBoxVarDelegate* comboBoxVarDelegate = new ComboBoxVarDelegate(this); //создание делегата для создания комбобоксов
     ui->tableView->setItemDelegateForColumn(7, comboBoxVarDelegate); //загрузка делегата в седьмой столбец
 
     //делегаты для создания комбобоксов
-    ComboBoxModbusDelegate* comboboxmodbusdelegate = new ComboBoxModbusDelegate; //создание делегата для создания комбобоксов
+    ComboBoxModbusDelegate* comboboxmodbusdelegate = new ComboBoxModbusDelegate(this); //создание делегата для создания комбобоксов
     ui->tableView->setItemDelegateForColumn(11, comboboxmodbusdelegate); //загрузка делегата в одиннадцатый столбец
 
     //делегаты для создания комбобоксов
-    ComboBoxBitDelegate* comboboxbitdelegate = new ComboBoxBitDelegate; //создание делегата для создания комбобоксов
+    ComboBoxBitDelegate* comboboxbitdelegate = new ComboBoxBitDelegate(this); //создание делегата для создания комбобоксов
     ui->tableView->setItemDelegateForColumn(14, comboboxbitdelegate); //загрузка делегата в одиннадцатый столбец
 
     //делегаты для создания комбобоксов
-    ComboBoxErrorArchiveDelegate* comboboxerrorarchivedelegate = new ComboBoxErrorArchiveDelegate; //создание делегата для создания комбобоксов
+    ComboBoxErrorArchiveDelegate* comboboxerrorarchivedelegate = new ComboBoxErrorArchiveDelegate(this); //создание делегата для создания комбобоксов
     ui->tableView->setItemDelegateForColumn(9, comboboxerrorarchivedelegate); //загрузка делегата в одиннадцатый столбец
+
+    //paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
+    //ui->tableView->setItemDelegateForColumn(3 5 6 8 10 12 13 15 16, paintdelegate);
+
+    PaintDelegate *paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(3, paintdelegate);
+
+    paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(5, paintdelegate);
+
+    paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(6, paintdelegate);
+
+    paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(8, paintdelegate);
+
+    paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(10, paintdelegate);
+
+    paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(12, paintdelegate);
+
+    paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(13, paintdelegate);
+
+    paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(15, paintdelegate);
+
+    paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(16, paintdelegate);
 
     //настройка ширины столбцов
     QHeaderView *headers = ui->tableWidget->horizontalHeader(); //объявление указателя на горизонтальный заголовок
@@ -334,43 +366,8 @@ MainWindow::MainWindow(QWidget *parent)
     label2->setText("  Связи нет");
 
     connect(model, &QSqlTableModel::dataChanged,this, &MainWindow::selectRows);
-    connect(model, &QSqlTableModel::dataChanged,this, &MainWindow::PaintCell);
 
-    //НАСТРОЙКА ЦВЕТНОСТИ РТУ
-
-    for (int i=0; i<64; i++)
-    {
-            int inds = ui->tableView->selectionModel()->currentIndex().column();
-            QString valuee = ui->tableView->model()->data(ui->tableView->model()->index(i, 4) ).toString();
-            if(valuee == "RTU")
-            {
-               PaintCell();
-            }
-            else if(valuee == "ASCII")
-            {
-
-            }
-            else if(valuee == "ОВЕН")
-            {
-
-            }
-            else if(valuee == "Токовый вход 1")
-            {
-
-            }
-            else if(valuee == "Токовый вход 2")
-            {
-
-            }
-            else if(valuee == "Токовый вход 3")
-            {
-
-            }
-            else if(valuee == "Токовый вход 4")
-            {
-
-            }
-     }
+    setDisabledCells();
 }
 
 MainWindow::~MainWindow()
@@ -756,19 +753,10 @@ void MainWindow::on_actionSave_triggered()
         model->database().commit();
     else
         model->database().rollback();
- /* //  QAbstractItemDelegate* delegate = ui->tableView->itemDelegateForColumn( 14 );
-    paintdelegate = new PaintDelegate; //создание делегата для создания комбобоксов
-    ui->tableView->setItemDelegateForRow( 14, NULL );
-    delete paintdelegate;*/
-    if(ui->tableView->model())
 
-           for(int i=0;i<ui->tableView->model()->rowCount();i++)
-           {
-               QAbstractItemDelegate* delegate = ui->tableView->itemDelegateForRow( i );
-                //Remove the delegate from the view
-               ui->tableView->setItemDelegateForRow( i, NULL );
-               delete delegate;
-           }
+    changedRows.clear();
+    disabledCells.clear();
+    setDisabledCells();
 }
 
 void MainWindow::stopGetData()
@@ -852,30 +840,44 @@ void MainWindow::copyChannelNamesToTableWidget()
 
 void MainWindow::selectRows()
 {
-    int ind = ui->tableView->selectionModel()->currentIndex().row();
-
-  /*  QItemSelectionModel *qw = ui->tableView->selectionModel();
-
-      QModelIndex topLeft;
-      QModelIndex bottomRight;
-
-      topLeft = model->index(ind, 0, QModelIndex());
-      bottomRight = model->index(ind,16, QModelIndex());
-
-      QItemSelection selection(topLeft, bottomRight);
-      qw->select(selection, QItemSelectionModel::Select);
-      for(int i=0; i < ui->tableView->model()->columnCount(); i++)
-            {
-                 ui->tableView->model()->setData(ui->tableView->model()->index(ind, i), QVariant(QBrush (QColor(Qt::green))), Qt::BackgroundRole);
-                }*/
-      paintdelegate = new PaintDelegate; //создание делегата для создания комбобоксов
-      ui->tableView->setItemDelegateForRow(ind, paintdelegate);
-
-
+    int row = ui->tableView->selectionModel()->currentIndex().row();
+    changedRows << row;
 }
 
-void MainWindow::PaintCell()
+void MainWindow::setDisabledCells()
 {
-    //PointColumnDelegate* pointcolumndelegate = new PointColumnDelegate; //создание делегата для создания чекбоксов
-    //ui->tableView->setItemDelegateForColumn(3, pointcolumndelegate); //загрузка делегата в первый столбец
+    //НАСТРОЙКА ЦВЕТНОСТИ РТУ
+
+    for (int i=0; i<64; i++)
+    {
+            QString valuee = ui->tableView->model()->data(ui->tableView->model()->index(i, 4) ).toString();
+            if(valuee == "RTU")
+            {
+                disabledCells << QPoint(i, 10) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
+            }
+            else if(valuee == "ASCII")
+            {
+
+            }
+            else if(valuee == "ОВЕН")
+            {
+
+            }
+            else if(valuee == "Токовый вход 1")
+            {
+
+            }
+            else if(valuee == "Токовый вход 2")
+            {
+
+            }
+            else if(valuee == "Токовый вход 3")
+            {
+
+            }
+            else if(valuee == "Токовый вход 4")
+            {
+
+            }
+     }
 }

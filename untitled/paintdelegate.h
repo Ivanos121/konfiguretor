@@ -16,15 +16,17 @@
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
 
+class MainWindow;
+
 class PaintDelegate : public QStyledItemDelegate
 {
 public:
     PaintDelegate(QObject *parent = nullptr);
     void paint(QPainter *painter, const QStyleOptionViewItem &option,const QModelIndex &index) const;
-    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index ) const;
-  //  QVariant data(const QModelIndex &index, int role) const;
+    QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const;
 
-
+private:
+    MainWindow* mainWindow;
 };
 
 #endif // PAINTDELEGATE_H

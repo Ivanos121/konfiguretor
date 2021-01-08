@@ -16,6 +16,8 @@
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
 
+class MainWindow;
+
 class ComboBoxModbusDelegate : public QStyledItemDelegate
 {
 public:
@@ -26,6 +28,9 @@ public:
     void updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const;
     void paint(QPainter *painter, const QStyleOptionViewItem &option,const QModelIndex &index) const;
     void changedComboBox(int /*index*/);
+
+private:
+    MainWindow *mainWindow;
 };
 
 #endif // COMBOBOXMODBUSDELEGATE_H

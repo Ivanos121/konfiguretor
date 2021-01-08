@@ -15,6 +15,9 @@
 #include "align.h"
 #include <QTableView>
 #include <QPushButton>
+
+#include <QSet>
+
 #include "checkboxheader.h"
 #include "paintdelegate.h"
 
@@ -30,6 +33,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    QSet<int> changedRows;
+    QSet<QPoint> disabledCells;
+    QColor disabledCellBackgroundColor;
+    QColor changedColumnBackgroundColor;
+
 signals:
     void savesettings(QString name, int baudrate, int DataBits, int Parity, int StopBits, int FlowControl);
     void doubleClicked(QModelIndex);
@@ -43,8 +51,6 @@ private slots:
     void onCheckBoxHeaderClick2();
     void copyChannelNamesToTableWidget();
     void selectRows();
-    void PaintCell();
-
 
 private:
     Ui::MainWindow *ui;
@@ -56,10 +62,15 @@ private:
     QLabel* label;
     QLabel* label2;
     QTimer *tmr;
-    PaintDelegate* paintdelegate;
 
     void stopGetData();
+    void setDisabledCells();
 };
+
+inline uint qHash (const QPoint & key)
+{
+    return qHash (QPair<int,int>(key.x(), key.y()) );
+}
 
 
 #endif // MAINWINDOW_H

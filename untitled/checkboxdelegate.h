@@ -16,12 +16,17 @@
 #include <QStyledItemDelegate>
 #include <QTableWidgetItem>
 
+class MainWindow;
+
 class CheckBoxDelegate : public QStyledItemDelegate
 {
 public:
     CheckBoxDelegate(QObject *parent = nullptr);
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     bool editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option,const QModelIndex &index);
+
+private:
+    MainWindow *mainWindow;
 };
 
 #endif // CHECKBOXDELEGATE_H

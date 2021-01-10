@@ -180,10 +180,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_3->setMouseTracking(true);
     ui->widget_3->addGraph();
     ui->widget_3->graph(0)->setName("Подшипниковый узел справа впереди");
-    ui->widget_3->graph(0)->setPen(QPen(Qt::blue));
+    ui->widget_3->graph(0)->setPen(QPen(QColor(0,0,255)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(1)->setName("Подшипниковый узел слева сзади");
-    ui->widget_3->graph(1)->setPen(QPen(Qt::red));
+    ui->widget_3->graph(1)->setPen(QPen(QColor(0,191,255)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(2)->setName("Лобовая часть справа сзади");
     ui->widget_3->graph(2)->setPen(QPen(Qt::green));
@@ -368,11 +368,71 @@ MainWindow::MainWindow(QWidget *parent)
     connect(model, &QSqlTableModel::dataChanged,this, &MainWindow::selectRows);
 
     setDisabledCells();
+
+    //настройка таблицы вывода данных
+    ui->tableWidget_2->setRowCount(64); //задание количества строк таблицы
+    ui->tableWidget_2->setColumnCount(4); //задание количества столбцов
+    QStringList name2; //объявление указателя на тип QStringList
+    name2 << "№" << "Цвет" << "Свойство" << "Значение"; //перечисление заголовков
+    ui->tableWidget_2->setHorizontalHeaderLabels(name2); //установка заголовков в таблицу
+    ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
+    ui->tableWidget_2->setSelectionMode(QAbstractItemView :: NoSelection);
+    ui->tableWidget_2->verticalHeader()->setVisible(false);
+    ui->tableWidget_2->resizeColumnsToContents();
+    ui->tableWidget_2->setEditTriggers(QAbstractItemView::AllEditTriggers);
+
+    for(int row = 0; row<ui->tableWidget_2->rowCount(); row++)
+    {
+        for(int column = 0; column<ui->tableWidget_2->columnCount(); column++)
+        {
+          ui->tableWidget_2->setItem(row, column, new QTableWidgetItem());
+        }
+
+  //  ui->tableWidget_2->item(1, 1)->setBackground(QColor(0,0,255));
+    }
+
+    copyChannelNamesToTableWidget();
+
+    for (int i=0; i<64; i++)
+    {
+        if (ui->tableWidget_2->item(i, 0) != 0)
+        {
+            ui->tableWidget_2->item(i, 0)->setText(QString("%1").arg(i+1));
+            ui->tableWidget_2->item(i, 0)->setTextAlignment(Qt::AlignCenter);
+        }
+    }
+
+    for (int i = 0; i < 64; i++)
+    {
+        QString text = model->data(model->index(i,3)).toString();
+
+        if (ui->tableWidget_2->item(i,2) != 0)
+        {
+            ui->tableWidget_2->item(i,2)->setText(text);
+        }
+    }
+
+    for (int i = 0; i < 64; i++)
+    {
+        if (ui->tableWidget_2->item(i,1) != 0)
+        {
+            ui->tableWidget_2->item(i, 1)->setBackground(QColor(255,255,255));
+        }
+    }
+    connect(ui->tableWidget_2, &QTableWidget::cellClicked,this, &MainWindow::setcolorincell);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::setcolorincell(int row, int column)
+{
+    row = ui->tableWidget_2->currentRow();
+    column = 1;
+    QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
+    ui->tableWidget_2->item(row, column)->setBackground(chosenColor);
 }
 
 void MainWindow::on_pushButton_7_clicked()
@@ -744,8 +804,6 @@ void MainWindow::timerTimeout()
         label2->setText("  Связь установлена");
 }
 
-
-
 void MainWindow::on_actionSave_triggered()
 {
     model->database().transaction();
@@ -802,18 +860,6 @@ void MainWindow::onCheckBoxHeaderClick2()
     }
 }
 
-/*void MainWindow::onTableViewDoubleClicked()
-{
-   int index = ui->tableView->selectionModel()->currentIndex().row();
-    staff_id=model->data(model->index(ui->tableView->currentIndex().row(),3)).toString();
-
-
-    if (ui->tableWidget->item(index,2) != 0)
-    {
-        ui->tableWidget->item(index,2)->setText(staff_id);
-    }
-}*/
-
 void MainWindow::copyChannelNamesToTableWidget()
 {
 
@@ -850,34 +896,34 @@ void MainWindow::setDisabledCells()
 
     for (int i=0; i<64; i++)
     {
-            QString valuee = ui->tableView->model()->data(ui->tableView->model()->index(i, 4) ).toString();
-            if(valuee == "RTU")
-            {
-                disabledCells << QPoint(i, 10) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
-            }
-            else if(valuee == "ASCII")
-            {
-
-            }
-            else if(valuee == "ОВЕН")
-            {
-
-            }
-            else if(valuee == "Токовый вход 1")
-            {
-
-            }
-            else if(valuee == "Токовый вход 2")
-            {
-
-            }
-            else if(valuee == "Токовый вход 3")
-            {
-
-            }
-            else if(valuee == "Токовый вход 4")
-            {
-
-            }
-     }
+        QString valuee = ui->tableView->model()->data(ui->tableView->model()->index(i, 4) ).toString();
+        if(valuee == "RTU")
+        {
+            disabledCells << QPoint(i, 10) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
+        }
+        else if(valuee == "ASCII")
+        {
+            disabledCells << QPoint(i, 10) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
+        }
+        else if(valuee == "ОВЕН")
+        {
+            disabledCells << QPoint(i, 10) << QPoint(i, 11) << QPoint(i, 12) << QPoint(i, 13);
+        }
+        else if(valuee == "Токовый вход 1")
+        {
+            disabledCells << QPoint(i, 5) << QPoint(i, 6) << QPoint(i, 7) << QPoint(i, 11)<< QPoint(i, 12) << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15)<< QPoint(i, 16);
+        }
+        else if(valuee == "Токовый вход 2")
+        {
+            disabledCells << QPoint(i, 5) << QPoint(i, 6) << QPoint(i, 7) << QPoint(i, 11)<< QPoint(i, 12) << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15)<< QPoint(i, 16);
+        }
+        else if(valuee == "Токовый вход 3")
+        {
+            disabledCells << QPoint(i, 5) << QPoint(i, 6) << QPoint(i, 7) << QPoint(i, 11)<< QPoint(i, 12) << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15)<< QPoint(i, 16);
+        }
+        else if(valuee == "Токовый вход 4")
+        {
+            disabledCells << QPoint(i, 5) << QPoint(i, 6) << QPoint(i, 7) << QPoint(i, 11)<< QPoint(i, 12) << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15)<< QPoint(i, 16);
+        }
+    }
 }

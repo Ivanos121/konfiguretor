@@ -41,6 +41,7 @@ public:
 signals:
     void savesettings(QString name, int baudrate, int DataBits, int Parity, int StopBits, int FlowControl);
     void doubleClicked(QModelIndex);
+    void cellclicked(int row , int column );
 
 private slots:
     void on_pushButton_7_clicked();
@@ -51,6 +52,7 @@ private slots:
     void onCheckBoxHeaderClick2();
     void copyChannelNamesToTableWidget();
     void selectRows();
+    void setcolorincell(int row, int column);
 
 private:
     Ui::MainWindow *ui;

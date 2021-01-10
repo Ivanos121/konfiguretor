@@ -49,6 +49,7 @@ public:
     QWidget *tab_3;
     QGridLayout *gridLayout_8;
     QCustomPlot *widget_3;
+    QTableWidget *tableWidget_2;
     QWidget *widget_2;
     QGroupBox *groupBox;
     QLabel *label_4;
@@ -122,8 +123,17 @@ public:
         gridLayout_8->setObjectName(QString::fromUtf8("gridLayout_8"));
         widget_3 = new QCustomPlot(tab_3);
         widget_3->setObjectName(QString::fromUtf8("widget_3"));
+        widget_3->setMinimumSize(QSize(0, 0));
+        widget_3->setMaximumSize(QSize(16777215, 16777215));
 
-        gridLayout_8->addWidget(widget_3, 0, 0, 1, 1);
+        gridLayout_8->addWidget(widget_3, 0, 2, 1, 1);
+
+        tableWidget_2 = new QTableWidget(tab_3);
+        tableWidget_2->setObjectName(QString::fromUtf8("tableWidget_2"));
+        tableWidget_2->setMinimumSize(QSize(450, 0));
+        tableWidget_2->setMaximumSize(QSize(450, 16777215));
+
+        gridLayout_8->addWidget(tableWidget_2, 0, 3, 1, 1);
 
         tabWidget->addTab(tab_3, QString());
 
@@ -253,7 +263,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(2);
         comboBox_2->setCurrentIndex(-1);
 
 

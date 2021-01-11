@@ -25,6 +25,7 @@
 #include <QPixmap>
 #include "paintdelegate.h"
 #include "pointcolumndelegate.h"
+#include "comboboxcurrentdelegate.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -78,8 +79,9 @@ MainWindow::MainWindow(QWidget *parent)
     ComboBoxErrorArchiveDelegate* comboboxerrorarchivedelegate = new ComboBoxErrorArchiveDelegate(this); //создание делегата для создания комбобоксов
     ui->tableView->setItemDelegateForColumn(9, comboboxerrorarchivedelegate); //загрузка делегата в одиннадцатый столбец
 
-    //paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
-    //ui->tableView->setItemDelegateForColumn(3 5 6 8 10 12 13 15 16, paintdelegate);
+    //делегаты для создания комбобоксов
+    ComboBoxCurrentDelegate* comboboxcurrentdelegate = new ComboBoxCurrentDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(17, comboboxcurrentdelegate); //загрузка делегата в одиннадцатый столбец
 
     PaintDelegate *paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
     ui->tableView->setItemDelegateForColumn(3, paintdelegate);
@@ -108,6 +110,18 @@ MainWindow::MainWindow(QWidget *parent)
     paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
     ui->tableView->setItemDelegateForColumn(16, paintdelegate);
 
+    paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(17, paintdelegate);
+
+    paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(18, paintdelegate);
+
+    paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(19, paintdelegate);
+
+    paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
+    ui->tableView->setItemDelegateForColumn(20, paintdelegate);
+
     //настройка ширины столбцов
     QHeaderView *headers = ui->tableWidget->horizontalHeader(); //объявление указателя на горизонтальный заголовок
     headers->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
@@ -129,7 +143,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget->setSelectionMode(QAbstractItemView :: NoSelection);
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->resizeColumnsToContents();
-    ui->tableWidget->setEditTriggers(QAbstractItemView::AllEditTriggers);
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for(int row = 0; row<ui->tableWidget->rowCount(); row++)
     {
@@ -180,106 +194,106 @@ MainWindow::MainWindow(QWidget *parent)
     ui->widget_3->setMouseTracking(true);
     ui->widget_3->addGraph();
     ui->widget_3->graph(0)->setName("Подшипниковый узел справа впереди");
-    ui->widget_3->graph(0)->setPen(QPen(QColor(0,0,255)));
+    ui->widget_3->graph(0)->setPen(QPen(QColor(75,0,130)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(1)->setName("Подшипниковый узел слева сзади");
-    ui->widget_3->graph(1)->setPen(QPen(QColor(0,191,255)));
+    ui->widget_3->graph(1)->setPen(QPen(QColor(138,43,226)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(2)->setName("Лобовая часть справа сзади");
-    ui->widget_3->graph(2)->setPen(QPen(Qt::green));
+    ui->widget_3->graph(2)->setPen(QPen(QColor(0,0,255)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(3)->setName("Магнитопровод статора");
-    ui->widget_3->graph(3)->setPen(QPen(Qt::cyan));
+    ui->widget_3->graph(3)->setPen(QPen(QColor(95,158,160)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(4)->setName("Станина");
-    ui->widget_3->graph(4)->setPen(QPen(QColor(47, 15, 163)));
+    ui->widget_3->graph(4)->setPen(QPen(QColor(100,149,237)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(5)->setName("Лобовая часть справа впереди");
-    ui->widget_3->graph(5)->setPen(QPen(QColor(47, 15, 163)));
+    ui->widget_3->graph(5)->setPen(QPen(QColor(0,191,255)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(6)->setName("Станина");
-    ui->widget_3->graph(6)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(6)->setPen(QPen(QColor(135,206,250)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(7)->setName("Момент");
-    ui->widget_3->graph(7)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(7)->setPen(QPen(QColor(244,164,96)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(8)->setName("Подшипниковый узел справа сзади");
-    ui->widget_3->graph(8)->setPen(QPen(QColor(103, 245, 7)));
+    ui->widget_3->graph(8)->setPen(QPen(QColor(128,0,0)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(9)->setName("Лобовая часть слева впереди");
-    ui->widget_3->graph(9)->setPen(QPen(QColor(104, 245, 7)));
+    ui->widget_3->graph(9)->setPen(QPen(QColor(160,82,45)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(10)->setName("Подшипниковый узел слева впереди");
-    ui->widget_3->graph(10)->setPen(QPen(QColor(132, 245, 7)));
+    ui->widget_3->graph(10)->setPen(QPen(QColor(210,105,30)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(11)->setName("Лобовая часть слева сзади");
-    ui->widget_3->graph(11)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(11)->setPen(QPen(QColor(244,164,96)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(12)->setName("Скорость вращения ротора");
-    ui->widget_3->graph(12)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(12)->setPen(QPen(QColor(188,143,143)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(13)->setName("Переменное напряжение фазы А");
-    ui->widget_3->graph(13)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(13)->setPen(QPen(QColor(255,223,0)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(14)->setName("Переменный ток фазы А");
     ui->widget_3->graph(14)->setPen(QPen(QColor(102, 245, 7)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(15)->setName("Активная мощность фазы А");
-    ui->widget_3->graph(15)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(15)->setPen(QPen(QColor(255,255,0)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(16)->setName("Реактивная мощность фазы А");
-    ui->widget_3->graph(16)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(16)->setPen(QPen(QColor(173,255,47)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(17)->setName("Полная мощность фазы А");
-    ui->widget_3->graph(17)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(17)->setPen(QPen(QColor(240,230,140)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(18)->setName("Частота фазы А");
-    ui->widget_3->graph(18)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(18)->setPen(QPen(QColor(219,112,147)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(19)->setName("Коэффициент мощности фазы А");
-    ui->widget_3->graph(19)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(19)->setPen(QPen(QColor(255,160,122)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(20)->setName("Переменное напряжение фазы B");
-    ui->widget_3->graph(20)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(20)->setPen(QPen(QColor(205,92,92)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(21)->setName("Переменный ток фазы B");
-    ui->widget_3->graph(21)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(21)->setPen(QPen(QColor(255,140,0)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(22)->setName("Активная мощность фазы B");
-    ui->widget_3->graph(22)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(22)->setPen(QPen(QColor(255,99,71)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(23)->setName("Реактивная мощность фазы B");
-    ui->widget_3->graph(23)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(23)->setPen(QPen(QColor(255,192,203)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(24)->setName("Полная мощность фазы B");
-    ui->widget_3->graph(24)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(24)->setPen(QPen(QColor(255,105,180)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(25)->setName("Частота фазы B");
-    ui->widget_3->graph(25)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(25)->setPen(QPen(QColor(255,0,255)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(26)->setName("Коэффициент мощности фазы B");
-    ui->widget_3->graph(26)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(26)->setPen(QPen(QColor(128,0,128)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(27)->setName("Переменное напряжение фазы C");
-    ui->widget_3->graph(27)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(27)->setPen(QPen(QColor(245,245,220)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(28)->setName("Переменный ток фазы C");
-    ui->widget_3->graph(28)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(28)->setPen(QPen(QColor(240,255,255)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(29)->setName("Активная мощность фазы C");
-    ui->widget_3->graph(29)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(29)->setPen(QPen(QColor(245,245,220)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(30)->setName("Реактивная мощность фазы C");
-    ui->widget_3->graph(30)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(30)->setPen(QPen(QColor(255,222,173)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(31)->setName("Полная мощность фазы C");
-    ui->widget_3->graph(31)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(31)->setPen(QPen(QColor(135,206,250)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(32)->setName("Частота фазы C");
-    ui->widget_3->graph(32)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(32)->setPen(QPen(QColor(95,158,160)));
     ui->widget_3->addGraph();
     ui->widget_3->graph(33)->setName("Коэффициент мощности фазы C");
-    ui->widget_3->graph(33)->setPen(QPen(QColor(102, 245, 7)));
+    ui->widget_3->graph(33)->setPen(QPen(QColor(75,0,130)));
 
 
     QSharedPointer<QCPAxisTickerDateTime> timeTicker(new QCPAxisTickerDateTime);
@@ -420,7 +434,7 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
     connect(ui->tableWidget_2, &QTableWidget::cellClicked,this, &MainWindow::setcolorincell);
-    //connect(ui->tableWidget_2, SIGNAL(cellClicked(int,int)), this, SLOT(setcolorincell(int,int)));
+
 }
 
 MainWindow::~MainWindow()
@@ -904,31 +918,38 @@ void MainWindow::setDisabledCells()
         QString valuee = ui->tableView->model()->data(ui->tableView->model()->index(i, 4) ).toString();
         if(valuee == "RTU")
         {
-            disabledCells << QPoint(i, 10) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
+            disabledCells << QPoint(i, 10) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16)
+                          << QPoint(i, 17) << QPoint(i, 18) << QPoint(i, 19) << QPoint(i, 20);
         }
         else if(valuee == "ASCII")
         {
-            disabledCells << QPoint(i, 10) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
+            disabledCells << QPoint(i, 10) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16)
+                          << QPoint(i, 17) << QPoint(i, 18) << QPoint(i, 19) << QPoint(i, 20);
         }
         else if(valuee == "ОВЕН")
         {
-            disabledCells << QPoint(i, 10) << QPoint(i, 11) << QPoint(i, 12) << QPoint(i, 13);
+            disabledCells << QPoint(i, 10) << QPoint(i, 11) << QPoint(i, 12) << QPoint(i, 13)
+                          << QPoint(i, 17) << QPoint(i, 18) << QPoint(i, 19) << QPoint(i, 20);
         }
         else if(valuee == "Токовый вход 1")
         {
-            disabledCells << QPoint(i, 5) << QPoint(i, 6) << QPoint(i, 7) << QPoint(i, 11)<< QPoint(i, 12) << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15)<< QPoint(i, 16);
+            disabledCells << QPoint(i, 5)  << QPoint(i, 6)  << QPoint(i, 7)  << QPoint(i, 11) << QPoint(i, 12)
+                          << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
         }
         else if(valuee == "Токовый вход 2")
         {
-            disabledCells << QPoint(i, 5) << QPoint(i, 6) << QPoint(i, 7) << QPoint(i, 11)<< QPoint(i, 12) << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15)<< QPoint(i, 16);
+            disabledCells << QPoint(i, 5)  << QPoint(i, 6)  << QPoint(i, 7)  << QPoint(i, 11) << QPoint(i, 12)
+                          << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
         }
         else if(valuee == "Токовый вход 3")
         {
-            disabledCells << QPoint(i, 5) << QPoint(i, 6) << QPoint(i, 7) << QPoint(i, 11)<< QPoint(i, 12) << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15)<< QPoint(i, 16);
+            disabledCells << QPoint(i, 5)  << QPoint(i, 6)  << QPoint(i, 7)  << QPoint(i, 11) << QPoint(i, 12)
+                          << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
         }
         else if(valuee == "Токовый вход 4")
         {
-            disabledCells << QPoint(i, 5) << QPoint(i, 6) << QPoint(i, 7) << QPoint(i, 11)<< QPoint(i, 12) << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15)<< QPoint(i, 16);
+            disabledCells << QPoint(i, 5)  << QPoint(i, 6)  << QPoint(i, 7)  << QPoint(i, 11) << QPoint(i, 12)
+                          << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
         }
     }
 }

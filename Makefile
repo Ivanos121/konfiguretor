@@ -56,10 +56,16 @@ SOURCES       = untitled/align.cpp \
 		untitled/archiverchannel.cpp \
 		untitled/checkboxdelegate.cpp \
 		untitled/checkboxheader.cpp \
+		untitled/comboboxbitdelegate.cpp \
 		untitled/comboboxdelegate.cpp \
+		untitled/comboboxerrorarchivedelegate.cpp \
+		untitled/comboboxmodbusdelegate.cpp \
+		untitled/comboboxvardelegate.cpp \
 		untitled/main.cpp \
 		untitled/mainwindow.cpp \
 		untitled/model.cpp \
+		untitled/paintdelegate.cpp \
+		untitled/pointcolumndelegate.cpp \
 		untitled/qcustomplot.cpp qrc_img.cpp \
 		moc_checkboxheader.cpp \
 		moc_mainwindow.cpp \
@@ -68,10 +74,16 @@ OBJECTS       = align.o \
 		archiverchannel.o \
 		checkboxdelegate.o \
 		checkboxheader.o \
+		comboboxbitdelegate.o \
 		comboboxdelegate.o \
+		comboboxerrorarchivedelegate.o \
+		comboboxmodbusdelegate.o \
+		comboboxvardelegate.o \
 		main.o \
 		mainwindow.o \
 		model.o \
+		paintdelegate.o \
+		pointcolumndelegate.o \
 		qcustomplot.o \
 		qrc_img.o \
 		moc_checkboxheader.o \
@@ -393,6 +405,7 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/features/qt_config.prf \
 		/usr/lib/qt/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/qt/mkspecs/features/spec_post.prf \
+		untitled/.qmake.stash \
 		/usr/lib/qt/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/qt/mkspecs/features/toolchain.prf \
 		/usr/lib/qt/mkspecs/features/default_pre.prf \
@@ -417,17 +430,29 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		untitled/archiverchannel.h \
 		untitled/checkboxdelegate.h \
 		untitled/checkboxheader.h \
+		untitled/comboboxbitdelegate.h \
 		untitled/comboboxdelegate.h \
+		untitled/comboboxerrorarchivedelegate.h \
+		untitled/comboboxmodbusdelegate.h \
+		untitled/comboboxvardelegate.h \
 		untitled/mainwindow.h \
 		untitled/model.h \
+		untitled/paintdelegate.h \
+		untitled/pointcolumndelegate.h \
 		untitled/qcustomplot.h untitled/align.cpp \
 		untitled/archiverchannel.cpp \
 		untitled/checkboxdelegate.cpp \
 		untitled/checkboxheader.cpp \
+		untitled/comboboxbitdelegate.cpp \
 		untitled/comboboxdelegate.cpp \
+		untitled/comboboxerrorarchivedelegate.cpp \
+		untitled/comboboxmodbusdelegate.cpp \
+		untitled/comboboxvardelegate.cpp \
 		untitled/main.cpp \
 		untitled/mainwindow.cpp \
 		untitled/model.cpp \
+		untitled/paintdelegate.cpp \
+		untitled/pointcolumndelegate.cpp \
 		untitled/qcustomplot.cpp
 QMAKE_TARGET  = untitled
 DESTDIR       = 
@@ -756,6 +781,7 @@ Makefile: untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr/li
 		/usr/lib/qt/mkspecs/features/qt_config.prf \
 		/usr/lib/qt/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/qt/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/usr/lib/qt/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/qt/mkspecs/features/toolchain.prf \
 		/usr/lib/qt/mkspecs/features/default_pre.prf \
@@ -1095,6 +1121,7 @@ Makefile: untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr/li
 /usr/lib/qt/mkspecs/features/qt_config.prf:
 /usr/lib/qt/mkspecs/linux-g++/qmake.conf:
 /usr/lib/qt/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /usr/lib/qt/mkspecs/features/exclusive_builds.prf:
 /usr/lib/qt/mkspecs/features/toolchain.prf:
 /usr/lib/qt/mkspecs/features/default_pre.prf:
@@ -1133,8 +1160,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents untitled/img.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents untitled/align.h untitled/archiverchannel.h untitled/checkboxdelegate.h untitled/checkboxheader.h untitled/comboboxdelegate.h untitled/mainwindow.h untitled/model.h untitled/qcustomplot.h $(DISTDIR)/
-	$(COPY_FILE) --parents untitled/align.cpp untitled/archiverchannel.cpp untitled/checkboxdelegate.cpp untitled/checkboxheader.cpp untitled/comboboxdelegate.cpp untitled/main.cpp untitled/mainwindow.cpp untitled/model.cpp untitled/qcustomplot.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents untitled/align.h untitled/archiverchannel.h untitled/checkboxdelegate.h untitled/checkboxheader.h untitled/comboboxbitdelegate.h untitled/comboboxdelegate.h untitled/comboboxerrorarchivedelegate.h untitled/comboboxmodbusdelegate.h untitled/comboboxvardelegate.h untitled/mainwindow.h untitled/model.h untitled/paintdelegate.h untitled/pointcolumndelegate.h untitled/qcustomplot.h $(DISTDIR)/
+	$(COPY_FILE) --parents untitled/align.cpp untitled/archiverchannel.cpp untitled/checkboxdelegate.cpp untitled/checkboxheader.cpp untitled/comboboxbitdelegate.cpp untitled/comboboxdelegate.cpp untitled/comboboxerrorarchivedelegate.cpp untitled/comboboxmodbusdelegate.cpp untitled/comboboxvardelegate.cpp untitled/main.cpp untitled/mainwindow.cpp untitled/model.cpp untitled/paintdelegate.cpp untitled/pointcolumndelegate.cpp untitled/qcustomplot.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents untitled/mainwindow.ui $(DISTDIR)/
 
 
@@ -1166,7 +1193,11 @@ qrc_img.cpp: untitled/img.qrc \
 		/usr/bin/rcc \
 		untitled/img/IM_48x48.png \
 		untitled/img/IM_24x24.png \
+		untitled/img/IM_24_red.png \
+		untitled/img/IM_24_blue.png \
 		untitled/img/IM_96x96.png \
+		untitled/img/IM_48_blue.png \
+		untitled/img/IM_48_red.png \
 		untitled/img/IM_16x16.png
 	/usr/bin/rcc -name img untitled/img.qrc -o qrc_img.cpp
 
@@ -1186,6 +1217,8 @@ moc_checkboxheader.cpp: untitled/checkboxheader.h \
 
 moc_mainwindow.cpp: untitled/mainwindow.h \
 		untitled/align.h \
+		untitled/checkboxheader.h \
+		untitled/paintdelegate.h \
 		moc_predefs.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include /home/elf/konfiguretor/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/elf/konfiguretor/untitled -I/usr/include/qt -I/usr/include/qt/QtWebKitWidgets -I/usr/include/qt/QtPrintSupport -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtWebKit -I/usr/include/qt/QtGui -I/usr/include/qt/QtSerialPort -I/usr/include/qt/QtSql -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtCore -I. -I/usr/include/c++/10.2.0 -I/usr/include/c++/10.2.0/x86_64-pc-linux-gnu -I/usr/include/c++/10.2.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed -I/usr/include untitled/mainwindow.h -o moc_mainwindow.cpp
@@ -1223,33 +1256,86 @@ align.o: untitled/align.cpp untitled/align.h
 archiverchannel.o: untitled/archiverchannel.cpp untitled/archiverchannel.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o archiverchannel.o untitled/archiverchannel.cpp
 
-checkboxdelegate.o: untitled/checkboxdelegate.cpp untitled/checkboxdelegate.h
+checkboxdelegate.o: untitled/checkboxdelegate.cpp untitled/checkboxdelegate.h \
+		untitled/mainwindow.h \
+		untitled/align.h \
+		untitled/checkboxheader.h \
+		untitled/paintdelegate.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o checkboxdelegate.o untitled/checkboxdelegate.cpp
 
 checkboxheader.o: untitled/checkboxheader.cpp untitled/checkboxheader.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o checkboxheader.o untitled/checkboxheader.cpp
 
-comboboxdelegate.o: untitled/comboboxdelegate.cpp untitled/comboboxdelegate.h
+comboboxbitdelegate.o: untitled/comboboxbitdelegate.cpp untitled/comboboxbitdelegate.h \
+		untitled/mainwindow.h \
+		untitled/align.h \
+		untitled/checkboxheader.h \
+		untitled/paintdelegate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o comboboxbitdelegate.o untitled/comboboxbitdelegate.cpp
+
+comboboxdelegate.o: untitled/comboboxdelegate.cpp untitled/comboboxdelegate.h \
+		untitled/mainwindow.h \
+		untitled/align.h \
+		untitled/checkboxheader.h \
+		untitled/paintdelegate.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o comboboxdelegate.o untitled/comboboxdelegate.cpp
 
+comboboxerrorarchivedelegate.o: untitled/comboboxerrorarchivedelegate.cpp untitled/comboboxerrorarchivedelegate.h \
+		untitled/mainwindow.h \
+		untitled/align.h \
+		untitled/checkboxheader.h \
+		untitled/paintdelegate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o comboboxerrorarchivedelegate.o untitled/comboboxerrorarchivedelegate.cpp
+
+comboboxmodbusdelegate.o: untitled/comboboxmodbusdelegate.cpp untitled/comboboxmodbusdelegate.h \
+		untitled/mainwindow.h \
+		untitled/align.h \
+		untitled/checkboxheader.h \
+		untitled/paintdelegate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o comboboxmodbusdelegate.o untitled/comboboxmodbusdelegate.cpp
+
+comboboxvardelegate.o: untitled/comboboxvardelegate.cpp untitled/comboboxvardelegate.h \
+		untitled/mainwindow.h \
+		untitled/align.h \
+		untitled/checkboxheader.h \
+		untitled/paintdelegate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o comboboxvardelegate.o untitled/comboboxvardelegate.cpp
+
 main.o: untitled/main.cpp untitled/mainwindow.h \
-		untitled/align.h
+		untitled/align.h \
+		untitled/checkboxheader.h \
+		untitled/paintdelegate.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o untitled/main.cpp
 
 mainwindow.o: untitled/mainwindow.cpp untitled/mainwindow.h \
 		untitled/align.h \
+		untitled/checkboxheader.h \
+		untitled/paintdelegate.h \
 		ui_mainwindow.h \
+		untitled/qcustomplot.h \
 		untitled/model.h \
 		untitled/port.h \
 		untitled/archiverchannel.h \
-		untitled/qcustomplot.h \
 		untitled/checkboxdelegate.h \
 		untitled/comboboxdelegate.h \
-		untitled/checkboxheader.h
+		untitled/comboboxvardelegate.h \
+		untitled/comboboxmodbusdelegate.h \
+		untitled/comboboxerrorarchivedelegate.h \
+		untitled/comboboxbitdelegate.h \
+		untitled/pointcolumndelegate.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o untitled/mainwindow.cpp
 
 model.o: untitled/model.cpp untitled/model.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o model.o untitled/model.cpp
+
+paintdelegate.o: untitled/paintdelegate.cpp untitled/paintdelegate.h \
+		untitled/mainwindow.h \
+		untitled/align.h \
+		untitled/checkboxheader.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o paintdelegate.o untitled/paintdelegate.cpp
+
+pointcolumndelegate.o: untitled/pointcolumndelegate.cpp untitled/pointcolumndelegate.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pointcolumndelegate.o untitled/pointcolumndelegate.cpp
 
 qcustomplot.o: untitled/qcustomplot.cpp untitled/qcustomplot.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qcustomplot.o untitled/qcustomplot.cpp

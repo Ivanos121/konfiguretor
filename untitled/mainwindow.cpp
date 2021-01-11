@@ -379,7 +379,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_2->setSelectionMode(QAbstractItemView :: NoSelection);
     ui->tableWidget_2->verticalHeader()->setVisible(false);
     ui->tableWidget_2->resizeColumnsToContents();
-    ui->tableWidget_2->setEditTriggers(QAbstractItemView::AllEditTriggers);
+    ui->tableWidget_2->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     for(int row = 0; row<ui->tableWidget_2->rowCount(); row++)
     {
@@ -420,6 +420,7 @@ MainWindow::MainWindow(QWidget *parent)
         }
     }
     connect(ui->tableWidget_2, &QTableWidget::cellClicked,this, &MainWindow::setcolorincell);
+    //connect(ui->tableWidget_2, SIGNAL(cellClicked(int,int)), this, SLOT(setcolorincell(int,int)));
 }
 
 MainWindow::~MainWindow()
@@ -429,10 +430,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::setcolorincell(int row, int column)
 {
-    row = ui->tableWidget_2->currentRow();
-    column = 1;
-    QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
-    ui->tableWidget_2->item(row, column)->setBackground(chosenColor);
+    if (column == 1)
+    {
+        row = ui->tableWidget_2->currentRow();
+        QColor chosenColor = QColorDialog::getColor(); //return the color chosen by user
+        ui->tableWidget_2->item(row, column)->setBackground(chosenColor);
+        ui->widget_3->graph(row)->setPen(QPen(chosenColor));
+        ui->widget_3->replot();
+    }
 }
 
 void MainWindow::on_pushButton_7_clicked()

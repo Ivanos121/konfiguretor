@@ -1,5 +1,6 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
+
 #include "model.h"
 #include "port.h"
 #include "archiverchannel.h"
@@ -13,6 +14,10 @@
 #include "align.h"
 #include "checkboxheader.h"
 #include <qdebug.h>
+#include "paintdelegate.h"
+#include "pointcolumndelegate.h"
+#include "comboboxcurrentdelegate.h"
+
 #include <QCheckBox>
 #include <QMouseEvent>
 #include <QMessageBox>
@@ -23,9 +28,7 @@
 #include <iostream>
 #include <fstream>
 #include <QPixmap>
-#include "paintdelegate.h"
-#include "pointcolumndelegate.h"
-#include "comboboxcurrentdelegate.h"
+
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -110,8 +113,8 @@ MainWindow::MainWindow(QWidget *parent)
     paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
     ui->tableView->setItemDelegateForColumn(16, paintdelegate);
 
-    paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
-    ui->tableView->setItemDelegateForColumn(17, paintdelegate);
+//  paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
+//  ui->tableView->setItemDelegateForColumn(17, paintdelegate);
 
     paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
     ui->tableView->setItemDelegateForColumn(18, paintdelegate);
@@ -605,7 +608,8 @@ MainWindow::MainWindow(QWidget *parent)
     QStringList name2; //объявление указателя на тип QStringList
     name2 << "№" << "Цвет" << "Свойство" << "Значение"; //перечисление заголовков
     ui->tableWidget_2->setHorizontalHeaderLabels(name2); //установка заголовков в таблицу
-    ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
+    ui->tableWidget_2->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents); //Устанавливает ограничения на то, как размер заголовка может быть изменен до тех, которые описаны в данном режиме
+    ui->tableWidget_2->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidget_2->setSelectionMode(QAbstractItemView :: NoSelection);
     ui->tableWidget_2->verticalHeader()->setVisible(false);
     ui->tableWidget_2->resizeColumnsToContents();
@@ -1000,7 +1004,7 @@ void MainWindow::timerTimeout()
         fout << key.toUtf8().data();
         fout.close();
 
-        for (int i=0; i<64; i++)
+        for (int i=0; i<32; i++)
         {
             if(ui->tableView->model()->index(i,1).data(Qt::CheckStateRole)==Qt::Checked)
             {
@@ -1010,6 +1014,7 @@ void MainWindow::timerTimeout()
                 {
                     int k=ui->tableView->model()->data(ui->tableView->model()->index(i, 8) ).toInt();
                     uint32_t rawBEValue = archiverChannels[i].rawValue;
+                    qDebug() << i << "=" << archiverChannels[i].rawValue;
 
                     QString value = ui->tableView->model()->data(ui->tableView->model()->index(i, 7) ).toString();
 
@@ -1020,7 +1025,7 @@ void MainWindow::timerTimeout()
                     else if(value == "LONGINT32(Little-endian)")
                     {
                         ui->tableWidget->item(i, 2)->setText(QString("%1").arg(QString::number((double)rawBEValue / pow(10,k), 'f', k)));
-                       // ui->tableWidget_2->item(i, 3)->setText(QString("%1").arg(QString::number((double)rawBEValue / pow(10,k), 'f', k)));
+                        ui->tableWidget_2->item(i, 3)->setText(QString("%1").arg(QString::number((double)rawBEValue / pow(10,k), 'f', k)));
                     }
                     else if(value == "DWORD32(Little-endian)")
                     {}
@@ -1093,7 +1098,7 @@ void MainWindow::timerTimeout()
                                     {
                                         RawAndFloat convertedValue;
                                         convertedValue.rawValue = rawBEValue2;
-                                        ui->tableWidget->item(i-32, 2)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', k2)));
+                                        ui->tableWidget->item(i-32, 5)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', k2)));
                                         ui->tableWidget_2->item(i, 3)->setText(QString("%1").arg(QString::number(convertedValue.floatValue, 'f', k2)));
                                     }
                                     else if(value2 == "INT16(Big-endian)")

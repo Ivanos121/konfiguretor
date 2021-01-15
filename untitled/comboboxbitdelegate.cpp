@@ -30,6 +30,7 @@ QWidget* ComboBoxBitDelegate::createEditor(QWidget* parent,
         return editor;
     }
 
+
     return QStyledItemDelegate::createEditor(parent, option, index);
 }
 

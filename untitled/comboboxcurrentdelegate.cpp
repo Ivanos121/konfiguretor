@@ -28,7 +28,6 @@ QWidget* ComboBoxCurrentDelegate::createEditor(QWidget* parent,
         editor->insertItem(0, "0..5 мА");
         editor->insertItem(1, "0..20 мА");
         editor->insertItem(2, "4..20 мА");
-
         return editor;
     }
 

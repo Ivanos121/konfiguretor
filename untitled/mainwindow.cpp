@@ -835,74 +835,7 @@ void MainWindow::timerTimeout()
         buf[7]=(crc & 0xFF00) >> 8; //младший байт crc
         buf[8]=0x00;
 
-        QSerialPort *port = new QSerialPort (ui->comboBox->currentText());
-        port->setBaudRate(ui->comboBox_2->currentText().toInt());
-        switch (ui->comboBox_3->currentIndex())
-        {
-            case 0:
-               port->setDataBits(QSerialPort::Data5);
-            break;
-            case 1:
-               port->setDataBits(QSerialPort::Data6);
-            break;
-            case 2:
-               port->setDataBits(QSerialPort::Data7);
-            break;
-            case 3:
-               port->setDataBits(QSerialPort::Data8);
-            break;
-        }
-
-        switch (ui->comboBox_4->currentIndex())
-        {
-            case 0:
-               port->setParity(QSerialPort::NoParity);
-            break;
-            case 1:
-               port->setParity(QSerialPort::EvenParity);
-            break;
-            case 2:
-               port->setParity(QSerialPort::OddParity);
-            break;
-            case 3:
-               port->setParity(QSerialPort::MarkParity);
-            break;
-            case 4:
-               port->setParity(QSerialPort::SpaceParity);
-            break;
-        }
-
-        switch (ui->comboBox_5->currentIndex())
-        {
-            case 0:
-               port->setStopBits(QSerialPort::OneStop);
-            break;
-            case 1:
-               port->setStopBits(QSerialPort::TwoStop);
-            break;
-            case 2:
-               port->setStopBits(QSerialPort::OneAndHalfStop);
-            break;
-        }
-
-        switch (ui->comboBox_6->currentIndex())
-        {
-            case 0:
-               port->setFlowControl(QSerialPort::NoFlowControl);
-            break;
-            case 1:
-               port->setFlowControl(QSerialPort::HardwareControl);
-            break;
-            case 2:
-               port->setFlowControl(QSerialPort::SoftwareControl);
-            break;
-        }
-
-        //port->setDataBits(ui->comboBox_3->currentText().toInt());
-        if (!port->open(QIODevice::ReadWrite))
-        {
-            QMessageBox::critical(this, tr("Ошибка"), tr("Порт не открыт"));
-        }
+        QSerialPort *port = openArchiverPort();
         port->write(buf, buf.length());
         port->waitForBytesWritten(100);
         port->flush();
@@ -1144,6 +1077,8 @@ void MainWindow::timerTimeout()
         label->clear();
         label->setPixmap(QPixmap(":/new/prefix1/img/IM_24_blue"));
         label2->setText("  Связь установлена");
+
+        delete port;
 }
 
 void MainWindow::on_actionSave_triggered()
@@ -1275,4 +1210,246 @@ void MainWindow::setDisabledCells()
                           << QPoint(i, 13) << QPoint(i, 14) << QPoint(i, 15) << QPoint(i, 16);
         }
     }
+}
+
+void MainWindow::on_action_triggered()
+{
+    for (int i = 0; i < 64; i++)
+    {
+        QByteArray buf;
+        buf.resize(31 * 2 + 7 + 2);
+        buf[0] = 0x38;
+        buf[1] = 0x10;
+
+        uint16_t address = 0x0100 + i * 64;
+
+        buf[2] = (uint8_t)((address & 0xFF00) >> 8);
+        buf[3] = (uint8_t)(address & 0x00FF);
+
+        buf[4] = 0x00;
+        buf[5] = 0x1F;
+
+        buf[6] = 62;
+
+        buf[7] = 0;
+        buf[8] = ui->tableView->model()->data(ui->tableView->model()->index(i, 2)).toInt() + (ui->tableView->model()->data(ui->tableView->model()->index(i, 2)).toInt() << 1);
+
+        QString channelName = ui->tableView->model()->data(ui->tableView->model()->index(i, 3) ).toString();
+        channelName.truncate(31);
+
+        QTextCodec *codec = QTextCodec::codecForName("Windows-1251");
+        QByteArray channelNameBuffer = codec->fromUnicode(channelName);
+
+        for (int pos = 0; pos < channelNameBuffer.size(); pos++)
+        {
+            buf[8 + pos] = channelNameBuffer[pos];
+        }
+
+        buf[40] = 0;
+
+        buf[41] = 0;
+
+        QString protocolName = ui->tableView->model()->data(ui->tableView->model()->index(i, 4) ).toString();
+
+        int protocolCode = 0;
+        if(protocolName == "RTU")
+            protocolCode = 0;
+        else if(protocolName == "ASCII")
+            protocolCode = 1;
+        else if(protocolName == "ОВЕН")
+            protocolCode = 2;
+        else if(protocolName == "Токовый вход 1")
+            protocolCode = 3;
+        else if(protocolName == "Токовый вход 2")
+            protocolCode = 4;
+        else if(protocolName == "Токовый вход 3")
+            protocolCode = 5;
+        else if(protocolName == "Токовый вход 4")
+            protocolCode = 6;
+
+        buf[42] = protocolCode;
+
+        uint16_t netAddress = ui->tableView->model()->data(ui->tableView->model()->index(i, 5) ).toInt();
+        buf[43] = (uint8_t)((netAddress & 0xFF00) >> 8);
+        buf[44] = (uint8_t)(netAddress & 0x00FF);
+
+        uint16_t timeout = ui->tableView->model()->data(ui->tableView->model()->index(i, 6) ).toInt();
+        buf[45] = (uint8_t)((timeout & 0xFF00) >> 8);
+        buf[46] = (uint8_t)(timeout & 0x00FF);
+
+        int dataType = 0;
+        QString dataTypeStr = ui->tableView->model()->data(ui->tableView->model()->index(i, 7) ).toString();
+
+        if(dataTypeStr == "INT16(Little-endian)")
+            dataType = 0;
+        else if(dataTypeStr == "WORD16(Little-endian)")
+            dataType = 1;
+        else if(dataTypeStr == "LONGINT32(Little-endian)")
+            dataType = 2;
+        else if(dataTypeStr == "DWORD32(Little-endian)")
+            dataType = 3;
+        else if(dataTypeStr == "FLOAT32(Little-endian)")
+            dataType = 4;
+        else if(dataTypeStr == "INT16(Big-endian)")
+            dataType = 5;
+        else if(dataTypeStr == "WORD16(Big-endian)")
+            dataType = 6;
+        else if(dataTypeStr == "LONGINT32(Big-endian)")
+            dataType = 7;
+        else if(dataTypeStr == "DWORD32(Big-endian)")
+            dataType = 8;
+        else if(dataTypeStr == "FLOAT32(Big-endian)")
+            dataType = 9;
+        else if(dataTypeStr == "LONGINT32(Middle-endian)")
+            dataType = 10;
+        else if(dataTypeStr == "DWORD32(Middle-endian)")
+            dataType = 11;
+        else if(dataTypeStr == "FLOAT32(Middle-endian)")
+            dataType = 12;
+
+        buf[47] = 0;
+        buf[48] = dataType;
+
+        buf[49] = 0;
+        buf[50] = ui->tableView->model()->data(ui->tableView->model()->index(i, 8) ).toInt();
+
+        QString errorArchiveStr = ui->tableView->model()->data(ui->tableView->model()->index(i, 9) ).toString();
+        int errorArchive = 0;
+
+        if(errorArchiveStr == "выкл")
+            errorArchive = 0;
+        else if(errorArchiveStr == "вкл")
+            errorArchive = 1;
+
+        buf[51] = 0;
+        buf[52] = errorArchive;
+
+        RawAndFloat errorarchiveThreshold;
+        errorarchiveThreshold.floatValue = ui->tableView->model()->data(ui->tableView->model()->index(i, 10) ).toFloat();
+        buf[53] = (errorarchiveThreshold.rawValue & 0xFF000000) >> 24;
+        buf[54] = (errorarchiveThreshold.rawValue & 0x00FF0000) >> 16;
+        buf[55] = (errorarchiveThreshold.rawValue & 0x0000FF00) >> 8;
+        buf[56] = (errorarchiveThreshold.rawValue & 0x000000FF);
+
+        buf[57] = 0;
+        buf[58] = ui->tableView->model()->data(ui->tableView->model()->index(i, 11) ).toInt();
+
+        uint16_t registerAddress = ui->tableView->model()->data(ui->tableView->model()->index(i, 12) ).toInt();
+        buf[59] = (uint8_t)((registerAddress & 0xFF00) >> 8);
+        buf[60] = (uint8_t)(registerAddress & 0x00FF);
+
+        uint16_t groupNumber = ui->tableView->model()->data(ui->tableView->model()->index(i, 13) ).toInt();
+        buf[61] = (uint8_t)((groupNumber & 0xFF00) >> 8);
+        buf[62] = (uint8_t)(groupNumber & 0x00FF);
+
+        QString addressLenghtStr = ui->tableView->model()->data(ui->tableView->model()->index(i, 14) ).toString();
+        int addressLength = 0;
+
+        if(addressLenghtStr == "8 бит")
+            addressLength = 0;
+        else if(addressLenghtStr == "11 бит")
+            addressLength = 1;
+
+        buf[63] = 0;
+        buf[64] = addressLength;
+
+        QString hashStr = ui->tableView->model()->data(ui->tableView->model()->index(i, 15) ).toString();
+        bool ok;
+        uint16_t hash = hashStr.toInt(&ok, 16);
+        buf[65] = (uint8_t)((hash & 0xFF00) >> 8);
+        buf[66] = (uint8_t)(hash & 0x00FF);
+
+        uint16_t index = ui->tableView->model()->data(ui->tableView->model()->index(i, 16) ).toInt();
+        buf[67] = (uint8_t)((index & 0xFF00) >> 8);
+        buf[68] = (uint8_t)(index & 0x00FF);
+
+        uint16_t crc = CRC16_2(buf, buf.size() - 2);
+
+        buf[69]=crc & 0x00FF;
+        buf[70]=(crc & 0xFF00) >> 8;
+
+        QSerialPort* port = openArchiverPort();
+        port->write(buf, buf.length());
+        port->waitForBytesWritten(1000);
+        port->flush();
+        delete port;
+
+         QThread::msleep(100);
+    }
+
+    QMessageBox::information(this, "Завершено", "Запись данных завершена!");
+}
+
+QSerialPort* MainWindow::openArchiverPort()
+{
+    QSerialPort *port = new QSerialPort (ui->comboBox->currentText());
+    port->setBaudRate(ui->comboBox_2->currentText().toInt());
+    switch (ui->comboBox_3->currentIndex())
+    {
+        case 0:
+           port->setDataBits(QSerialPort::Data5);
+        break;
+        case 1:
+           port->setDataBits(QSerialPort::Data6);
+        break;
+        case 2:
+           port->setDataBits(QSerialPort::Data7);
+        break;
+        case 3:
+           port->setDataBits(QSerialPort::Data8);
+        break;
+    }
+
+    switch (ui->comboBox_4->currentIndex())
+    {
+        case 0:
+           port->setParity(QSerialPort::NoParity);
+        break;
+        case 1:
+           port->setParity(QSerialPort::EvenParity);
+        break;
+        case 2:
+           port->setParity(QSerialPort::OddParity);
+        break;
+        case 3:
+           port->setParity(QSerialPort::MarkParity);
+        break;
+        case 4:
+           port->setParity(QSerialPort::SpaceParity);
+        break;
+    }
+
+    switch (ui->comboBox_5->currentIndex())
+    {
+        case 0:
+           port->setStopBits(QSerialPort::OneStop);
+        break;
+        case 1:
+           port->setStopBits(QSerialPort::TwoStop);
+        break;
+        case 2:
+           port->setStopBits(QSerialPort::OneAndHalfStop);
+        break;
+    }
+
+    switch (ui->comboBox_6->currentIndex())
+    {
+        case 0:
+           port->setFlowControl(QSerialPort::NoFlowControl);
+        break;
+        case 1:
+           port->setFlowControl(QSerialPort::HardwareControl);
+        break;
+        case 2:
+           port->setFlowControl(QSerialPort::SoftwareControl);
+        break;
+    }
+
+    //port->setDataBits(ui->comboBox_3->currentText().toInt());
+    if (!port->open(QIODevice::ReadWrite))
+    {
+        QMessageBox::critical(this, tr("Ошибка"), tr("Порт не открыт"));
+    }
+
+    return port;
 }

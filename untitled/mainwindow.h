@@ -54,6 +54,8 @@ private slots:
     void selectRows();
     void setcolorincell(int row, int column);
 
+    void on_action_triggered();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase sdb;
@@ -67,6 +69,7 @@ private:
 
     void stopGetData();
     void setDisabledCells();
+    QSerialPort* openArchiverPort();
 };
 
 inline uint qHash (const QPoint & key)

@@ -120,8 +120,8 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_KActivities.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KActivitiesStats.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KaddressbookGrantlee.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KAddressbookImportExport.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KaddressbookImportExport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KAddressbookImportExport.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAlarmCal.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KArchive.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAuth.pri \
@@ -148,6 +148,8 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_KDEWebKit.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDGantt2.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDNSSD.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDSoapClient.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDSoapServer.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KEmoticons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KFileMetaData.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KGantt.pri \
@@ -290,6 +292,16 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_quick.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3d.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3d_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_quick_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
@@ -469,8 +481,8 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_KActivities.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KActivitiesStats.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KaddressbookGrantlee.pri \
-		/usr/lib/qt/mkspecs/modules/qt_KAddressbookImportExport.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KaddressbookImportExport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KAddressbookImportExport.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAlarmCal.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KArchive.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KAuth.pri \
@@ -497,6 +509,8 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_KDEWebKit.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDGantt2.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KDNSSD.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDSoapClient.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDSoapServer.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KEmoticons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KFileMetaData.pri \
 		/usr/lib/qt/mkspecs/modules/qt_KGantt.pri \
@@ -639,6 +653,16 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_quick.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3d.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3d_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_quick_private.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2.pri \
 		/usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
@@ -780,8 +804,8 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_KActivities.pri:
 /usr/lib/qt/mkspecs/modules/qt_KActivitiesStats.pri:
 /usr/lib/qt/mkspecs/modules/qt_KaddressbookGrantlee.pri:
-/usr/lib/qt/mkspecs/modules/qt_KAddressbookImportExport.pri:
 /usr/lib/qt/mkspecs/modules/qt_KaddressbookImportExport.pri:
+/usr/lib/qt/mkspecs/modules/qt_KAddressbookImportExport.pri:
 /usr/lib/qt/mkspecs/modules/qt_KAlarmCal.pri:
 /usr/lib/qt/mkspecs/modules/qt_KArchive.pri:
 /usr/lib/qt/mkspecs/modules/qt_KAuth.pri:
@@ -808,6 +832,8 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_KDEWebKit.pri:
 /usr/lib/qt/mkspecs/modules/qt_KDGantt2.pri:
 /usr/lib/qt/mkspecs/modules/qt_KDNSSD.pri:
+/usr/lib/qt/mkspecs/modules/qt_KDSoapClient.pri:
+/usr/lib/qt/mkspecs/modules/qt_KDSoapServer.pri:
 /usr/lib/qt/mkspecs/modules/qt_KEmoticons.pri:
 /usr/lib/qt/mkspecs/modules/qt_KFileMetaData.pri:
 /usr/lib/qt/mkspecs/modules/qt_KGantt.pri:
@@ -950,6 +976,16 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_quick.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3d.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3d_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_quick_private.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2.pri:
 /usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2_private.pri:
@@ -1236,10 +1272,10 @@ mainwindow.o: ../untitled/mainwindow.cpp ../untitled/mainwindow.h \
 		../untitled/checkboxheader.h \
 		../untitled/paintdelegate.h \
 		ui_mainwindow.h \
+		../untitled/qcustomplot.h \
 		../untitled/model.h \
 		../untitled/port.h \
 		../untitled/archiverchannel.h \
-		../untitled/qcustomplot.h \
 		../untitled/checkboxdelegate.h \
 		../untitled/comboboxdelegate.h \
 		../untitled/comboboxvardelegate.h \

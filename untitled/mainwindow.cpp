@@ -1578,6 +1578,73 @@ void MainWindow::on_action_2_triggered()
     progress->setRange(0, 64 - 1);
     progress->reset();
 
+    // Чтение данных токовых каналов
+    QByteArray buf;
+    buf.resize(9);
+
+    buf[0]=0x38; //адрес устройства
+    buf[1]=0x03; //код команды(чтение регистров)
+
+    uint16_t address = 0x1100;
+
+    buf[2] = (uint8_t)((address & 0xFF00) >> 8);
+    buf[3] = (uint8_t)(address & 0x00FF);
+
+    //Читаем 24 регистра, 6*4 канала
+    buf[4] = 0x00;
+    buf[5] = 0x18;
+
+    uint16_t crc = CRC16(buf, 6); //считаем сумму - считаем сумму по заполненому
+
+    buf[6]=crc & 0x00FF; //сташий байт crc
+    buf[7]=(crc & 0xFF00) >> 8; //младший байт crc
+    buf[8]=0x00;
+
+    port->write(buf, buf.length());
+    port->waitForBytesWritten(100);
+    port->flush();
+
+    int answerLength = 0;
+    QByteArray answer;
+
+    do
+    {
+        if (!port->waitForReadyRead(100))
+        {
+            port->close();
+            delete port;
+            return;
+        }
+        QByteArray ansBuf = port->readAll();
+
+        if (answerLength == 0)
+        {
+            answerLength = (uint8_t)ansBuf[2] - ansBuf.length() + 3 + 2;
+            answer.append(ansBuf);
+        }
+        else
+        {
+            answerLength -= ansBuf.length();
+            answer.append(ansBuf);
+        }
+    } while (answerLength != 0);
+    uint16_t answer_crc = answer[answer.length() - 1] << 8 + answer[answer.length() - 2];
+
+    answer.remove(0,3);
+    CurrentChannelParams currentChannelParams[4];
+
+    for (int i = 0; i < 4; i++)
+    {
+        currentChannelParams[i].diapazon = ((uint8_t)answer[0+i*12] << 8) + (uint8_t)answer[1+i*12];
+        currentChannelParams[i].filter = ((uint8_t)answer[2+i*12] << 8) + (uint8_t)answer[3+i*12];
+        RawAndFloat minimum;
+        minimum.rawValue = ((uint8_t)answer[4+i*12] << 24) + ((uint8_t)answer[5+i*12] << 16) + ((uint8_t)answer[6+i*12] << 8) + (uint8_t)answer[7+i*12];
+        currentChannelParams[i].minimum = minimum.floatValue;
+        RawAndFloat maximum;
+        maximum.rawValue = ((uint8_t)answer[8+i*12] << 24) + ((uint8_t)answer[9+i*12] << 16) + ((uint8_t)answer[10+i*12] << 8) + (uint8_t)answer[11+i*12];
+        currentChannelParams[i].maximum = maximum.floatValue;
+    }
+
     for (int i = 0; i < 64; i++)
     {
         progress->setValue(i);
@@ -1675,6 +1742,32 @@ void MainWindow::on_action_2_triggered()
         case 6:
             protocolName = "Токовый вход 4";
         break;
+        }
+
+        // Если канал токовый - применить его настройки
+        if ((protocolCode >= 3) && (protocolCode <= 6))
+        {
+            int channelNumber = protocolCode - 3;
+            QString diapazonText;
+            switch (currentChannelParams[channelNumber].diapazon)
+            {
+            case 0:
+                diapazonText = "4..20 мА";
+                break;
+            case 1:
+                diapazonText = "0..20 мА";
+                break;
+            case 2:
+                diapazonText = "0..5 мА";
+                break;
+            }
+
+            ui->tableView->model()->setData(ui->tableView->model()->index(i, 17), diapazonText);
+
+            ui->tableView->model()->setData(ui->tableView->model()->index(i, 18), currentChannelParams[channelNumber].filter);
+
+            ui->tableView->model()->setData(ui->tableView->model()->index(i, 19), currentChannelParams[channelNumber].minimum);
+            ui->tableView->model()->setData(ui->tableView->model()->index(i, 20), currentChannelParams[channelNumber].maximum);
         }
 
         ui->tableView->model()->setData(ui->tableView->model()->index(i, 4), protocolName);

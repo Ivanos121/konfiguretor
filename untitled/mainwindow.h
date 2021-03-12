@@ -26,6 +26,14 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+struct CurrentChannelParams
+{
+    uint16_t diapazon;
+    uint16_t filter;
+    float minimum;
+    float maximum;
+};
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT

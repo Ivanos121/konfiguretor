@@ -718,6 +718,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->tableWidget_2->item(62, 1)->setBackground(currentColor62);
     ui->tableWidget_2->item(63, 1)->setBackground(currentColor63);
 
+    progress = new QProgressBar(ui->statusbar);
+    progress->setVisible(false);
+    ui->statusbar->addWidget(progress,1);
+    progress->setTextVisible(false);
+    setStyleSheet("QProgressBar {border: 2px solid grey;height: 15px} QProgressBar::chunk {background-color: #55FF55;width: 20px}");
+
     connect(ui->tableWidget_2, &QTableWidget::cellClicked,this, &MainWindow::setcolorincell);
 
 }
@@ -1268,9 +1274,14 @@ void MainWindow::on_action_triggered()
     QSerialPort* port = openArchiverPort();
     port->flush();
 
+    progress->setVisible(true);
+    progress->setRange(0, 64 - 1);
+    progress->reset();
+
     for (int i = 0; i < 64; i++)
     {
-        qDebug() << "Begin channel " << i;
+        progress->setValue(i);
+
         QByteArray buf;
         buf.resize(31 * 2 + 7 + 2);
         buf.fill(0);
@@ -1481,6 +1492,7 @@ void MainWindow::on_action_triggered()
     delete port;
 
     QMessageBox::information(this, "Завершено", "Запись данных завершена!");
+    progress->setVisible(false);
 }
 
 QSerialPort* MainWindow::openArchiverPort()
@@ -1555,4 +1567,234 @@ QSerialPort* MainWindow::openArchiverPort()
     }
 
     return port;
+}
+
+void MainWindow::on_action_2_triggered()
+{
+    QSerialPort* port = openArchiverPort();
+    port->flush();
+
+    progress->setVisible(true);
+    progress->setRange(0, 64 - 1);
+    progress->reset();
+
+    for (int i = 0; i < 64; i++)
+    {
+        progress->setValue(i);
+
+        QByteArray buf;
+        buf.resize(9);
+
+        buf[0]=0x38; //адрес устройства
+        buf[1]=0x03; //код команды(чтение регистров)
+
+        uint16_t address = 0x0100 + i * 64;
+
+        buf[2] = (uint8_t)((address & 0xFF00) >> 8);
+        buf[3] = (uint8_t)(address & 0x00FF);
+
+        //Читаем 31 регистр
+        buf[4] = 0x00;
+        buf[5] = 0x1F;
+
+        uint16_t crc = CRC16(buf, 6); //считаем сумму - считаем сумму по заполненому
+
+        buf[6]=crc & 0x00FF; //сташий байт crc
+        buf[7]=(crc & 0xFF00) >> 8; //младший байт crc
+        buf[8]=0x00;
+
+        port->write(buf, buf.length());
+        port->waitForBytesWritten(100);
+        port->flush();
+
+        int answerLength = 0;
+        QByteArray answer;
+        answer.append(4, 0);
+        do
+        {
+            if (!port->waitForReadyRead(100))
+            {
+                port->close();
+                delete port;
+                return;
+            }
+            QByteArray ansBuf = port->readAll();
+
+            if (answerLength == 0)
+            {
+                answerLength = (uint8_t)ansBuf[2] - ansBuf.length() + 3 + 2;
+                answer.append(ansBuf);
+            }
+            else
+            {
+                answerLength -= ansBuf.length();
+                answer.append(ansBuf);
+            }
+        } while (answerLength != 0);
+        uint16_t answer_crc = answer[answer.length() - 1] << 8 + answer[answer.length() - 2];
+
+        ui->tableView->model()->setData(ui->tableView->model()->index(i, 2), answer[8] & 0x01);
+
+        QByteArray channelNameBuffer;
+        int pos = 0;
+
+        while (((int)answer[9 + pos] != 0) && (pos < 31))
+        {
+            channelNameBuffer.append(answer[9 + pos]);
+            pos++;
+        }
+
+        QTextCodec *codec = QTextCodec::codecForName("Windows-1251");
+        QString channelName = codec->toUnicode(channelNameBuffer);
+        ui->tableView->model()->setData(ui->tableView->model()->index(i, 3), channelName);
+
+        int protocolCode = answer[42];
+
+        QString protocolName;
+
+        switch (protocolCode)
+        {
+        case 0:
+           protocolName = "RTU";
+        break;
+        case 1:
+            protocolName = "ASCII";
+        break;
+        case 2:
+            protocolName = "ОВЕН";
+        break;
+        case 3:
+            protocolName = "Токовый вход 1";
+        break;
+        case 4:
+            protocolName = "Токовый вход 2";
+        break;
+        case 5:
+            protocolName = "Токовый вход 3";
+        break;
+        case 6:
+            protocolName = "Токовый вход 4";
+        break;
+        }
+
+        ui->tableView->model()->setData(ui->tableView->model()->index(i, 4), protocolName);
+
+        uint16_t netAddress = ((uint8_t)answer[43] << 8) + (uint8_t)answer[44];
+        ui->tableView->model()->setData(ui->tableView->model()->index(i, 5), netAddress);
+
+        uint16_t timeout = ((uint8_t)answer[45] << 8) + (uint8_t)answer[46];
+        ui->tableView->model()->setData(ui->tableView->model()->index(i, 6), timeout);
+
+        int dataType = (uint8_t)answer[48];
+        QString dataTypeStr;
+        switch(dataType)
+        {
+        case 0:
+            dataTypeStr = "INT16(Little-endian)";
+        break;
+        case 1:
+            dataTypeStr = "WORD16(Little-endian)";
+        break;
+        case 2:
+            dataTypeStr = "LONGINT32(Little-endian)";
+        break;
+        case 3:
+            dataTypeStr = "DWORD32(Little-endian)";
+        break;
+        case 4:
+            dataTypeStr = "FLOAT32(Little-endian)";
+        break;
+        case 5:
+            dataTypeStr = "INT16(Big-endian)";
+        break;
+        case 6:
+            dataTypeStr = "WORD16(Big-endian)";
+        break;
+        case 7:
+            dataTypeStr = "LONGINT32(Big-endian)";
+        break;
+        case 8:
+            dataTypeStr = "DWORD32(Big-endian)";
+        break;
+        case 9:
+            dataTypeStr = "FLOAT32(Big-endian)";
+        break;
+        case 10:
+            dataTypeStr = "LONGINT32(Middle-endian)";
+        break;
+        case 11:
+            dataTypeStr = "DWORD32(Middle-endian)";
+        break;
+        case 12:
+            dataTypeStr = "FLOAT32(Middle-endian)";
+        break;
+        }
+
+        ui->tableView->model()->setData(ui->tableView->model()->index(i, 7), dataTypeStr);
+
+        ui->tableView->model()->setData(ui->tableView->model()->index(i, 8), (int)answer[50]);
+
+        QString errorArchiveStr;
+        int errorArchive = answer[52];
+
+        switch(errorArchive)
+        {
+        case 0:
+            errorArchiveStr = "выкл";
+        break;
+        case 1:
+            errorArchiveStr = "вкл";
+        break;
+        }
+
+        ui->tableView->model()->setData(ui->tableView->model()->index(i, 9), errorArchiveStr);
+
+        RawAndFloat errorarchiveThreshold;
+        errorarchiveThreshold.rawValue = ((uint8_t)answer[53] << 24) + ((uint8_t)answer[54] << 16) + ((uint8_t)answer[55] << 8) + (uint8_t)answer[56];
+        ui->tableView->model()->setData(ui->tableView->model()->index(i, 10), errorarchiveThreshold.floatValue);
+
+        if ((int)answer[58] == 0)
+        {
+            ui->tableView->model()->setData(ui->tableView->model()->index(i, 11), 3);
+        } else
+        {
+            ui->tableView->model()->setData(ui->tableView->model()->index(i, 11), 4);
+        }
+
+        uint16_t registerAddress = ((uint8_t)answer[59] << 8) + (uint8_t)answer[60];
+        QString resgisterAddressString = QString("0x%1").arg(registerAddress, 0, 16);
+        ui->tableView->model()->setData(ui->tableView->model()->index(i, 12), resgisterAddressString);
+
+        ui->tableView->model()->setData(ui->tableView->model()->index(i, 13), ((uint8_t)answer[61] << 8) + (uint8_t)answer[62]);
+
+        QString addressLenghtStr;
+        int addressLength = answer[64];
+
+        switch(addressLength)
+        {
+        case 0:
+            addressLenghtStr = "8 бит";
+            break;
+        case 1:
+            addressLenghtStr = "11 бит";
+            break;
+        }
+
+        ui->tableView->model()->setData(ui->tableView->model()->index(i, 14), addressLenghtStr);
+
+        uint16_t hash = (answer[65] << 8) + answer[66];
+        QString hashStr = QString("0x%1").arg(hash, 0, 16);
+        ui->tableView->model()->setData(ui->tableView->model()->index(i, 15), hashStr);
+
+        uint16_t index = ((uint8_t)answer[67] << 8) + (uint8_t)answer[68];
+        ui->tableView->model()->setData(ui->tableView->model()->index(i, 16), (int16_t)index);
+
+        QThread::msleep(100);
+    }
+
+    port->close();
+    delete port;
+
+    QMessageBox::information(this, "Завершено", "Чтение данных завершено!");
+    progress->setVisible(false);
 }

@@ -15,6 +15,7 @@
 #include "align.h"
 #include <QTableView>
 #include <QPushButton>
+#include <QProgressBar>
 
 #include <QSet>
 
@@ -56,6 +57,8 @@ private slots:
 
     void on_action_triggered();
 
+    void on_action_2_triggered();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase sdb;
@@ -66,6 +69,8 @@ private:
     QLabel* label;
     QLabel* label2;
     QTimer *tmr;
+
+    QProgressBar *progress;
 
     void stopGetData();
     void setDisabledCells();

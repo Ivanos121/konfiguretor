@@ -8,5 +8,20 @@
         <file>img/IM_24_blue.png</file>
         <file>img/IM_48_blue.png</file>
         <file>img/IM_48_red.png</file>
+        <file>img/archive-insert.svg</file>
+        <file>img/archive-remove.svg</file>
+        <file>img/configure.svg</file>
+        <file>img/document-close.svg</file>
+        <file>img/document-export.svg</file>
+        <file>img/document-import.svg</file>
+        <file>img/document-new.svg</file>
+        <file>img/document-open.svg</file>
+        <file>img/document-preview-archive.svg</file>
+        <file>img/document-print.svg</file>
+        <file>img/document-save-as.svg</file>
+        <file>img/document-save.svg</file>
+        <file>img/system-help.svg</file>
+        <file>img/application-exit.svg</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

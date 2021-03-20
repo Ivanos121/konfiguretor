@@ -270,26 +270,240 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionNew"/>
+   <addaction name="actionLoad"/>
    <addaction name="actionSave"/>
-   <addaction name="action"/>
-   <addaction name="action_2"/>
+   <addaction name="actionSaveAs"/>
+   <addaction name="actionClose"/>
+   <addaction name="actionPage_Setup"/>
+   <addaction name="actionprint"/>
+   <addaction name="separator"/>
+   <addaction name="actionPLUS"/>
+   <addaction name="actionMINUS"/>
+   <addaction name="separator"/>
+   <addaction name="actionRead"/>
+   <addaction name="actionSave_2"/>
   </widget>
   <action name="actionSave">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/new/prefix1/img/document-save.svg</normaloff>:/new/prefix1/img/document-save.svg</iconset>
+   </property>
    <property name="text">
-    <string>Сохранить в БД</string>
+    <string>Сохранить файл конфигурации прибора</string>
    </property>
    <property name="toolTip">
-    <string>Сохранить изменения</string>
+    <string>Сохранить файл конфигурации прибора</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="action">
+  <action name="actionSave_2">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/new/prefix1/img/document-export.svg</normaloff>:/new/prefix1/img/document-export.svg</iconset>
+   </property>
    <property name="text">
     <string>Загрузить данные в МСД-200</string>
    </property>
+   <property name="toolTip">
+    <string>Загрузить данные </string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+W</string>
+   </property>
   </action>
-  <action name="action_2">
+  <action name="actionRead">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/new/prefix1/img/document-import.svg</normaloff>:/new/prefix1/img/document-import.svg</iconset>
+   </property>
    <property name="text">
-    <string>Считать данные из МСД-200</string>
+    <string>Считать данные</string>
+   </property>
+   <property name="toolTip">
+    <string>Считать данные</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+R</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/new/prefix1/img/document-new.svg</normaloff>:/new/prefix1/img/document-new.svg</iconset>
+   </property>
+   <property name="text">
+    <string>создать новый файл конфигурации прибора</string>
+   </property>
+   <property name="toolTip">
+    <string>создать новый файл конфигурации прибора</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionLoad">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/new/prefix1/img/document-open.svg</normaloff>:/new/prefix1/img/document-open.svg</iconset>
+   </property>
+   <property name="text">
+    <string>загрузить файл конфигурации прибора</string>
+   </property>
+   <property name="toolTip">
+    <string>загрузить файл конфигурации прибора</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionPLUS">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/new/prefix1/img/archive-insert.svg</normaloff>:/new/prefix1/img/archive-insert.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Добавить строку</string>
+   </property>
+   <property name="toolTip">
+    <string>Добавить строку</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+A</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/new/prefix1/img/document-save-as.svg</normaloff>:/new/prefix1/img/document-save-as.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Сохранить файл конфигурации как</string>
+   </property>
+   <property name="toolTip">
+    <string>Сохранить файл конфигурации как</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionMINUS">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/new/prefix1/img/archive-remove.svg</normaloff>:/new/prefix1/img/archive-remove.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Удалить строку</string>
+   </property>
+   <property name="toolTip">
+    <string>Удалить строку</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="icon">
+    <iconset>
+     <normaloff>img/system-help.svg</normaloff>img/system-help.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Руководство пользователя</string>
+   </property>
+   <property name="toolTip">
+    <string>Руководство пользователя</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/new/prefix1/img/IM_24_blue.png</normaloff>:/new/prefix1/img/IM_24_blue.png</iconset>
+   </property>
+   <property name="text">
+    <string>О программе</string>
+   </property>
+   <property name="toolTip">
+    <string>О программе</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/new/prefix1/img/application-exit.svg</normaloff>:/new/prefix1/img/application-exit.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Выход</string>
+   </property>
+   <property name="toolTip">
+    <string>Выход</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionprint">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/new/prefix1/img/document-print.svg</normaloff>:/new/prefix1/img/document-print.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Печать файла конфигурации прибора</string>
+   </property>
+   <property name="toolTip">
+    <string>Печать файла конфигурации прибора</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionPage_Setup">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/new/prefix1/img/document-preview-archive.svg</normaloff>:/new/prefix1/img/document-preview-archive.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Просмотр предварительной печати</string>
+   </property>
+   <property name="toolTip">
+    <string>Просмотр предварительной печати</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+P</string>
+   </property>
+  </action>
+  <action name="actionNastr">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/new/prefix1/img/configure.svg</normaloff>:/new/prefix1/img/configure.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Настройки</string>
+   </property>
+   <property name="toolTip">
+    <string>Настройки</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+F12</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="icon">
+    <iconset resource="img.qrc">
+     <normaloff>:/new/prefix1/img/document-close.svg</normaloff>:/new/prefix1/img/document-close.svg</iconset>
+   </property>
+   <property name="text">
+    <string>Закрыть файл конфигурации прибора</string>
+   </property>
+   <property name="toolTip">
+    <string>Закрыть файл конфигурации прибора</string>
+   </property>
+   <property name="shortcut">
+    <string>Esc</string>
    </property>
   </action>
  </widget>

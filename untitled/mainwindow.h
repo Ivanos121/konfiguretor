@@ -130,6 +130,7 @@ private:
     void closeAllBase_No();
     void closeAllBase_Otmena();
     void closeEvent(QCloseEvent *event);
+    void open_sdb();
 
 };
 

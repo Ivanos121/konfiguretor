@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QtSerialPort>
+#include <QMainWindow>
 #include "QtSql"
 #include "QSqlDatabase"
 #include <QSqlError>
@@ -20,13 +21,44 @@
 #include <QSqlTableModel>
 #include <QPrinter>
 #include <QSet>
+#include <QWebEngineView>
 
 #include "checkboxheader.h"
 #include "paintdelegate.h"
+#include "ui_about_dialog.h"
+#include "ui_settings.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
+
+class AboutDialog : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit AboutDialog(QWidget *parent = nullptr);
+
+private slots:
+    void on_pushButton_clicked();
+
+private:
+    Ui::aboutDialog *ui;
+};
+
+class Prefer_nastr : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit Prefer_nastr(QWidget *parent = nullptr);
+
+private slots:
+    void on_pushButton_clicked();
+
+private:
+    Ui::preferNastr *ui;
+};
 
 struct CurrentChannelParams
 {
@@ -120,6 +152,10 @@ private:
     enum { MaxRecentFiles = 5 };
     QAction *recentFileActs[MaxRecentFiles];
     QString fileName;
+    AboutDialog *rsc;
+    Prefer_nastr *rsc2;
+    QWebEngineView * view;
+
 
     void stopGetData();
     void setDisabledCells();
@@ -130,6 +166,7 @@ private:
     void closeAllBase_No();
     void closeAllBase_Otmena();
     void closeEvent(QCloseEvent *event);
+    void titleChanged(const QString &title);
     void open_sdb();
 
 };

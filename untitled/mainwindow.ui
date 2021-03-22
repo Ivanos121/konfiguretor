@@ -326,8 +326,7 @@
   </widget>
   <action name="actionSave">
    <property name="icon">
-    <iconset resource="img.qrc">
-     <normaloff>:/new/prefix1/img/document-save.svg</normaloff>:/new/prefix1/img/document-save.svg</iconset>
+    <iconset theme="document-save"/>
    </property>
    <property name="text">
     <string>Сохранить файл конфигурации прибора</string>
@@ -341,11 +340,11 @@
   </action>
   <action name="actionSave_2">
    <property name="icon">
-    <iconset resource="img.qrc">
+    <iconset theme="document-export" resource="img.qrc">
      <normaloff>:/new/prefix1/img/document-export.svg</normaloff>:/new/prefix1/img/document-export.svg</iconset>
    </property>
    <property name="text">
-    <string>Загрузить данные в МСД-200</string>
+    <string>Загрузить данные </string>
    </property>
    <property name="toolTip">
     <string>Загрузить данные </string>
@@ -356,7 +355,7 @@
   </action>
   <action name="actionRead">
    <property name="icon">
-    <iconset resource="img.qrc">
+    <iconset theme="document-import" resource="img.qrc">
      <normaloff>:/new/prefix1/img/document-import.svg</normaloff>:/new/prefix1/img/document-import.svg</iconset>
    </property>
    <property name="text">
@@ -371,8 +370,7 @@
   </action>
   <action name="actionNew">
    <property name="icon">
-    <iconset resource="img.qrc">
-     <normaloff>:/new/prefix1/img/document-new.svg</normaloff>:/new/prefix1/img/document-new.svg</iconset>
+    <iconset theme="document-new"/>
    </property>
    <property name="text">
     <string>создать новый файл конфигурации прибора</string>
@@ -386,8 +384,7 @@
   </action>
   <action name="actionLoad">
    <property name="icon">
-    <iconset resource="img.qrc">
-     <normaloff>:/new/prefix1/img/document-open.svg</normaloff>:/new/prefix1/img/document-open.svg</iconset>
+    <iconset theme="document-open"/>
    </property>
    <property name="text">
     <string>загрузить файл конфигурации прибора</string>
@@ -401,8 +398,7 @@
   </action>
   <action name="actionPLUS">
    <property name="icon">
-    <iconset resource="img.qrc">
-     <normaloff>:/new/prefix1/img/archive-insert.svg</normaloff>:/new/prefix1/img/archive-insert.svg</iconset>
+    <iconset theme="archive-insert"/>
    </property>
    <property name="text">
     <string>Добавить строку</string>
@@ -416,8 +412,7 @@
   </action>
   <action name="actionSaveAs">
    <property name="icon">
-    <iconset resource="img.qrc">
-     <normaloff>:/new/prefix1/img/document-save-as.svg</normaloff>:/new/prefix1/img/document-save-as.svg</iconset>
+    <iconset theme="document-save-as"/>
    </property>
    <property name="text">
     <string>Сохранить файл конфигурации как</string>
@@ -431,8 +426,7 @@
   </action>
   <action name="actionMINUS">
    <property name="icon">
-    <iconset resource="img.qrc">
-     <normaloff>:/new/prefix1/img/archive-remove.svg</normaloff>:/new/prefix1/img/archive-remove.svg</iconset>
+    <iconset theme="archive-remove"/>
    </property>
    <property name="text">
     <string>Удалить строку</string>
@@ -446,8 +440,7 @@
   </action>
   <action name="actionHelp">
    <property name="icon">
-    <iconset>
-     <normaloff>img/system-help.svg</normaloff>img/system-help.svg</iconset>
+    <iconset theme="system-help"/>
    </property>
    <property name="text">
     <string>Руководство пользователя</string>
@@ -473,8 +466,7 @@
   </action>
   <action name="actionExit">
    <property name="icon">
-    <iconset resource="img.qrc">
-     <normaloff>:/new/prefix1/img/application-exit.svg</normaloff>:/new/prefix1/img/application-exit.svg</iconset>
+    <iconset theme="application-exit"/>
    </property>
    <property name="text">
     <string>Выход</string>
@@ -488,8 +480,7 @@
   </action>
   <action name="actionprint">
    <property name="icon">
-    <iconset resource="img.qrc">
-     <normaloff>:/new/prefix1/img/document-print.svg</normaloff>:/new/prefix1/img/document-print.svg</iconset>
+    <iconset theme="document-print"/>
    </property>
    <property name="text">
     <string>Печать файла конфигурации прибора</string>
@@ -503,8 +494,7 @@
   </action>
   <action name="actionPage_Setup">
    <property name="icon">
-    <iconset resource="img.qrc">
-     <normaloff>:/new/prefix1/img/document-preview-archive.svg</normaloff>:/new/prefix1/img/document-preview-archive.svg</iconset>
+    <iconset theme="document-preview-archive"/>
    </property>
    <property name="text">
     <string>Просмотр предварительной печати</string>
@@ -518,8 +508,7 @@
   </action>
   <action name="actionNastr">
    <property name="icon">
-    <iconset resource="img.qrc">
-     <normaloff>:/new/prefix1/img/configure.svg</normaloff>:/new/prefix1/img/configure.svg</iconset>
+    <iconset theme="configure"/>
    </property>
    <property name="text">
     <string>Настройки</string>

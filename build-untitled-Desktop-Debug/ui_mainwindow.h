@@ -99,48 +99,51 @@ public:
         MainWindow->setWindowIcon(icon);
         actionSave = new QAction(MainWindow);
         actionSave->setObjectName(QString::fromUtf8("actionSave"));
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/new/prefix1/img/document-save.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon1(QIcon::fromTheme(QString::fromUtf8("document-save")));
         actionSave->setIcon(icon1);
         actionSave_2 = new QAction(MainWindow);
         actionSave_2->setObjectName(QString::fromUtf8("actionSave_2"));
         QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/new/prefix1/img/document-export.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QString iconThemeName = QString::fromUtf8("document-export");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon2 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon2.addFile(QString::fromUtf8(":/new/prefix1/img/document-export.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        }
         actionSave_2->setIcon(icon2);
         actionRead = new QAction(MainWindow);
         actionRead->setObjectName(QString::fromUtf8("actionRead"));
         QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/new/prefix1/img/document-import.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        iconThemeName = QString::fromUtf8("document-import");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon3 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon3.addFile(QString::fromUtf8(":/new/prefix1/img/document-import.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        }
         actionRead->setIcon(icon3);
         actionNew = new QAction(MainWindow);
         actionNew->setObjectName(QString::fromUtf8("actionNew"));
-        QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/new/prefix1/img/document-new.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon4(QIcon::fromTheme(QString::fromUtf8("document-new")));
         actionNew->setIcon(icon4);
         actionLoad = new QAction(MainWindow);
         actionLoad->setObjectName(QString::fromUtf8("actionLoad"));
-        QIcon icon5;
-        icon5.addFile(QString::fromUtf8(":/new/prefix1/img/document-open.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon5(QIcon::fromTheme(QString::fromUtf8("document-open")));
         actionLoad->setIcon(icon5);
         actionPLUS = new QAction(MainWindow);
         actionPLUS->setObjectName(QString::fromUtf8("actionPLUS"));
-        QIcon icon6;
-        icon6.addFile(QString::fromUtf8(":/new/prefix1/img/archive-insert.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon6(QIcon::fromTheme(QString::fromUtf8("archive-insert")));
         actionPLUS->setIcon(icon6);
         actionSaveAs = new QAction(MainWindow);
         actionSaveAs->setObjectName(QString::fromUtf8("actionSaveAs"));
-        QIcon icon7;
-        icon7.addFile(QString::fromUtf8(":/new/prefix1/img/document-save-as.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon7(QIcon::fromTheme(QString::fromUtf8("document-save-as")));
         actionSaveAs->setIcon(icon7);
         actionMINUS = new QAction(MainWindow);
         actionMINUS->setObjectName(QString::fromUtf8("actionMINUS"));
-        QIcon icon8;
-        icon8.addFile(QString::fromUtf8(":/new/prefix1/img/archive-remove.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon8(QIcon::fromTheme(QString::fromUtf8("archive-remove")));
         actionMINUS->setIcon(icon8);
         actionHelp = new QAction(MainWindow);
         actionHelp->setObjectName(QString::fromUtf8("actionHelp"));
-        QIcon icon9;
-        icon9.addFile(QString::fromUtf8("img/system-help.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon9(QIcon::fromTheme(QString::fromUtf8("system-help")));
         actionHelp->setIcon(icon9);
         actionAbout = new QAction(MainWindow);
         actionAbout->setObjectName(QString::fromUtf8("actionAbout"));
@@ -149,23 +152,19 @@ public:
         actionAbout->setIcon(icon10);
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
-        QIcon icon11;
-        icon11.addFile(QString::fromUtf8(":/new/prefix1/img/application-exit.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon11(QIcon::fromTheme(QString::fromUtf8("application-exit")));
         actionExit->setIcon(icon11);
         actionprint = new QAction(MainWindow);
         actionprint->setObjectName(QString::fromUtf8("actionprint"));
-        QIcon icon12;
-        icon12.addFile(QString::fromUtf8(":/new/prefix1/img/document-print.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon12(QIcon::fromTheme(QString::fromUtf8("document-print")));
         actionprint->setIcon(icon12);
         actionPage_Setup = new QAction(MainWindow);
         actionPage_Setup->setObjectName(QString::fromUtf8("actionPage_Setup"));
-        QIcon icon13;
-        icon13.addFile(QString::fromUtf8(":/new/prefix1/img/document-preview-archive.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon13(QIcon::fromTheme(QString::fromUtf8("document-preview-archive")));
         actionPage_Setup->setIcon(icon13);
         actionNastr = new QAction(MainWindow);
         actionNastr->setObjectName(QString::fromUtf8("actionNastr"));
-        QIcon icon14;
-        icon14.addFile(QString::fromUtf8(":/new/prefix1/img/configure.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        QIcon icon14(QIcon::fromTheme(QString::fromUtf8("configure")));
         actionNastr->setIcon(icon14);
         actionClose = new QAction(MainWindow);
         actionClose->setObjectName(QString::fromUtf8("actionClose"));
@@ -385,7 +384,7 @@ public:
 #if QT_CONFIG(shortcut)
         actionSave->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+S", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionSave_2->setText(QCoreApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \320\264\320\260\320\275\320\275\321\213\320\265 \320\262 \320\234\320\241\320\224-200", nullptr));
+        actionSave_2->setText(QCoreApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \320\264\320\260\320\275\320\275\321\213\320\265 ", nullptr));
 #if QT_CONFIG(tooltip)
         actionSave_2->setToolTip(QCoreApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \320\264\320\260\320\275\320\275\321\213\320\265 ", nullptr));
 #endif // QT_CONFIG(tooltip)

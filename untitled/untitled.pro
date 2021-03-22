@@ -1,4 +1,4 @@
-QT       += core gui serialport sql webkitwidgets printsupport
+QT       += core gui serialport sql webkitwidgets printsupport webenginewidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -47,7 +47,9 @@ HEADERS += \
     qcustomplot.h
 
 FORMS += \
-    mainwindow.ui
+    about_dialog.ui \
+    mainwindow.ui \
+    settings.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

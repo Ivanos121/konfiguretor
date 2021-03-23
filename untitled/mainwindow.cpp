@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
     label2=new QLabel(this);
     ui->toolBar->addWidget(label);
     ui->toolBar->addWidget(label2);
-    label->setPixmap(QPixmap(":/img/IM_24_red.png"));
+    label->setPixmap(QPixmap(":/new/prefix1/img/IM_24_red.png"));
     label2->setText("  Связи нет");
     ui->label_9->setText("Загрузите файл");
     ui->tabWidget->setCurrentIndex(0);
@@ -95,13 +95,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(&timer, &QTimer::timeout, this, &MainWindow::timerTimeout);
 
-    //индикация работы связи с архиватором
-    label=new QLabel(this);
-    label2=new QLabel(this);
-    ui->toolBar->addWidget(label);
-    ui->toolBar->addWidget(label2);
-    label->setPixmap(QPixmap(":/new/prefix1/img/IM_24_red"));
-    label2->setText("  Связи нет");
+//    //индикация работы связи с архиватором
+//    label=new QLabel(this);
+//    label2=new QLabel(this);
+//    ui->toolBar->addWidget(label);
+//    ui->toolBar->addWidget(label2);
+//    label->setPixmap(QPixmap(":/new/prefix1/img/IM_24_red"));
+//    label2->setText("  Связи нет");
 
 //    connect(model, &QSqlTableModel::dataChanged,this, &MainWindow::selectRows);
 
@@ -292,7 +292,7 @@ void MainWindow::loadFile(const QString &fileName)
      modifyMenu->setEnabled(true);
      priborMenu->setEnabled(true);
      ui->tabWidget->setEnabled(true);
-     ui->tabWidget->setEnabled(true);
+     ui->groupBox->setEnabled(true);
 
      QFileInfo fi(fileName);
      QString base = fi.baseName();
@@ -341,6 +341,8 @@ void MainWindow::closeAllBase()
         ui->tabWidget->setCurrentIndex(0);
         QString currentTabText = ui->tabWidget->tabText(0);
         setWindowTitle(currentTabText + "@" + QString("base") + QString(" - Konfiguretor"));
+        ui->tabWidget->setEnabled(false);
+        ui->groupBox->setEnabled(false);
     }
 }
 
@@ -470,7 +472,6 @@ void MainWindow::open_sdb()
 
     //подключение заголовка таблицы
     headerr = new CheckBoxHeader(Qt::Horizontal,ui->tableView);  //создание заголовка tableview
-   // ui->tableView->setHorizontalHeader(headerr); //установка заголовка tableview и checkbox в первый столбец
     connect(headerr, &CheckBoxHeader::checkBoxClicked1, this, &MainWindow::onCheckBoxHeaderClick1); //подключение головного чекбокса к чекбоксам в первом столбце
     connect(headerr, &CheckBoxHeader::checkBoxClicked2, this, &MainWindow::onCheckBoxHeaderClick2); //подключение головного чекбокса к чекбоксам в первом столбце
 
@@ -536,7 +537,7 @@ void MainWindow::open_sdb()
     ui->tableView->setItemDelegateForColumn(16, paintdelegate);
 
     paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
-    ui->tableView->setItemDelegateForColumn(17, paintdelegate);
+   // ui->tableView->setItemDelegateForColumn(17, paintdelegate);
 
     paintdelegate = new PaintDelegate(this); //создание делегата для создания комбобоксов
     ui->tableView->setItemDelegateForColumn(18, paintdelegate);
@@ -1159,6 +1160,32 @@ void MainWindow::SaveAs()
 void MainWindow::addPage()
 {
     model->insertRow(model->rowCount());
+    QItemSelection columnSelection;
+     QItemSelectionModel *selectionModel = ui->tableView->selectionModel();
+    QModelIndex topLeft = model->index(0, 20, QModelIndex());
+    QModelIndex bottomRight = model->index(0, 0, QModelIndex());
+    columnSelection.select(topLeft, bottomRight);
+            selectionModel->select(columnSelection,
+             QItemSelectionModel::Select | QItemSelectionModel::Columns);
+//    QTableView * tmp = new QTableView();
+//    tmp->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+
+    QModelIndexList list = ui->tableView->selectionModel()->selectedRows();
+        QString myData;
+        QModelIndex myIndex, myIndex2;
+
+        for(int i=1; i<list.size(); i++)
+        {//у каждой строки
+            for(int y=1; y<21;y++)
+            {//взять каждую ячейку
+                myIndex = ui->tableView->model()->index(list[i].row(), y, QModelIndex()); //Куда копируем
+                myIndex2 = ui->tableView->model()->index(list[0].row(), y, QModelIndex()); //откуда
+                myData = ui->tableView->model()->data(myIndex2).toString(); //содержимое (можно QVariant)
+                ui->tableView->model()->setData(myIndex, myData); //тадам-с!
+            }
+        }
+
 }
 
 void MainWindow::removePage()
@@ -1832,8 +1859,6 @@ void MainWindow::onCheckBoxHeaderClick2()
 
 void MainWindow::copyChannelNamesToTableWidget()
 {
-    if(sdb.isOpen())
-    {
     for (int i = 0; i < 32; i++)
     {
         QString text = model->data(model->index(i,3)).toString();
@@ -1852,7 +1877,7 @@ void MainWindow::copyChannelNamesToTableWidget()
         {
             ui->tableWidget->item(i-32,4)->setText(text);
         }
-    }}
+    }
 }
 
 void MainWindow::selectRows()
@@ -2527,4 +2552,9 @@ void MainWindow::on_action_2_triggered()
 
     QMessageBox::information(this, "Завершено", "Чтение данных завершено!");
     progress->setVisible(false);
+}
+
+void MainWindow::on_actionPLUS_triggered()
+{
+
 }

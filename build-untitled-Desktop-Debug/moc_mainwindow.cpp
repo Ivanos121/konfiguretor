@@ -210,8 +210,8 @@ int Prefer_nastr::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[57];
-    char stringdata0[717];
+    QByteArrayData data[58];
+    char stringdata0[741];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -276,7 +276,8 @@ QT_MOC_LITERAL(52, 619, 29), // "copyChannelNamesToTableWidget"
 QT_MOC_LITERAL(53, 649, 10), // "selectRows"
 QT_MOC_LITERAL(54, 660, 14), // "setcolorincell"
 QT_MOC_LITERAL(55, 675, 19), // "on_action_triggered"
-QT_MOC_LITERAL(56, 695, 21) // "on_action_2_triggered"
+QT_MOC_LITERAL(56, 695, 21), // "on_action_2_triggered"
+QT_MOC_LITERAL(57, 717, 23) // "on_actionPLUS_triggered"
 
     },
     "MainWindow\0savesettings\0\0name\0baudrate\0"
@@ -298,7 +299,7 @@ QT_MOC_LITERAL(56, 695, 21) // "on_action_2_triggered"
     "onCheckBoxHeaderClick2\0"
     "copyChannelNamesToTableWidget\0selectRows\0"
     "setcolorincell\0on_action_triggered\0"
-    "on_action_2_triggered"
+    "on_action_2_triggered\0on_actionPLUS_triggered"
 };
 #undef QT_MOC_LITERAL
 
@@ -308,7 +309,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      38,   14, // methods
+      39,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -316,46 +317,47 @@ static const uint qt_meta_data_MainWindow[] = {
        3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    6,  204,    2, 0x06 /* Public */,
-       9,    1,  217,    2, 0x06 /* Public */,
-      11,    2,  220,    2, 0x06 /* Public */,
+       1,    6,  209,    2, 0x06 /* Public */,
+       9,    1,  222,    2, 0x06 /* Public */,
+      11,    2,  225,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      14,    0,  225,    2, 0x08 /* Private */,
-      15,    0,  226,    2, 0x08 /* Private */,
-      16,    0,  227,    2, 0x08 /* Private */,
-      17,    0,  228,    2, 0x08 /* Private */,
-      18,    0,  229,    2, 0x08 /* Private */,
-      19,    0,  230,    2, 0x08 /* Private */,
-      20,    0,  231,    2, 0x08 /* Private */,
-      21,    0,  232,    2, 0x08 /* Private */,
-      22,    0,  233,    2, 0x08 /* Private */,
-      23,    0,  234,    2, 0x08 /* Private */,
-      24,    0,  235,    2, 0x08 /* Private */,
-      25,    0,  236,    2, 0x08 /* Private */,
-      26,    0,  237,    2, 0x08 /* Private */,
-      27,    0,  238,    2, 0x08 /* Private */,
-      28,    0,  239,    2, 0x08 /* Private */,
-      29,    0,  240,    2, 0x08 /* Private */,
-      30,    1,  241,    2, 0x08 /* Private */,
-      32,    1,  244,    2, 0x08 /* Private */,
-      35,    1,  247,    2, 0x08 /* Private */,
-      37,    0,  250,    2, 0x08 /* Private */,
-      38,    1,  251,    2, 0x08 /* Private */,
-      40,    2,  254,    2, 0x08 /* Private */,
-      42,    1,  259,    2, 0x08 /* Private */,
-      43,    2,  262,    2, 0x08 /* Private */,
-      46,    0,  267,    2, 0x08 /* Private */,
-      47,    0,  268,    2, 0x08 /* Private */,
-      48,    0,  269,    2, 0x08 /* Private */,
-      49,    0,  270,    2, 0x08 /* Private */,
-      50,    0,  271,    2, 0x08 /* Private */,
-      51,    0,  272,    2, 0x08 /* Private */,
-      52,    0,  273,    2, 0x08 /* Private */,
-      53,    0,  274,    2, 0x08 /* Private */,
-      54,    2,  275,    2, 0x08 /* Private */,
-      55,    0,  280,    2, 0x08 /* Private */,
-      56,    0,  281,    2, 0x08 /* Private */,
+      14,    0,  230,    2, 0x08 /* Private */,
+      15,    0,  231,    2, 0x08 /* Private */,
+      16,    0,  232,    2, 0x08 /* Private */,
+      17,    0,  233,    2, 0x08 /* Private */,
+      18,    0,  234,    2, 0x08 /* Private */,
+      19,    0,  235,    2, 0x08 /* Private */,
+      20,    0,  236,    2, 0x08 /* Private */,
+      21,    0,  237,    2, 0x08 /* Private */,
+      22,    0,  238,    2, 0x08 /* Private */,
+      23,    0,  239,    2, 0x08 /* Private */,
+      24,    0,  240,    2, 0x08 /* Private */,
+      25,    0,  241,    2, 0x08 /* Private */,
+      26,    0,  242,    2, 0x08 /* Private */,
+      27,    0,  243,    2, 0x08 /* Private */,
+      28,    0,  244,    2, 0x08 /* Private */,
+      29,    0,  245,    2, 0x08 /* Private */,
+      30,    1,  246,    2, 0x08 /* Private */,
+      32,    1,  249,    2, 0x08 /* Private */,
+      35,    1,  252,    2, 0x08 /* Private */,
+      37,    0,  255,    2, 0x08 /* Private */,
+      38,    1,  256,    2, 0x08 /* Private */,
+      40,    2,  259,    2, 0x08 /* Private */,
+      42,    1,  264,    2, 0x08 /* Private */,
+      43,    2,  267,    2, 0x08 /* Private */,
+      46,    0,  272,    2, 0x08 /* Private */,
+      47,    0,  273,    2, 0x08 /* Private */,
+      48,    0,  274,    2, 0x08 /* Private */,
+      49,    0,  275,    2, 0x08 /* Private */,
+      50,    0,  276,    2, 0x08 /* Private */,
+      51,    0,  277,    2, 0x08 /* Private */,
+      52,    0,  278,    2, 0x08 /* Private */,
+      53,    0,  279,    2, 0x08 /* Private */,
+      54,    2,  280,    2, 0x08 /* Private */,
+      55,    0,  285,    2, 0x08 /* Private */,
+      56,    0,  286,    2, 0x08 /* Private */,
+      57,    0,  287,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int,    3,    4,    5,    6,    7,    8,
@@ -396,6 +398,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int, QMetaType::Int,   12,   13,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -447,6 +450,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 35: _t->setcolorincell((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         case 36: _t->on_action_triggered(); break;
         case 37: _t->on_action_2_triggered(); break;
+        case 38: _t->on_actionPLUS_triggered(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -504,13 +508,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 38)
+        if (_id < 39)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 38;
+        _id -= 39;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 38)
+        if (_id < 39)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 38;
+        _id -= 39;
     }
     return _id;
 }

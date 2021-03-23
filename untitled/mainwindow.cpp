@@ -62,6 +62,7 @@ MainWindow::MainWindow(QWidget *parent)
     modifyMenu->setEnabled(false);
     priborMenu->setEnabled(false);
     ui->tabWidget->setEnabled(false);
+    ui->groupBox->setEnabled(false);
 
     ui->comboBox_2->addItem(QLatin1String("9600"), QSerialPort::Baud9600);
     ui->comboBox_2->addItem(QLatin1String("19200"), QSerialPort::Baud19200);
@@ -291,6 +292,7 @@ void MainWindow::loadFile(const QString &fileName)
      modifyMenu->setEnabled(true);
      priborMenu->setEnabled(true);
      ui->tabWidget->setEnabled(true);
+     ui->tabWidget->setEnabled(true);
 
      QFileInfo fi(fileName);
      QString base = fi.baseName();
@@ -363,6 +365,7 @@ void MainWindow::closeAllBase_Yes()
     modifyMenu->setEnabled(false);
     priborMenu->setEnabled(false);
     ui->tabWidget->setEnabled(false);
+    ui->groupBox->setEnabled(false);
 }
 
 void MainWindow::closeAllBase_No()
@@ -385,6 +388,7 @@ void MainWindow::closeAllBase_No()
     modifyMenu->setEnabled(false);
     priborMenu->setEnabled(false);
     ui->tabWidget->setEnabled(false);
+    ui->groupBox->setEnabled(false);
 }
 
 void MainWindow::setcolorincell(int row, int column)
@@ -429,12 +433,7 @@ void MainWindow::newFile()
      //загрузка данных в таблицу tableview
      model->select(); //Заполняет модель данными из таблицы, которая была установлена ​​с помощью setTable(), используя указанный фильтр и условие сортировки
      ui->tableView->setModel(model); //Устанавливает модель для представления
-     ui->tableView->hideColumn(1); //скрытие столбца id
-
-
-//     QFileInfo fi3(fileName);
-//     QString base3 = fi3.baseName();
-//     ui->label_2->setText(base3);
+     ui->tableView->hideColumn(0); //скрытие столбца id
 
      ui->actionSave->setEnabled(true);
      ui->actionSaveAs->setEnabled(true);
@@ -448,13 +447,14 @@ void MainWindow::newFile()
      modifyMenu->setEnabled(true);
      priborMenu->setEnabled(true);
      ui->tabWidget->setEnabled(true);
+     ui->groupBox->setEnabled(true);
      setCurrentFile(fileName);
-         QFileInfo fi2(fileName);
-         QString base2 = fi2.baseName();
-         ui->label_9->setText(base);
-         int index2 = ui->tabWidget->currentIndex();
-         QString currentTabText2 = ui->tabWidget->tabText(index2);
-         setWindowTitle(currentTabText2 + "@" + QString(base2) + QString(" - Konfiguretor"));
+     QFileInfo fi2(fileName);
+     QString base2 = fi2.baseName();
+     ui->label_9->setText(base);
+     int index2 = ui->tabWidget->currentIndex();
+     QString currentTabText2 = ui->tabWidget->tabText(index2);
+     setWindowTitle(currentTabText2 + "@" + QString(base2) + QString(" - Konfiguretor"));
 
      connect(ui->tableView->model(), &QSqlTableModel::dataChanged, this, &MainWindow::onDataChanged);
 }

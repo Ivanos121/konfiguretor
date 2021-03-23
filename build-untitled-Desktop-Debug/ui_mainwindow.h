@@ -99,12 +99,18 @@ public:
         MainWindow->setWindowIcon(icon);
         actionSave = new QAction(MainWindow);
         actionSave->setObjectName(QString::fromUtf8("actionSave"));
-        QIcon icon1(QIcon::fromTheme(QString::fromUtf8("document-save")));
+        QIcon icon1;
+        QString iconThemeName = QString::fromUtf8("document-save");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon1 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon1.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+        }
         actionSave->setIcon(icon1);
         actionSave_2 = new QAction(MainWindow);
         actionSave_2->setObjectName(QString::fromUtf8("actionSave_2"));
         QIcon icon2;
-        QString iconThemeName = QString::fromUtf8("document-export");
+        iconThemeName = QString::fromUtf8("document-export");
         if (QIcon::hasThemeIcon(iconThemeName)) {
             icon2 = QIcon::fromTheme(iconThemeName);
         } else {
@@ -123,27 +129,63 @@ public:
         actionRead->setIcon(icon3);
         actionNew = new QAction(MainWindow);
         actionNew->setObjectName(QString::fromUtf8("actionNew"));
-        QIcon icon4(QIcon::fromTheme(QString::fromUtf8("document-new")));
+        QIcon icon4;
+        iconThemeName = QString::fromUtf8("document-new");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon4 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon4.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+        }
         actionNew->setIcon(icon4);
         actionLoad = new QAction(MainWindow);
         actionLoad->setObjectName(QString::fromUtf8("actionLoad"));
-        QIcon icon5(QIcon::fromTheme(QString::fromUtf8("document-open")));
+        QIcon icon5;
+        iconThemeName = QString::fromUtf8("document-open");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon5 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon5.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+        }
         actionLoad->setIcon(icon5);
         actionPLUS = new QAction(MainWindow);
         actionPLUS->setObjectName(QString::fromUtf8("actionPLUS"));
-        QIcon icon6(QIcon::fromTheme(QString::fromUtf8("archive-insert")));
+        QIcon icon6;
+        iconThemeName = QString::fromUtf8("archive-insert");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon6 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon6.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+        }
         actionPLUS->setIcon(icon6);
         actionSaveAs = new QAction(MainWindow);
         actionSaveAs->setObjectName(QString::fromUtf8("actionSaveAs"));
-        QIcon icon7(QIcon::fromTheme(QString::fromUtf8("document-save-as")));
+        QIcon icon7;
+        iconThemeName = QString::fromUtf8("document-save-as");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon7 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon7.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+        }
         actionSaveAs->setIcon(icon7);
         actionMINUS = new QAction(MainWindow);
         actionMINUS->setObjectName(QString::fromUtf8("actionMINUS"));
-        QIcon icon8(QIcon::fromTheme(QString::fromUtf8("archive-remove")));
+        QIcon icon8;
+        iconThemeName = QString::fromUtf8("archive-remove");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon8 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon8.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+        }
         actionMINUS->setIcon(icon8);
         actionHelp = new QAction(MainWindow);
         actionHelp->setObjectName(QString::fromUtf8("actionHelp"));
-        QIcon icon9(QIcon::fromTheme(QString::fromUtf8("system-help")));
+        QIcon icon9;
+        iconThemeName = QString::fromUtf8("system-help");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon9 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon9.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+        }
         actionHelp->setIcon(icon9);
         actionAbout = new QAction(MainWindow);
         actionAbout->setObjectName(QString::fromUtf8("actionAbout"));
@@ -152,19 +194,43 @@ public:
         actionAbout->setIcon(icon10);
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
-        QIcon icon11(QIcon::fromTheme(QString::fromUtf8("application-exit")));
+        QIcon icon11;
+        iconThemeName = QString::fromUtf8("application-exit");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon11 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon11.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+        }
         actionExit->setIcon(icon11);
         actionprint = new QAction(MainWindow);
         actionprint->setObjectName(QString::fromUtf8("actionprint"));
-        QIcon icon12(QIcon::fromTheme(QString::fromUtf8("document-print")));
+        QIcon icon12;
+        iconThemeName = QString::fromUtf8("document-print");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon12 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon12.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+        }
         actionprint->setIcon(icon12);
         actionPage_Setup = new QAction(MainWindow);
         actionPage_Setup->setObjectName(QString::fromUtf8("actionPage_Setup"));
-        QIcon icon13(QIcon::fromTheme(QString::fromUtf8("document-preview-archive")));
+        QIcon icon13;
+        iconThemeName = QString::fromUtf8("document-preview-archive");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon13 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon13.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+        }
         actionPage_Setup->setIcon(icon13);
         actionNastr = new QAction(MainWindow);
         actionNastr->setObjectName(QString::fromUtf8("actionNastr"));
-        QIcon icon14(QIcon::fromTheme(QString::fromUtf8("configure")));
+        QIcon icon14;
+        iconThemeName = QString::fromUtf8("configure");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon14 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon14.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+        }
         actionNastr->setIcon(icon14);
         actionClose = new QAction(MainWindow);
         actionClose->setObjectName(QString::fromUtf8("actionClose"));
@@ -398,16 +464,16 @@ public:
 #if QT_CONFIG(shortcut)
         actionRead->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+Shift+R", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionNew->setText(QCoreApplication::translate("MainWindow", "\321\201\320\276\320\267\320\264\320\260\321\202\321\214 \320\275\320\276\320\262\321\213\320\271 \321\204\320\260\320\271\320\273 \320\272\320\276\320\275\321\204\320\270\320\263\321\203\321\200\320\260\321\206\320\270\320\270 \320\277\321\200\320\270\320\261\320\276\321\200\320\260", nullptr));
+        actionNew->setText(QCoreApplication::translate("MainWindow", "C\320\276\320\267\320\264\320\260\321\202\321\214 \320\275\320\276\320\262\321\213\320\271 \321\204\320\260\320\271\320\273 \320\272\320\276\320\275\321\204\320\270\320\263\321\203\321\200\320\260\321\206\320\270\320\270 \320\277\321\200\320\270\320\261\320\276\321\200\320\260", nullptr));
 #if QT_CONFIG(tooltip)
-        actionNew->setToolTip(QCoreApplication::translate("MainWindow", "\321\201\320\276\320\267\320\264\320\260\321\202\321\214 \320\275\320\276\320\262\321\213\320\271 \321\204\320\260\320\271\320\273 \320\272\320\276\320\275\321\204\320\270\320\263\321\203\321\200\320\260\321\206\320\270\320\270 \320\277\321\200\320\270\320\261\320\276\321\200\320\260", nullptr));
+        actionNew->setToolTip(QCoreApplication::translate("MainWindow", "C\320\276\320\267\320\264\320\260\321\202\321\214 \320\275\320\276\320\262\321\213\320\271 \321\204\320\260\320\271\320\273 \320\272\320\276\320\275\321\204\320\270\320\263\321\203\321\200\320\260\321\206\320\270\320\270 \320\277\321\200\320\270\320\261\320\276\321\200\320\260", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(shortcut)
         actionNew->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+N", nullptr));
 #endif // QT_CONFIG(shortcut)
-        actionLoad->setText(QCoreApplication::translate("MainWindow", "\320\267\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \321\204\320\260\320\271\320\273 \320\272\320\276\320\275\321\204\320\270\320\263\321\203\321\200\320\260\321\206\320\270\320\270 \320\277\321\200\320\270\320\261\320\276\321\200\320\260", nullptr));
+        actionLoad->setText(QCoreApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \321\204\320\260\320\271\320\273 \320\272\320\276\320\275\321\204\320\270\320\263\321\203\321\200\320\260\321\206\320\270\320\270 \320\277\321\200\320\270\320\261\320\276\321\200\320\260", nullptr));
 #if QT_CONFIG(tooltip)
-        actionLoad->setToolTip(QCoreApplication::translate("MainWindow", "\320\267\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \321\204\320\260\320\271\320\273 \320\272\320\276\320\275\321\204\320\270\320\263\321\203\321\200\320\260\321\206\320\270\320\270 \320\277\321\200\320\270\320\261\320\276\321\200\320\260", nullptr));
+        actionLoad->setToolTip(QCoreApplication::translate("MainWindow", "\320\227\320\260\320\263\321\200\321\203\320\267\320\270\321\202\321\214 \321\204\320\260\320\271\320\273 \320\272\320\276\320\275\321\204\320\270\320\263\321\203\321\200\320\260\321\206\320\270\320\270 \320\277\321\200\320\270\320\261\320\276\321\200\320\260", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(shortcut)
         actionLoad->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+O", nullptr));

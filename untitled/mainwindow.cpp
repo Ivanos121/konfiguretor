@@ -459,6 +459,8 @@ void MainWindow::newFile()
      setWindowTitle(currentTabText2 + "@" + QString(base2) + QString(" - Konfiguretor"));
 
      connect(ui->tableView->model(), &QSqlTableModel::dataChanged, this, &MainWindow::onDataChanged);
+     connect(model, &QSqlTableModel::dataChanged,this, &MainWindow::selectRows);
+     setDisabledCells();
 }
 
 void MainWindow::open_sdb()
@@ -1166,10 +1168,19 @@ void MainWindow::addPage()
     QModelIndex bottomRight = model->index(0, 0, QModelIndex());
     columnSelection.select(topLeft, bottomRight);
             selectionModel->select(columnSelection,
-             QItemSelectionModel::Select | QItemSelectionModel::Columns);
-//    QTableView * tmp = new QTableView();
-//    tmp->setSelectionBehavior(QAbstractItemView::SelectRows);
+             QItemSelectionModel::Select | QItemSelectionModel::Columns );
 
+            ui->tableView->setStyleSheet(
+                               "QTableView::item:selected:active {"
+                               "background: rgb(255,255,255);"
+                               "selection-color: #000000;"
+                               "}"
+                               "QTableView::item:selected:!active {"
+                               "background: rgb(255,255,255);"
+                               "border: 1px solid transparent;"
+                               "selection-color: #000000;"
+                               "}"
+                               );
 
     QModelIndexList list = ui->tableView->selectionModel()->selectedRows();
         QString myData;

@@ -101,7 +101,7 @@ private slots:
     void addPage();
     void removePage();
     void readPribor();
-    void writhtePribor();
+    void writePribor();
     void settingsPage();
     void helpKonf();
     void aboutKonf();
@@ -125,8 +125,6 @@ private slots:
     void copyChannelNamesToTableWidget();
     void selectRows();
     void setcolorincell(int row, int column);
-    void on_action_triggered();
-    void on_action_2_triggered();
 
     void on_actionPLUS_triggered();
 

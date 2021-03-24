@@ -210,8 +210,8 @@ int Prefer_nastr::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[58];
-    char stringdata0[741];
+    QByteArrayData data[56];
+    char stringdata0[697];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -245,39 +245,37 @@ QT_MOC_LITERAL(21, 183, 8), // "closeApp"
 QT_MOC_LITERAL(22, 192, 7), // "addPage"
 QT_MOC_LITERAL(23, 200, 10), // "removePage"
 QT_MOC_LITERAL(24, 211, 10), // "readPribor"
-QT_MOC_LITERAL(25, 222, 13), // "writhtePribor"
-QT_MOC_LITERAL(26, 236, 12), // "settingsPage"
-QT_MOC_LITERAL(27, 249, 8), // "helpKonf"
-QT_MOC_LITERAL(28, 258, 9), // "aboutKonf"
-QT_MOC_LITERAL(29, 268, 14), // "openRecentFile"
-QT_MOC_LITERAL(30, 283, 27), // "on_tabWidget_currentChanged"
-QT_MOC_LITERAL(31, 311, 5), // "index"
-QT_MOC_LITERAL(32, 317, 12), // "printPreview"
-QT_MOC_LITERAL(33, 330, 9), // "QPrinter*"
-QT_MOC_LITERAL(34, 340, 7), // "printer"
-QT_MOC_LITERAL(35, 348, 14), // "setCurrentFile"
-QT_MOC_LITERAL(36, 363, 8), // "fileName"
-QT_MOC_LITERAL(37, 372, 23), // "updateRecentFileActions"
-QT_MOC_LITERAL(38, 396, 12), // "strippedName"
-QT_MOC_LITERAL(39, 409, 12), // "fullFileName"
-QT_MOC_LITERAL(40, 422, 10), // "printTable"
-QT_MOC_LITERAL(41, 433, 9), // "isPreview"
-QT_MOC_LITERAL(42, 443, 8), // "loadFile"
-QT_MOC_LITERAL(43, 452, 13), // "onDataChanged"
-QT_MOC_LITERAL(44, 466, 7), // "topLeft"
-QT_MOC_LITERAL(45, 474, 11), // "bottomRight"
-QT_MOC_LITERAL(46, 486, 25), // "on_actionSaveAs_triggered"
-QT_MOC_LITERAL(47, 512, 23), // "on_pushButton_7_clicked"
-QT_MOC_LITERAL(48, 536, 23), // "on_pushButton_9_clicked"
-QT_MOC_LITERAL(49, 560, 12), // "timerTimeout"
-QT_MOC_LITERAL(50, 573, 22), // "onCheckBoxHeaderClick1"
-QT_MOC_LITERAL(51, 596, 22), // "onCheckBoxHeaderClick2"
-QT_MOC_LITERAL(52, 619, 29), // "copyChannelNamesToTableWidget"
-QT_MOC_LITERAL(53, 649, 10), // "selectRows"
-QT_MOC_LITERAL(54, 660, 14), // "setcolorincell"
-QT_MOC_LITERAL(55, 675, 19), // "on_action_triggered"
-QT_MOC_LITERAL(56, 695, 21), // "on_action_2_triggered"
-QT_MOC_LITERAL(57, 717, 23) // "on_actionPLUS_triggered"
+QT_MOC_LITERAL(25, 222, 11), // "writePribor"
+QT_MOC_LITERAL(26, 234, 12), // "settingsPage"
+QT_MOC_LITERAL(27, 247, 8), // "helpKonf"
+QT_MOC_LITERAL(28, 256, 9), // "aboutKonf"
+QT_MOC_LITERAL(29, 266, 14), // "openRecentFile"
+QT_MOC_LITERAL(30, 281, 27), // "on_tabWidget_currentChanged"
+QT_MOC_LITERAL(31, 309, 5), // "index"
+QT_MOC_LITERAL(32, 315, 12), // "printPreview"
+QT_MOC_LITERAL(33, 328, 9), // "QPrinter*"
+QT_MOC_LITERAL(34, 338, 7), // "printer"
+QT_MOC_LITERAL(35, 346, 14), // "setCurrentFile"
+QT_MOC_LITERAL(36, 361, 8), // "fileName"
+QT_MOC_LITERAL(37, 370, 23), // "updateRecentFileActions"
+QT_MOC_LITERAL(38, 394, 12), // "strippedName"
+QT_MOC_LITERAL(39, 407, 12), // "fullFileName"
+QT_MOC_LITERAL(40, 420, 10), // "printTable"
+QT_MOC_LITERAL(41, 431, 9), // "isPreview"
+QT_MOC_LITERAL(42, 441, 8), // "loadFile"
+QT_MOC_LITERAL(43, 450, 13), // "onDataChanged"
+QT_MOC_LITERAL(44, 464, 7), // "topLeft"
+QT_MOC_LITERAL(45, 472, 11), // "bottomRight"
+QT_MOC_LITERAL(46, 484, 25), // "on_actionSaveAs_triggered"
+QT_MOC_LITERAL(47, 510, 23), // "on_pushButton_7_clicked"
+QT_MOC_LITERAL(48, 534, 23), // "on_pushButton_9_clicked"
+QT_MOC_LITERAL(49, 558, 12), // "timerTimeout"
+QT_MOC_LITERAL(50, 571, 22), // "onCheckBoxHeaderClick1"
+QT_MOC_LITERAL(51, 594, 22), // "onCheckBoxHeaderClick2"
+QT_MOC_LITERAL(52, 617, 29), // "copyChannelNamesToTableWidget"
+QT_MOC_LITERAL(53, 647, 10), // "selectRows"
+QT_MOC_LITERAL(54, 658, 14), // "setcolorincell"
+QT_MOC_LITERAL(55, 673, 23) // "on_actionPLUS_triggered"
 
     },
     "MainWindow\0savesettings\0\0name\0baudrate\0"
@@ -286,7 +284,7 @@ QT_MOC_LITERAL(57, 717, 23) // "on_actionPLUS_triggered"
     "row\0column\0newFile\0open\0Save\0SaveAs\0"
     "closeAllBase\0pageSetup\0pagePrint\0"
     "closeApp\0addPage\0removePage\0readPribor\0"
-    "writhtePribor\0settingsPage\0helpKonf\0"
+    "writePribor\0settingsPage\0helpKonf\0"
     "aboutKonf\0openRecentFile\0"
     "on_tabWidget_currentChanged\0index\0"
     "printPreview\0QPrinter*\0printer\0"
@@ -298,8 +296,7 @@ QT_MOC_LITERAL(57, 717, 23) // "on_actionPLUS_triggered"
     "timerTimeout\0onCheckBoxHeaderClick1\0"
     "onCheckBoxHeaderClick2\0"
     "copyChannelNamesToTableWidget\0selectRows\0"
-    "setcolorincell\0on_action_triggered\0"
-    "on_action_2_triggered\0on_actionPLUS_triggered"
+    "setcolorincell\0on_actionPLUS_triggered"
 };
 #undef QT_MOC_LITERAL
 
@@ -309,7 +306,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      39,   14, // methods
+      37,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -317,47 +314,45 @@ static const uint qt_meta_data_MainWindow[] = {
        3,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    6,  209,    2, 0x06 /* Public */,
-       9,    1,  222,    2, 0x06 /* Public */,
-      11,    2,  225,    2, 0x06 /* Public */,
+       1,    6,  199,    2, 0x06 /* Public */,
+       9,    1,  212,    2, 0x06 /* Public */,
+      11,    2,  215,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      14,    0,  230,    2, 0x08 /* Private */,
-      15,    0,  231,    2, 0x08 /* Private */,
-      16,    0,  232,    2, 0x08 /* Private */,
-      17,    0,  233,    2, 0x08 /* Private */,
-      18,    0,  234,    2, 0x08 /* Private */,
-      19,    0,  235,    2, 0x08 /* Private */,
-      20,    0,  236,    2, 0x08 /* Private */,
-      21,    0,  237,    2, 0x08 /* Private */,
-      22,    0,  238,    2, 0x08 /* Private */,
-      23,    0,  239,    2, 0x08 /* Private */,
-      24,    0,  240,    2, 0x08 /* Private */,
-      25,    0,  241,    2, 0x08 /* Private */,
-      26,    0,  242,    2, 0x08 /* Private */,
-      27,    0,  243,    2, 0x08 /* Private */,
-      28,    0,  244,    2, 0x08 /* Private */,
-      29,    0,  245,    2, 0x08 /* Private */,
-      30,    1,  246,    2, 0x08 /* Private */,
-      32,    1,  249,    2, 0x08 /* Private */,
-      35,    1,  252,    2, 0x08 /* Private */,
-      37,    0,  255,    2, 0x08 /* Private */,
-      38,    1,  256,    2, 0x08 /* Private */,
-      40,    2,  259,    2, 0x08 /* Private */,
-      42,    1,  264,    2, 0x08 /* Private */,
-      43,    2,  267,    2, 0x08 /* Private */,
-      46,    0,  272,    2, 0x08 /* Private */,
-      47,    0,  273,    2, 0x08 /* Private */,
-      48,    0,  274,    2, 0x08 /* Private */,
-      49,    0,  275,    2, 0x08 /* Private */,
-      50,    0,  276,    2, 0x08 /* Private */,
-      51,    0,  277,    2, 0x08 /* Private */,
-      52,    0,  278,    2, 0x08 /* Private */,
-      53,    0,  279,    2, 0x08 /* Private */,
-      54,    2,  280,    2, 0x08 /* Private */,
-      55,    0,  285,    2, 0x08 /* Private */,
-      56,    0,  286,    2, 0x08 /* Private */,
-      57,    0,  287,    2, 0x08 /* Private */,
+      14,    0,  220,    2, 0x08 /* Private */,
+      15,    0,  221,    2, 0x08 /* Private */,
+      16,    0,  222,    2, 0x08 /* Private */,
+      17,    0,  223,    2, 0x08 /* Private */,
+      18,    0,  224,    2, 0x08 /* Private */,
+      19,    0,  225,    2, 0x08 /* Private */,
+      20,    0,  226,    2, 0x08 /* Private */,
+      21,    0,  227,    2, 0x08 /* Private */,
+      22,    0,  228,    2, 0x08 /* Private */,
+      23,    0,  229,    2, 0x08 /* Private */,
+      24,    0,  230,    2, 0x08 /* Private */,
+      25,    0,  231,    2, 0x08 /* Private */,
+      26,    0,  232,    2, 0x08 /* Private */,
+      27,    0,  233,    2, 0x08 /* Private */,
+      28,    0,  234,    2, 0x08 /* Private */,
+      29,    0,  235,    2, 0x08 /* Private */,
+      30,    1,  236,    2, 0x08 /* Private */,
+      32,    1,  239,    2, 0x08 /* Private */,
+      35,    1,  242,    2, 0x08 /* Private */,
+      37,    0,  245,    2, 0x08 /* Private */,
+      38,    1,  246,    2, 0x08 /* Private */,
+      40,    2,  249,    2, 0x08 /* Private */,
+      42,    1,  254,    2, 0x08 /* Private */,
+      43,    2,  257,    2, 0x08 /* Private */,
+      46,    0,  262,    2, 0x08 /* Private */,
+      47,    0,  263,    2, 0x08 /* Private */,
+      48,    0,  264,    2, 0x08 /* Private */,
+      49,    0,  265,    2, 0x08 /* Private */,
+      50,    0,  266,    2, 0x08 /* Private */,
+      51,    0,  267,    2, 0x08 /* Private */,
+      52,    0,  268,    2, 0x08 /* Private */,
+      53,    0,  269,    2, 0x08 /* Private */,
+      54,    2,  270,    2, 0x08 /* Private */,
+      55,    0,  275,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int, QMetaType::Int,    3,    4,    5,    6,    7,    8,
@@ -399,8 +394,6 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int, QMetaType::Int,   12,   13,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
 
        0        // eod
 };
@@ -425,7 +418,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 11: _t->addPage(); break;
         case 12: _t->removePage(); break;
         case 13: _t->readPribor(); break;
-        case 14: _t->writhtePribor(); break;
+        case 14: _t->writePribor(); break;
         case 15: _t->settingsPage(); break;
         case 16: _t->helpKonf(); break;
         case 17: _t->aboutKonf(); break;
@@ -448,9 +441,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 33: _t->copyChannelNamesToTableWidget(); break;
         case 34: _t->selectRows(); break;
         case 35: _t->setcolorincell((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
-        case 36: _t->on_action_triggered(); break;
-        case 37: _t->on_action_2_triggered(); break;
-        case 38: _t->on_actionPLUS_triggered(); break;
+        case 36: _t->on_actionPLUS_triggered(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -508,13 +499,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 39)
+        if (_id < 37)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 39;
+        _id -= 37;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 39)
+        if (_id < 37)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 39;
+        _id -= 37;
     }
     return _id;
 }

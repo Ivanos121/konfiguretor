@@ -209,7 +209,7 @@ void MainWindow::createActions()
     connect(ui->actionPLUS, &QAction::triggered, this, &MainWindow::addPage);
     connect(ui->actionMINUS, &QAction::triggered, this, &MainWindow::removePage);
     connect(ui->actionRead, &QAction::triggered, this, &MainWindow::readPribor);
-    connect(ui->actionSave_2, &QAction::triggered, this, &MainWindow::writhtePribor);
+    connect(ui->actionSave_2, &QAction::triggered, this, &MainWindow::writePribor);
     connect(ui->actionNastr, &QAction::triggered, this, &MainWindow::settingsPage);
     connect(ui->actionHelp, &QAction::triggered, this, &MainWindow::helpKonf);
     connect(ui->actionAbout, &QAction::triggered, this, &MainWindow::aboutKonf);
@@ -1186,6 +1186,8 @@ void MainWindow::addPage()
             }
         }
 
+     onDataChanged(QModelIndex(), QModelIndex());
+
 }
 
 void MainWindow::removePage()
@@ -1298,16 +1300,6 @@ void MainWindow::printTable(QPrinter *printer, bool isPreview)
             document.print(printer);
         }
     }
-}
-
-void MainWindow::readPribor()
-{
-
-}
-
-void MainWindow::writhtePribor()
-{
-
 }
 
 void MainWindow::settingsPage()
@@ -1931,7 +1923,7 @@ void MainWindow::setDisabledCells()
     }}
 }
 
-void MainWindow::on_action_triggered()
+void MainWindow::writePribor()
 {
     QSerialPort* port = openArchiverPort();
     port->flush();
@@ -2231,7 +2223,7 @@ QSerialPort* MainWindow::openArchiverPort()
     return port;
 }
 
-void MainWindow::on_action_2_triggered()
+void MainWindow::readPribor()
 {
     QSerialPort* port = openArchiverPort();
     port->flush();

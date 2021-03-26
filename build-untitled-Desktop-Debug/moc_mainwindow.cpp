@@ -211,7 +211,7 @@ int Prefer_nastr::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[56];
-    char stringdata0[697];
+    char stringdata0[695];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -242,40 +242,40 @@ QT_MOC_LITERAL(18, 150, 12), // "closeAllBase"
 QT_MOC_LITERAL(19, 163, 9), // "pageSetup"
 QT_MOC_LITERAL(20, 173, 9), // "pagePrint"
 QT_MOC_LITERAL(21, 183, 8), // "closeApp"
-QT_MOC_LITERAL(22, 192, 7), // "addPage"
-QT_MOC_LITERAL(23, 200, 10), // "removePage"
-QT_MOC_LITERAL(24, 211, 10), // "readPribor"
-QT_MOC_LITERAL(25, 222, 11), // "writePribor"
-QT_MOC_LITERAL(26, 234, 12), // "settingsPage"
-QT_MOC_LITERAL(27, 247, 8), // "helpKonf"
-QT_MOC_LITERAL(28, 256, 9), // "aboutKonf"
-QT_MOC_LITERAL(29, 266, 14), // "openRecentFile"
-QT_MOC_LITERAL(30, 281, 27), // "on_tabWidget_currentChanged"
-QT_MOC_LITERAL(31, 309, 5), // "index"
-QT_MOC_LITERAL(32, 315, 12), // "printPreview"
-QT_MOC_LITERAL(33, 328, 9), // "QPrinter*"
-QT_MOC_LITERAL(34, 338, 7), // "printer"
-QT_MOC_LITERAL(35, 346, 14), // "setCurrentFile"
-QT_MOC_LITERAL(36, 361, 8), // "fileName"
-QT_MOC_LITERAL(37, 370, 23), // "updateRecentFileActions"
-QT_MOC_LITERAL(38, 394, 12), // "strippedName"
-QT_MOC_LITERAL(39, 407, 12), // "fullFileName"
-QT_MOC_LITERAL(40, 420, 10), // "printTable"
-QT_MOC_LITERAL(41, 431, 9), // "isPreview"
-QT_MOC_LITERAL(42, 441, 8), // "loadFile"
-QT_MOC_LITERAL(43, 450, 13), // "onDataChanged"
-QT_MOC_LITERAL(44, 464, 7), // "topLeft"
-QT_MOC_LITERAL(45, 472, 11), // "bottomRight"
-QT_MOC_LITERAL(46, 484, 25), // "on_actionSaveAs_triggered"
-QT_MOC_LITERAL(47, 510, 23), // "on_pushButton_7_clicked"
-QT_MOC_LITERAL(48, 534, 23), // "on_pushButton_9_clicked"
-QT_MOC_LITERAL(49, 558, 12), // "timerTimeout"
-QT_MOC_LITERAL(50, 571, 22), // "onCheckBoxHeaderClick1"
-QT_MOC_LITERAL(51, 594, 22), // "onCheckBoxHeaderClick2"
-QT_MOC_LITERAL(52, 617, 29), // "copyChannelNamesToTableWidget"
-QT_MOC_LITERAL(53, 647, 10), // "selectRows"
-QT_MOC_LITERAL(54, 658, 14), // "setcolorincell"
-QT_MOC_LITERAL(55, 673, 23) // "on_actionPLUS_triggered"
+QT_MOC_LITERAL(22, 192, 6), // "addRow"
+QT_MOC_LITERAL(23, 199, 9), // "removeRow"
+QT_MOC_LITERAL(24, 209, 10), // "readPribor"
+QT_MOC_LITERAL(25, 220, 11), // "writePribor"
+QT_MOC_LITERAL(26, 232, 12), // "settingsPage"
+QT_MOC_LITERAL(27, 245, 8), // "helpKonf"
+QT_MOC_LITERAL(28, 254, 9), // "aboutKonf"
+QT_MOC_LITERAL(29, 264, 14), // "openRecentFile"
+QT_MOC_LITERAL(30, 279, 27), // "on_tabWidget_currentChanged"
+QT_MOC_LITERAL(31, 307, 5), // "index"
+QT_MOC_LITERAL(32, 313, 12), // "printPreview"
+QT_MOC_LITERAL(33, 326, 9), // "QPrinter*"
+QT_MOC_LITERAL(34, 336, 7), // "printer"
+QT_MOC_LITERAL(35, 344, 14), // "setCurrentFile"
+QT_MOC_LITERAL(36, 359, 8), // "fileName"
+QT_MOC_LITERAL(37, 368, 23), // "updateRecentFileActions"
+QT_MOC_LITERAL(38, 392, 12), // "strippedName"
+QT_MOC_LITERAL(39, 405, 12), // "fullFileName"
+QT_MOC_LITERAL(40, 418, 10), // "printTable"
+QT_MOC_LITERAL(41, 429, 9), // "isPreview"
+QT_MOC_LITERAL(42, 439, 8), // "loadFile"
+QT_MOC_LITERAL(43, 448, 13), // "onDataChanged"
+QT_MOC_LITERAL(44, 462, 7), // "topLeft"
+QT_MOC_LITERAL(45, 470, 11), // "bottomRight"
+QT_MOC_LITERAL(46, 482, 25), // "on_actionSaveAs_triggered"
+QT_MOC_LITERAL(47, 508, 23), // "on_pushButton_7_clicked"
+QT_MOC_LITERAL(48, 532, 23), // "on_pushButton_9_clicked"
+QT_MOC_LITERAL(49, 556, 12), // "timerTimeout"
+QT_MOC_LITERAL(50, 569, 22), // "onCheckBoxHeaderClick1"
+QT_MOC_LITERAL(51, 592, 22), // "onCheckBoxHeaderClick2"
+QT_MOC_LITERAL(52, 615, 29), // "copyChannelNamesToTableWidget"
+QT_MOC_LITERAL(53, 645, 10), // "selectRows"
+QT_MOC_LITERAL(54, 656, 14), // "setcolorincell"
+QT_MOC_LITERAL(55, 671, 23) // "on_actionPLUS_triggered"
 
     },
     "MainWindow\0savesettings\0\0name\0baudrate\0"
@@ -283,7 +283,7 @@ QT_MOC_LITERAL(55, 673, 23) // "on_actionPLUS_triggered"
     "doubleClicked\0QModelIndex\0cellclicked\0"
     "row\0column\0newFile\0open\0Save\0SaveAs\0"
     "closeAllBase\0pageSetup\0pagePrint\0"
-    "closeApp\0addPage\0removePage\0readPribor\0"
+    "closeApp\0addRow\0removeRow\0readPribor\0"
     "writePribor\0settingsPage\0helpKonf\0"
     "aboutKonf\0openRecentFile\0"
     "on_tabWidget_currentChanged\0index\0"
@@ -415,8 +415,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 8: _t->pageSetup(); break;
         case 9: _t->pagePrint(); break;
         case 10: _t->closeApp(); break;
-        case 11: _t->addPage(); break;
-        case 12: _t->removePage(); break;
+        case 11: _t->addRow(); break;
+        case 12: _t->removeRow(); break;
         case 13: _t->readPribor(); break;
         case 14: _t->writePribor(); break;
         case 15: _t->settingsPage(); break;

@@ -98,8 +98,8 @@ private slots:
     void pageSetup();
     void pagePrint();
     void closeApp();
-    void addPage();
-    void removePage();
+    void addRow();
+    void removeRow();
     void readPribor();
     void writePribor();
     void settingsPage();

@@ -85,6 +85,7 @@ public:
     QComboBox *comboBox_5;
     QLabel *label_7;
     QComboBox *comboBox_6;
+    QComboBox *comboBox_7;
     QMenuBar *menubar;
     QStatusBar *statusbar;
     QToolBar *toolBar;
@@ -100,17 +101,12 @@ public:
         actionSave = new QAction(MainWindow);
         actionSave->setObjectName(QString::fromUtf8("actionSave"));
         QIcon icon1;
-        QString iconThemeName = QString::fromUtf8("document-save");
-        if (QIcon::hasThemeIcon(iconThemeName)) {
-            icon1 = QIcon::fromTheme(iconThemeName);
-        } else {
-            icon1.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
-        }
+        icon1.addFile(QString::fromUtf8(":/new/prefix1/img/document-save.svg"), QSize(), QIcon::Normal, QIcon::Off);
         actionSave->setIcon(icon1);
         actionSave_2 = new QAction(MainWindow);
         actionSave_2->setObjectName(QString::fromUtf8("actionSave_2"));
         QIcon icon2;
-        iconThemeName = QString::fromUtf8("document-export");
+        QString iconThemeName = QString::fromUtf8("document-export");
         if (QIcon::hasThemeIcon(iconThemeName)) {
             icon2 = QIcon::fromTheme(iconThemeName);
         } else {
@@ -402,6 +398,9 @@ public:
 
         gridLayout_6->addLayout(gridLayout_5, 1, 0, 1, 1);
 
+        comboBox_7 = new QComboBox(groupBox);
+        comboBox_7->setObjectName(QString::fromUtf8("comboBox_7"));
+        comboBox_7->setGeometry(QRect(140, 440, 87, 31));
 
         gridLayout_3->addWidget(groupBox, 1, 1, 1, 1);
 

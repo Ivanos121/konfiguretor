@@ -29,8 +29,6 @@
 #include <fstream>
 #include <QPixmap>
 
-
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , disabledCellBackgroundColor(180, 180, 180)
@@ -206,8 +204,8 @@ void MainWindow::createActions()
     connect(ui->actionPage_Setup, &QAction::triggered, this, &MainWindow::pageSetup);
     connect(ui->actionprint, &QAction::triggered, this, &MainWindow::pagePrint);
     connect(ui->actionExit, &QAction::triggered, this, &MainWindow::closeApp);
-    connect(ui->actionPLUS, &QAction::triggered, this, &MainWindow::addPage);
-    connect(ui->actionMINUS, &QAction::triggered, this, &MainWindow::removePage);
+    connect(ui->actionPLUS, &QAction::triggered, this, &MainWindow::addRow);
+    connect(ui->actionMINUS, &QAction::triggered, this, &MainWindow::removeRow);
     connect(ui->actionRead, &QAction::triggered, this, &MainWindow::readPribor);
     connect(ui->actionSave_2, &QAction::triggered, this, &MainWindow::writePribor);
     connect(ui->actionNastr, &QAction::triggered, this, &MainWindow::settingsPage);
@@ -1159,49 +1157,26 @@ void MainWindow::SaveAs()
 
 }
 
-void MainWindow::addPage()
+void MainWindow::addRow()
 {
     model->insertRow(model->rowCount());
-    QItemSelection columnSelection;
-     QItemSelectionModel *selectionModel = ui->tableView->selectionModel();
-    QModelIndex topLeft = model->index(0, 20, QModelIndex());
-    QModelIndex bottomRight = model->index(0, 0, QModelIndex());
-    columnSelection.select(topLeft, bottomRight);
-            selectionModel->select(columnSelection,
-             QItemSelectionModel::Select | QItemSelectionModel::Columns );
 
-            ui->tableView->setStyleSheet(
-                               "QTableView::item:selected:active {"
-                               "background: rgb(255,255,255);"
-                               "selection-color: #000000;"
-                               "}"
-                               "QTableView::item:selected:!active {"
-                               "background: rgb(255,255,255);"
-                               "border: 1px solid transparent;"
-                               "selection-color: #000000;"
-                               "}"
-                               );
-
-    QModelIndexList list = ui->tableView->selectionModel()->selectedRows();
+    for(int y = 1; y <= 20; y++)
+    {//взять каждую ячейку
         QString myData;
         QModelIndex myIndex, myIndex2;
 
-        for(int i=1; i<list.size(); i++)
-        {//у каждой строки
-            for(int y=1; y<21;y++)
-            {//взять каждую ячейку
-                myIndex = ui->tableView->model()->index(list[i].row(), y, QModelIndex()); //Куда копируем
-                myIndex2 = ui->tableView->model()->index(list[0].row(), y, QModelIndex()); //откуда
-                myData = ui->tableView->model()->data(myIndex2).toString(); //содержимое (можно QVariant)
-                ui->tableView->model()->setData(myIndex, myData); //тадам-с!
-            }
-        }
+        myIndex = ui->tableView->model()->index(model->rowCount() - 1, y, QModelIndex()); //Куда копируем
+        myIndex2 = ui->tableView->model()->index(0, y, QModelIndex()); //откуда
+        myData = ui->tableView->model()->data(myIndex2).toString(); //содержимое (можно QVariant)
+        ui->tableView->model()->setData(myIndex, myData); //тадам-с!
+    }
 
      onDataChanged(QModelIndex(), QModelIndex());
 
 }
 
-void MainWindow::removePage()
+void MainWindow::removeRow()
 {
     int selectRow = ui->tableView->currentIndex().row();
     if (selectRow >=0)
@@ -1711,8 +1686,7 @@ void MainWindow::timerTimeout()
                 convertedValue.rawValue = rawBEValue;
                 ui->widget_3->graph(i)->addData(currentDateTime.toTime_t(), convertedValue.floatValue);
                 ui->widget_3->graph(i)->rescaleValueAxis(true);
-                ui->widget_3->xAxis->setRange(currentDateTime.toTime_t(), 8, Qt::AlignRight);
-                ui->widget_3->replot();
+
                 std::ofstream fout;
                 fout.open("result.csv",std::ios::out | std::ios::app);
                 fout << ";" << convertedValue.floatValue;
@@ -1776,8 +1750,7 @@ void MainWindow::timerTimeout()
                 convertedValue.rawValue = rawBEValue;
                 ui->widget_3->graph(i)->addData(currentDateTime.toTime_t(), convertedValue.floatValue);
                 ui->widget_3->graph(i)->rescaleValueAxis(true);
-                ui->widget_3->xAxis->setRange(currentDateTime.toTime_t(), 8, Qt::AlignRight);
-                ui->widget_3->replot();
+
                 std::ofstream fout;
                 fout.open("result.csv",std::ios::out | std::ios::app);
                 fout << ";" << convertedValue.floatValue;
@@ -1785,6 +1758,9 @@ void MainWindow::timerTimeout()
 
             }
         }
+
+        ui->widget_3->xAxis->setRange(currentDateTime.toTime_t(), 8, Qt::AlignRight);
+        ui->widget_3->replot();
 
         fout.open("result.csv",std::ios::out | std::ios::app);
         fout << std::endl;
@@ -1943,6 +1919,15 @@ void MainWindow::writePribor()
     progress->setRange(0, 64 - 1);
     progress->reset();
 
+    CurrentChannelParams currentChannelParams[4];
+    for (int i = 0; i < 4; i++)
+    {
+        currentChannelParams[i].diapazon = 1;
+        currentChannelParams[i].filter = 100;
+        currentChannelParams[i].minimum = 0;
+        currentChannelParams[i].maximum = 100;
+    }
+
     for (int i = 0; i < 64; i++)
     {
         progress->setValue(i);
@@ -1998,6 +1983,26 @@ void MainWindow::writePribor()
             protocolCode = 5;
         else if(protocolName == "Токовый вход 4")
             protocolCode = 6;
+
+        // Если канал токовый - сохранить его параметры
+
+        QString diapazonText = ui->tableView->model()->data(ui->tableView->model()->index(i, 17)).toString();
+        if (diapazonText == "4..20 мА")
+        {
+            currentChannelParams[protocolCode - 3].diapazon = 0;
+        }
+        else if (diapazonText == "0..20 мА")
+        {
+            currentChannelParams[protocolCode - 3].diapazon = 1;
+        }
+        else if (diapazonText == "0..5 мА")
+        {
+            currentChannelParams[protocolCode - 3].diapazon = 2;
+        }
+
+        currentChannelParams[protocolCode - 3].filter = ui->tableView->model()->data(ui->tableView->model()->index(i, 18)).toInt();
+        currentChannelParams[protocolCode - 3].minimum = ui->tableView->model()->data(ui->tableView->model()->index(i, 19)).toFloat();
+        currentChannelParams[protocolCode - 3].maximum = ui->tableView->model()->data(ui->tableView->model()->index(i, 20)).toFloat();
 
         buf[42] = protocolCode;
 
@@ -2152,6 +2157,79 @@ void MainWindow::writePribor()
          QThread::msleep(100);
          qDebug() << "End channel " << i;
     }
+
+    // Запись настроек токовых каналов
+
+    QByteArray buf;
+    buf.resize(24 * 2 + 7 + 2); // 24 регистра, 7 байт заголовка, 2 байта CRC
+    buf.fill(0);
+    buf[0] = 0x38;
+    buf[1] = 0x10;
+
+    uint16_t address = 0x1100;
+
+    buf[2] = (uint8_t)((address & 0xFF00) >> 8);
+    buf[3] = (uint8_t)(address & 0x00FF);
+
+    buf[4] = 0x00;
+    buf[5] = 0x18;
+
+    buf[6] = 48;
+
+    for (int i = 0; i < 4; i++)
+    {
+        buf[7 + i*12] = (currentChannelParams[i].diapazon & 0xFF00) >> 8;
+        buf[8 + i*12] = currentChannelParams[i].diapazon & 0x00FF;
+
+        buf[9 + i*12] = (currentChannelParams[i].filter & 0xFF00) >> 8;
+        buf[10 + i*12] = currentChannelParams[i].filter & 0x00FF;
+
+        RawAndFloat minimum;
+        minimum.floatValue = currentChannelParams[i].minimum;
+        buf[11 + i*12] = (minimum.rawValue & 0xFF000000) >> 24;
+        buf[12 + i*12] = (minimum.rawValue & 0x00FF0000) >> 16;
+        buf[13 + i*12] = (minimum.rawValue & 0x0000FF00) >> 8;
+        buf[14 + i*12] = minimum.rawValue & 0x000000FF;
+
+        RawAndFloat maximum;
+        maximum.floatValue = currentChannelParams[i].maximum;
+        buf[15 + i*12] = (maximum.rawValue & 0xFF000000) >> 24;
+        buf[16 + i*12] = (maximum.rawValue & 0x00FF0000) >> 16;
+        buf[17 + i*12] = (maximum.rawValue & 0x0000FF00) >> 8;
+        buf[18 + i*12] = maximum.rawValue & 0x000000FF;
+    }
+
+    uint16_t crc = CRC16(buf, buf.size() - 2);
+
+    buf[55]=crc & 0x00FF;
+    buf[56]=(crc & 0xFF00) >> 8;
+
+    port->write(buf, buf.length());
+    port->waitForBytesWritten(1000);
+    port->flush();
+
+    int answerLength = 0;
+    QByteArray answer;
+    do
+    {
+        if (!port->waitForReadyRead(100))
+        {
+            break;
+        }
+        QByteArray ansBuf = port->readAll();
+
+        if (answerLength == 0)
+        {
+            answerLength = (uint8_t)ansBuf[2] - ansBuf.length() + 3 + 2;
+            //qDebug() << "total: " << (uint8_t)ansBuf[2];
+            answer.append(ansBuf.remove(0,3));
+        }
+        else
+        {
+            answerLength -= ansBuf.length();
+            answer.append(ansBuf);
+        }
+    } while (answerLength != 0);
 
     port->close();
     delete port;

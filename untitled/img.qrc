@@ -24,6 +24,8 @@
         <file>img/document-open_копия.svg</file>
         <file>img/document-open.svg</file>
         <file>img/zastavka2.png</file>
+        <file>img/document-close_16x16.png</file>
+        <file>img/configure_16x16.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

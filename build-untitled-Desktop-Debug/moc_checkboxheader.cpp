@@ -72,7 +72,7 @@ void CheckBoxHeader::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         auto *_t = static_cast<CheckBoxHeader *>(_o);
-        Q_UNUSED(_t)
+        (void)_t;
         switch (_id) {
         case 0: _t->checkBoxClicked1((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 1: _t->checkBoxClicked2((*reinterpret_cast< bool(*)>(_a[1]))); break;

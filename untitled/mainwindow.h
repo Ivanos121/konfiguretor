@@ -128,6 +128,10 @@ private slots:
 
     void on_actionPLUS_triggered();
 
+    void on_actionSave_2_triggered();
+
+    void on_actionRead_triggered();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase sdb;

@@ -85,7 +85,6 @@ public:
     QComboBox *comboBox_5;
     QLabel *label_7;
     QComboBox *comboBox_6;
-    QComboBox *comboBox_7;
     QMenuBar *menubar;
     QStatusBar *statusbar;
     QToolBar *toolBar;
@@ -225,13 +224,13 @@ public:
         if (QIcon::hasThemeIcon(iconThemeName)) {
             icon14 = QIcon::fromTheme(iconThemeName);
         } else {
-            icon14.addFile(QString::fromUtf8("."), QSize(), QIcon::Normal, QIcon::Off);
+            icon14.addFile(QString::fromUtf8(":/new/prefix1/img/configure_16x16.png"), QSize(), QIcon::Normal, QIcon::Off);
         }
         actionNastr->setIcon(icon14);
         actionClose = new QAction(MainWindow);
         actionClose->setObjectName(QString::fromUtf8("actionClose"));
         QIcon icon15;
-        icon15.addFile(QString::fromUtf8(":/new/prefix1/img/document-close.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        icon15.addFile(QString::fromUtf8(":/new/prefix1/img/document-close_16x16.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionClose->setIcon(icon15);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
@@ -297,7 +296,7 @@ public:
         label_8->setFont(font);
         label_9 = new QLabel(widget_2);
         label_9->setObjectName(QString::fromUtf8("label_9"));
-        label_9->setGeometry(QRect(70, 0, 351, 21));
+        label_9->setGeometry(QRect(80, 0, 351, 21));
         label_9->setFont(font);
 
         gridLayout_3->addWidget(widget_2, 0, 1, 1, 1);
@@ -398,9 +397,6 @@ public:
 
         gridLayout_6->addLayout(gridLayout_5, 1, 0, 1, 1);
 
-        comboBox_7 = new QComboBox(groupBox);
-        comboBox_7->setObjectName(QString::fromUtf8("comboBox_7"));
-        comboBox_7->setGeometry(QRect(140, 440, 87, 31));
 
         gridLayout_3->addWidget(groupBox, 1, 1, 1, 1);
 
@@ -414,6 +410,7 @@ public:
         MainWindow->setStatusBar(statusbar);
         toolBar = new QToolBar(MainWindow);
         toolBar->setObjectName(QString::fromUtf8("toolBar"));
+        toolBar->setIconSize(QSize(22, 22));
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
 
         toolBar->addAction(actionNew);

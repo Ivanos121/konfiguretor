@@ -1010,7 +1010,7 @@ void MainWindow::open_sdb()
     ui->comboBox_6->addItem(QLatin1String("RTS/CTS"), QSerialPort::HardwareControl);
     ui->comboBox_6->addItem(QLatin1String("XON/XOFF"), QSerialPort::SoftwareControl);
 
-    connect(&timer, &QTimer::timeout, this, &MainWindow::timerTimeout);
+    //connect(&timer, &QTimer::timeout, this, &MainWindow::timerTimeout);
 
 //    //индикация работы связи с архиватором
 //    label=new QLabel(this);
@@ -1527,6 +1527,14 @@ void MainWindow::timerTimeout()
         buf[8]=0x00;
 
         QSerialPort *port = openArchiverPort();
+
+        if (port == nullptr)
+        {
+            timer.stop();
+            ui->pushButton_9->setChecked(false);
+            return;
+        }
+
         port->write(buf, buf.length());
         port->waitForBytesWritten(100);
         port->flush();
@@ -1913,6 +1921,12 @@ void MainWindow::setDisabledCells()
 void MainWindow::writePribor()
 {
     QSerialPort* port = openArchiverPort();
+
+    if (port == nullptr)
+    {
+        return;
+    }
+
     port->flush();
 
     progress->setVisible(true);
@@ -2306,7 +2320,9 @@ QSerialPort* MainWindow::openArchiverPort()
     //port->setDataBits(ui->comboBox_3->currentText().toInt());
     if (!port->open(QIODevice::ReadWrite))
     {
+        delete port;
         QMessageBox::critical(this, tr("Ошибка"), tr("Порт не открыт"));
+        return nullptr;
     }
 
     return port;
@@ -2315,6 +2331,12 @@ QSerialPort* MainWindow::openArchiverPort()
 void MainWindow::readPribor()
 {
     QSerialPort* port = openArchiverPort();
+
+    if (port == nullptr)
+    {
+        return;
+    }
+
     port->flush();
 
     progress->setVisible(true);
@@ -2639,3 +2661,15 @@ void MainWindow::on_actionPLUS_triggered()
 {
 
 }
+
+void MainWindow::on_actionSave_2_triggered()
+{
+
+}
+
+
+void MainWindow::on_actionRead_triggered()
+{
+
+}
+

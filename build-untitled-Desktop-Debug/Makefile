@@ -378,6 +378,7 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/modules/qt_PimCommonAkonadi.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Prison.pri \
 		/usr/lib/qt/mkspecs/modules/qt_QGpgme.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Qt5Keychain.pri \
 		/usr/lib/qt/mkspecs/modules/qt_QuickAddons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Solid.pri \
 		/usr/lib/qt/mkspecs/modules/qt_SonnetCore.pri \
@@ -739,6 +740,7 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 		/usr/lib/qt/mkspecs/modules/qt_PimCommonAkonadi.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Prison.pri \
 		/usr/lib/qt/mkspecs/modules/qt_QGpgme.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Qt5Keychain.pri \
 		/usr/lib/qt/mkspecs/modules/qt_QuickAddons.pri \
 		/usr/lib/qt/mkspecs/modules/qt_Solid.pri \
 		/usr/lib/qt/mkspecs/modules/qt_SonnetCore.pri \
@@ -1062,6 +1064,7 @@ Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr
 /usr/lib/qt/mkspecs/modules/qt_PimCommonAkonadi.pri:
 /usr/lib/qt/mkspecs/modules/qt_Prison.pri:
 /usr/lib/qt/mkspecs/modules/qt_QGpgme.pri:
+/usr/lib/qt/mkspecs/modules/qt_Qt5Keychain.pri:
 /usr/lib/qt/mkspecs/modules/qt_QuickAddons.pri:
 /usr/lib/qt/mkspecs/modules/qt_Solid.pri:
 /usr/lib/qt/mkspecs/modules/qt_SonnetCore.pri:
@@ -1147,7 +1150,9 @@ qrc_img.cpp: ../untitled/img.qrc \
 		../untitled/img/document-open.svg \
 		../untitled/img/document-preview-archive.svg \
 		../untitled/img/IM_24_blue.png \
+		../untitled/img/document-close_16x16.png \
 		../untitled/img/IM_48x48.png \
+		../untitled/img/configure_16x16.png \
 		../untitled/img/IM_48_blue.png \
 		../untitled/img/IM_16x16.png \
 		../untitled/img/application-exit.svg \

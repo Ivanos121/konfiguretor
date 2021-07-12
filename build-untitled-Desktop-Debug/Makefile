@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = untitled1.0.0
-DISTDIR = /home/elf/konfiguretor/konfiguretor/build-untitled-Desktop-Debug/.tmp/untitled1.0.0
+DISTDIR = /home/elf/konfiguretor/build-untitled-Desktop-Debug/.tmp/untitled1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath-link,/usr/lib
 LIBS          = $(SUBLIBS) /usr/lib/libQt5WebKitWidgets.so /usr/lib/libQt5WebEngineWidgets.so /usr/lib/libQt5PrintSupport.so /usr/lib/libQt5Widgets.so /usr/lib/libQt5WebKit.so /usr/lib/libQt5WebEngineCore.so /usr/lib/libQt5Quick.so /usr/lib/libQt5Gui.so /usr/lib/libQt5SerialPort.so /usr/lib/libQt5Sql.so /usr/lib/libQt5QmlModels.so /usr/lib/libQt5WebChannel.so /usr/lib/libQt5Qml.so /usr/lib/libQt5Network.so /usr/lib/libQt5Positioning.so /usr/lib/libQt5Core.so -lGL -lpthread   
@@ -66,10 +66,12 @@ SOURCES       = ../untitled/align.cpp \
 		../untitled/mainwindow.cpp \
 		../untitled/model.cpp \
 		../untitled/paintdelegate.cpp \
+		../untitled/plot.cpp \
 		../untitled/pointcolumndelegate.cpp \
 		../untitled/qcustomplot.cpp qrc_img.cpp \
 		moc_checkboxheader.cpp \
 		moc_mainwindow.cpp \
+		moc_plot.cpp \
 		moc_qcustomplot.cpp
 OBJECTS       = align.o \
 		archiverchannel.o \
@@ -85,11 +87,13 @@ OBJECTS       = align.o \
 		mainwindow.o \
 		model.o \
 		paintdelegate.o \
+		plot.o \
 		pointcolumndelegate.o \
 		qcustomplot.o \
 		qrc_img.o \
 		moc_checkboxheader.o \
 		moc_mainwindow.o \
+		moc_plot.o \
 		moc_qcustomplot.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/common/unix.conf \
@@ -425,6 +429,7 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		../untitled/mainwindow.h \
 		../untitled/model.h \
 		../untitled/paintdelegate.h \
+		../untitled/plot.h \
 		../untitled/pointcolumndelegate.h \
 		../untitled/qcustomplot.h ../untitled/align.cpp \
 		../untitled/archiverchannel.cpp \
@@ -440,6 +445,7 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		../untitled/mainwindow.cpp \
 		../untitled/model.cpp \
 		../untitled/paintdelegate.cpp \
+		../untitled/plot.cpp \
 		../untitled/pointcolumndelegate.cpp \
 		../untitled/qcustomplot.cpp
 QMAKE_TARGET  = untitled
@@ -450,7 +456,7 @@ TARGET        = untitled
 first: all
 ####### Build rules
 
-untitled: ui_about_dialog.h ui_mainwindow.h ui_settings.h $(OBJECTS)  
+untitled: ui_about_dialog.h ui_mainwindow.h ui_plot.h ui_settings.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../untitled/untitled.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr/lib/qt/mkspecs/features/spec_pre.prf \
@@ -1116,9 +1122,9 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../untitled/img.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../untitled/align.h ../untitled/archiverchannel.h ../untitled/checkboxdelegate.h ../untitled/checkboxheader.h ../untitled/comboboxbitdelegate.h ../untitled/comboboxcurrentdelegate.h ../untitled/comboboxdelegate.h ../untitled/comboboxerrorarchivedelegate.h ../untitled/comboboxmodbusdelegate.h ../untitled/comboboxvardelegate.h ../untitled/mainwindow.h ../untitled/model.h ../untitled/paintdelegate.h ../untitled/pointcolumndelegate.h ../untitled/qcustomplot.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../untitled/align.cpp ../untitled/archiverchannel.cpp ../untitled/checkboxdelegate.cpp ../untitled/checkboxheader.cpp ../untitled/comboboxbitdelegate.cpp ../untitled/comboboxcurrentdelegate.cpp ../untitled/comboboxdelegate.cpp ../untitled/comboboxerrorarchivedelegate.cpp ../untitled/comboboxmodbusdelegate.cpp ../untitled/comboboxvardelegate.cpp ../untitled/main.cpp ../untitled/mainwindow.cpp ../untitled/model.cpp ../untitled/paintdelegate.cpp ../untitled/pointcolumndelegate.cpp ../untitled/qcustomplot.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../untitled/about_dialog.ui ../untitled/mainwindow.ui ../untitled/settings.ui $(DISTDIR)/
+	$(COPY_FILE) --parents ../untitled/align.h ../untitled/archiverchannel.h ../untitled/checkboxdelegate.h ../untitled/checkboxheader.h ../untitled/comboboxbitdelegate.h ../untitled/comboboxcurrentdelegate.h ../untitled/comboboxdelegate.h ../untitled/comboboxerrorarchivedelegate.h ../untitled/comboboxmodbusdelegate.h ../untitled/comboboxvardelegate.h ../untitled/mainwindow.h ../untitled/model.h ../untitled/paintdelegate.h ../untitled/plot.h ../untitled/pointcolumndelegate.h ../untitled/qcustomplot.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../untitled/align.cpp ../untitled/archiverchannel.cpp ../untitled/checkboxdelegate.cpp ../untitled/checkboxheader.cpp ../untitled/comboboxbitdelegate.cpp ../untitled/comboboxcurrentdelegate.cpp ../untitled/comboboxdelegate.cpp ../untitled/comboboxerrorarchivedelegate.cpp ../untitled/comboboxmodbusdelegate.cpp ../untitled/comboboxvardelegate.cpp ../untitled/main.cpp ../untitled/mainwindow.cpp ../untitled/model.cpp ../untitled/paintdelegate.cpp ../untitled/plot.cpp ../untitled/pointcolumndelegate.cpp ../untitled/qcustomplot.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../untitled/about_dialog.ui ../untitled/mainwindow.ui ../untitled/plot.ui ../untitled/settings.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -1181,13 +1187,13 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/qt/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++11 -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_checkboxheader.cpp moc_mainwindow.cpp moc_qcustomplot.cpp
+compiler_moc_header_make_all: moc_checkboxheader.cpp moc_mainwindow.cpp moc_plot.cpp moc_qcustomplot.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_checkboxheader.cpp moc_mainwindow.cpp moc_qcustomplot.cpp
+	-$(DEL_FILE) moc_checkboxheader.cpp moc_mainwindow.cpp moc_plot.cpp moc_qcustomplot.cpp
 moc_checkboxheader.cpp: ../untitled/checkboxheader.h \
 		moc_predefs.h \
 		/usr/bin/moc
-	/usr/bin/moc $(DEFINES) --include /home/elf/konfiguretor/konfiguretor/build-untitled-Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/elf/konfiguretor/konfiguretor/untitled -I/usr/include/qt -I/usr/include/qt/QtWebKitWidgets -I/usr/include/qt/QtWebEngineWidgets -I/usr/include/qt/QtPrintSupport -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtWebKit -I/usr/include/qt/QtWebEngineCore -I/usr/include/qt/QtQuick -I/usr/include/qt/QtGui -I/usr/include/qt/QtSerialPort -I/usr/include/qt/QtSql -I/usr/include/qt/QtQmlModels -I/usr/include/qt/QtWebChannel -I/usr/include/qt/QtQml -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtPositioning -I/usr/include/qt/QtCore -I. -I/usr/include/c++/10.1.0 -I/usr/include/c++/10.1.0/x86_64-pc-linux-gnu -I/usr/include/c++/10.1.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include-fixed -I/usr/include ../untitled/checkboxheader.h -o moc_checkboxheader.cpp
+	/usr/bin/moc $(DEFINES) --include /home/elf/konfiguretor/build-untitled-Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/elf/konfiguretor/untitled -I/usr/include/qt -I/usr/include/qt/QtWebKitWidgets -I/usr/include/qt/QtWebEngineWidgets -I/usr/include/qt/QtPrintSupport -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtWebKit -I/usr/include/qt/QtWebEngineCore -I/usr/include/qt/QtQuick -I/usr/include/qt/QtGui -I/usr/include/qt/QtSerialPort -I/usr/include/qt/QtSql -I/usr/include/qt/QtQmlModels -I/usr/include/qt/QtWebChannel -I/usr/include/qt/QtQml -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtPositioning -I/usr/include/qt/QtCore -I. -I/usr/include/c++/10.1.0 -I/usr/include/c++/10.1.0/x86_64-pc-linux-gnu -I/usr/include/c++/10.1.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include-fixed -I/usr/include ../untitled/checkboxheader.h -o moc_checkboxheader.cpp
 
 moc_mainwindow.cpp: ../untitled/mainwindow.h \
 		../untitled/align.h \
@@ -1197,28 +1203,37 @@ moc_mainwindow.cpp: ../untitled/mainwindow.h \
 		ui_settings.h \
 		moc_predefs.h \
 		/usr/bin/moc
-	/usr/bin/moc $(DEFINES) --include /home/elf/konfiguretor/konfiguretor/build-untitled-Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/elf/konfiguretor/konfiguretor/untitled -I/usr/include/qt -I/usr/include/qt/QtWebKitWidgets -I/usr/include/qt/QtWebEngineWidgets -I/usr/include/qt/QtPrintSupport -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtWebKit -I/usr/include/qt/QtWebEngineCore -I/usr/include/qt/QtQuick -I/usr/include/qt/QtGui -I/usr/include/qt/QtSerialPort -I/usr/include/qt/QtSql -I/usr/include/qt/QtQmlModels -I/usr/include/qt/QtWebChannel -I/usr/include/qt/QtQml -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtPositioning -I/usr/include/qt/QtCore -I. -I/usr/include/c++/10.1.0 -I/usr/include/c++/10.1.0/x86_64-pc-linux-gnu -I/usr/include/c++/10.1.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include-fixed -I/usr/include ../untitled/mainwindow.h -o moc_mainwindow.cpp
+	/usr/bin/moc $(DEFINES) --include /home/elf/konfiguretor/build-untitled-Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/elf/konfiguretor/untitled -I/usr/include/qt -I/usr/include/qt/QtWebKitWidgets -I/usr/include/qt/QtWebEngineWidgets -I/usr/include/qt/QtPrintSupport -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtWebKit -I/usr/include/qt/QtWebEngineCore -I/usr/include/qt/QtQuick -I/usr/include/qt/QtGui -I/usr/include/qt/QtSerialPort -I/usr/include/qt/QtSql -I/usr/include/qt/QtQmlModels -I/usr/include/qt/QtWebChannel -I/usr/include/qt/QtQml -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtPositioning -I/usr/include/qt/QtCore -I. -I/usr/include/c++/10.1.0 -I/usr/include/c++/10.1.0/x86_64-pc-linux-gnu -I/usr/include/c++/10.1.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include-fixed -I/usr/include ../untitled/mainwindow.h -o moc_mainwindow.cpp
+
+moc_plot.cpp: ../untitled/plot.h \
+		moc_predefs.h \
+		/usr/bin/moc
+	/usr/bin/moc $(DEFINES) --include /home/elf/konfiguretor/build-untitled-Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/elf/konfiguretor/untitled -I/usr/include/qt -I/usr/include/qt/QtWebKitWidgets -I/usr/include/qt/QtWebEngineWidgets -I/usr/include/qt/QtPrintSupport -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtWebKit -I/usr/include/qt/QtWebEngineCore -I/usr/include/qt/QtQuick -I/usr/include/qt/QtGui -I/usr/include/qt/QtSerialPort -I/usr/include/qt/QtSql -I/usr/include/qt/QtQmlModels -I/usr/include/qt/QtWebChannel -I/usr/include/qt/QtQml -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtPositioning -I/usr/include/qt/QtCore -I. -I/usr/include/c++/10.1.0 -I/usr/include/c++/10.1.0/x86_64-pc-linux-gnu -I/usr/include/c++/10.1.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include-fixed -I/usr/include ../untitled/plot.h -o moc_plot.cpp
 
 moc_qcustomplot.cpp: ../untitled/qcustomplot.h \
 		moc_predefs.h \
 		/usr/bin/moc
-	/usr/bin/moc $(DEFINES) --include /home/elf/konfiguretor/konfiguretor/build-untitled-Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/elf/konfiguretor/konfiguretor/untitled -I/usr/include/qt -I/usr/include/qt/QtWebKitWidgets -I/usr/include/qt/QtWebEngineWidgets -I/usr/include/qt/QtPrintSupport -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtWebKit -I/usr/include/qt/QtWebEngineCore -I/usr/include/qt/QtQuick -I/usr/include/qt/QtGui -I/usr/include/qt/QtSerialPort -I/usr/include/qt/QtSql -I/usr/include/qt/QtQmlModels -I/usr/include/qt/QtWebChannel -I/usr/include/qt/QtQml -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtPositioning -I/usr/include/qt/QtCore -I. -I/usr/include/c++/10.1.0 -I/usr/include/c++/10.1.0/x86_64-pc-linux-gnu -I/usr/include/c++/10.1.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include-fixed -I/usr/include ../untitled/qcustomplot.h -o moc_qcustomplot.cpp
+	/usr/bin/moc $(DEFINES) --include /home/elf/konfiguretor/build-untitled-Desktop-Debug/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/elf/konfiguretor/untitled -I/usr/include/qt -I/usr/include/qt/QtWebKitWidgets -I/usr/include/qt/QtWebEngineWidgets -I/usr/include/qt/QtPrintSupport -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtWebKit -I/usr/include/qt/QtWebEngineCore -I/usr/include/qt/QtQuick -I/usr/include/qt/QtGui -I/usr/include/qt/QtSerialPort -I/usr/include/qt/QtSql -I/usr/include/qt/QtQmlModels -I/usr/include/qt/QtWebChannel -I/usr/include/qt/QtQml -I/usr/include/qt/QtNetwork -I/usr/include/qt/QtPositioning -I/usr/include/qt/QtCore -I. -I/usr/include/c++/10.1.0 -I/usr/include/c++/10.1.0/x86_64-pc-linux-gnu -I/usr/include/c++/10.1.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/10.1.0/include-fixed -I/usr/include ../untitled/qcustomplot.h -o moc_qcustomplot.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_about_dialog.h ui_mainwindow.h ui_settings.h
+compiler_uic_make_all: ui_about_dialog.h ui_mainwindow.h ui_plot.h ui_settings.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_about_dialog.h ui_mainwindow.h ui_settings.h
+	-$(DEL_FILE) ui_about_dialog.h ui_mainwindow.h ui_plot.h ui_settings.h
 ui_about_dialog.h: ../untitled/about_dialog.ui \
 		/usr/bin/uic
 	/usr/bin/uic ../untitled/about_dialog.ui -o ui_about_dialog.h
 
 ui_mainwindow.h: ../untitled/mainwindow.ui \
 		/usr/bin/uic \
-		../untitled/qcustomplot.h
+		../untitled/plot.h
 	/usr/bin/uic ../untitled/mainwindow.ui -o ui_mainwindow.h
+
+ui_plot.h: ../untitled/plot.ui \
+		/usr/bin/uic
+	/usr/bin/uic ../untitled/plot.ui -o ui_plot.h
 
 ui_settings.h: ../untitled/settings.ui \
 		/usr/bin/uic
@@ -1321,10 +1336,10 @@ mainwindow.o: ../untitled/mainwindow.cpp ../untitled/mainwindow.h \
 		ui_about_dialog.h \
 		ui_settings.h \
 		ui_mainwindow.h \
-		../untitled/qcustomplot.h \
 		../untitled/model.h \
 		../untitled/port.h \
 		../untitled/archiverchannel.h \
+		../untitled/qcustomplot.h \
 		../untitled/checkboxdelegate.h \
 		../untitled/comboboxdelegate.h \
 		../untitled/comboboxvardelegate.h \
@@ -1346,6 +1361,10 @@ paintdelegate.o: ../untitled/paintdelegate.cpp ../untitled/paintdelegate.h \
 		ui_settings.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o paintdelegate.o ../untitled/paintdelegate.cpp
 
+plot.o: ../untitled/plot.cpp ../untitled/plot.h \
+		ui_plot.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o plot.o ../untitled/plot.cpp
+
 pointcolumndelegate.o: ../untitled/pointcolumndelegate.cpp ../untitled/pointcolumndelegate.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pointcolumndelegate.o ../untitled/pointcolumndelegate.cpp
 
@@ -1360,6 +1379,9 @@ moc_checkboxheader.o: moc_checkboxheader.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
+
+moc_plot.o: moc_plot.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_plot.o moc_plot.cpp
 
 moc_qcustomplot.o: moc_qcustomplot.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_qcustomplot.o moc_qcustomplot.cpp

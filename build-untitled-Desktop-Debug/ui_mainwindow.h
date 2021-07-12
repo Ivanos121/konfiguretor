@@ -27,7 +27,7 @@
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
-#include "qcustomplot.h"
+#include "plot.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -60,7 +60,7 @@ public:
     QTableWidget *tableWidget;
     QWidget *tab_3;
     QGridLayout *gridLayout_8;
-    QCustomPlot *widget_3;
+    Plot *widget_3;
     QTableWidget *tableWidget_2;
     QWidget *widget_2;
     QLabel *label_8;
@@ -264,7 +264,7 @@ public:
         tab_3->setObjectName(QString::fromUtf8("tab_3"));
         gridLayout_8 = new QGridLayout(tab_3);
         gridLayout_8->setObjectName(QString::fromUtf8("gridLayout_8"));
-        widget_3 = new QCustomPlot(tab_3);
+        widget_3 = new Plot(tab_3);
         widget_3->setObjectName(QString::fromUtf8("widget_3"));
         widget_3->setMinimumSize(QSize(0, 0));
         widget_3->setMaximumSize(QSize(16777215, 16777215));
@@ -429,7 +429,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(2);
         comboBox_2->setCurrentIndex(-1);
 
 

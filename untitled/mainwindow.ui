@@ -22,7 +22,7 @@
     <item row="0" column="0" rowspan="2">
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -57,7 +57,7 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_8">
         <item row="0" column="2">
-         <widget class="QCustomPlot" name="widget_3" native="true">
+         <widget class="Plot" name="widget_3" native="true">
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -555,9 +555,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QCustomPlot</class>
+   <class>Plot</class>
    <extends>QWidget</extends>
-   <header>qcustomplot.h</header>
+   <header>plot.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

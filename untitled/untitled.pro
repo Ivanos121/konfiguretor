@@ -26,6 +26,7 @@ SOURCES += \
     mainwindow.cpp \
     model.cpp \
     paintdelegate.cpp \
+    plot.cpp \
     pointcolumndelegate.cpp \
     qcustomplot.cpp
 
@@ -43,12 +44,14 @@ HEADERS += \
     mainwindow.h \
     model.h \
     paintdelegate.h \
+    plot.h \
     pointcolumndelegate.h \
     qcustomplot.h
 
 FORMS += \
     about_dialog.ui \
     mainwindow.ui \
+    plot.ui \
     settings.ui
 
 # Default rules for deployment.

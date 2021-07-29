@@ -29,6 +29,8 @@
 #include <fstream>
 #include <QPixmap>
 
+static bool header_added = false;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , disabledCellBackgroundColor(180, 180, 180)
@@ -61,6 +63,8 @@ MainWindow::MainWindow(QWidget *parent)
     priborMenu->setEnabled(false);
     ui->tabWidget->setEnabled(false);
     ui->groupBox->setEnabled(false);
+
+    open_sdb();
 
     ui->comboBox_2->addItem(QLatin1String("9600"), QSerialPort::Baud9600);
     ui->comboBox_2->addItem(QLatin1String("19200"), QSerialPort::Baud19200);
@@ -465,14 +469,20 @@ void MainWindow::open_sdb()
     //инициализация базы данных sqlite3
     sdb = QSqlDatabase::addDatabase("QSQLITE"); //объявление базы данных sqlite3
     sdb.setDatabaseName(QFileInfo(fileName).absoluteFilePath()); //подключение к базе данных
+
     model = new Model; //создание модели QSqlTableModel
     model->setTable("Net settings"); //Установка для таблицы базы данных, с которой работает модель, tableName
     model->setEditStrategy(QSqlTableModel::OnManualSubmit); //Все изменения будут кэшироваться в модели до тех пор, пока не будет вызван сигнал submitAll()
 
-    //подключение заголовка таблицы
-    headerr = new CheckBoxHeader(Qt::Horizontal,ui->tableView);  //создание заголовка tableview
-    connect(headerr, &CheckBoxHeader::checkBoxClicked1, this, &MainWindow::onCheckBoxHeaderClick1); //подключение головного чекбокса к чекбоксам в первом столбце
-    connect(headerr, &CheckBoxHeader::checkBoxClicked2, this, &MainWindow::onCheckBoxHeaderClick2); //подключение головного чекбокса к чекбоксам в первом столбце
+    if (!header_added)
+    {
+        //подключение заголовка таблицы
+        headerr = new CheckBoxHeader(Qt::Horizontal,ui->tableView);  //создание заголовка tableview
+        ui->tableView->setHorizontalHeader(headerr); //установка заголовка tableview и checkbox в первый столбец
+        connect(headerr, &CheckBoxHeader::checkBoxClicked1, this, &MainWindow::onCheckBoxHeaderClick1); //подключение головного чекбокса к чекбоксам в первом столбце
+        connect(headerr, &CheckBoxHeader::checkBoxClicked2, this, &MainWindow::onCheckBoxHeaderClick2); //подключение головного чекбокса к чекбоксам в первом столбце
+        header_added = true;
+    }
 
     //загрузка данных в таблицу tableview
     model->select(); //Заполняет модель данными из таблицы, которая была установлена ​​с помощью setTable(), используя указанный фильтр и условие сортировки

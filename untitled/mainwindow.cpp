@@ -1264,7 +1264,32 @@ void MainWindow::timerTimeout()
                 uint32_t rawBEValue = archiverChannels[i].rawValue;
                 RawAndFloat convertedValue;
                 convertedValue.rawValue = rawBEValue;
-                ui->widget_3->addPoint(i, currentDateTime.toTime_t(), convertedValue.floatValue);
+
+                // Получение текущего времени
+                QDateTime currentDateTime = QDateTime::currentDateTime();
+
+                // Конвертация в локальное время (на всякий случай)
+                currentDateTime = currentDateTime.toLocalTime();
+
+                // Форматирование времени в строку без ведущих нулей: x:x:x
+                QString formattedTime = currentDateTime.time().toString("H:m:s");
+                qDebug() << "Текущее время (строка):" << formattedTime;
+
+                // Получаем часы, минуты, секунды
+                int hours = currentDateTime.time().hour();
+                int minutes = currentDateTime.time().minute();
+                int seconds = currentDateTime.time().second();
+
+                // Конвертация времени в double: часы с дробной частью
+                double timeInHours = hours + minutes / 60.0 + seconds / 3600.0;
+                qDebug() << "Текущее время (double в часах):" << timeInHours;
+
+                // Получаем timestamp (секунды с 1970)
+                uint timestamp = currentDateTime.toTime_t();
+                qDebug() << "Timestamp:" << QString::number(timestamp);
+
+                // Пример использования addPoint (замените на свой вызов)
+                ui->widget_3->addPoint(i, timeInHours, convertedValue.floatValue);
 
                 std::ofstream fout;
                 fout.open("result.csv",std::ios::out | std::ios::app);
@@ -1327,7 +1352,31 @@ void MainWindow::timerTimeout()
                 uint32_t rawBEValue = archiverChannels[i].rawValue;
                 RawAndFloat convertedValue;
                 convertedValue.rawValue = rawBEValue;
-                ui->widget_3->addPoint(i, currentDateTime.toTime_t(), convertedValue.floatValue);
+
+                // Получение текущего времени
+                QDateTime currentDateTime = QDateTime::currentDateTime();
+
+                // Конвертация в локальное время (на всякий случай)
+                currentDateTime = currentDateTime.toLocalTime();
+
+                // Форматирование времени в строку без ведущих нулей: x:x:x
+                QString formattedTime = currentDateTime.time().toString("H:m:s");
+                qDebug() << "Текущее время (строка):" << formattedTime;
+
+                // Получаем часы, минуты, секунды
+                int hours = currentDateTime.time().hour();
+                int minutes = currentDateTime.time().minute();
+                int seconds = currentDateTime.time().second();
+
+                // Конвертация времени в double: часы с дробной частью
+                double timeInHours = hours + minutes / 60.0 + seconds / 3600.0;
+                qDebug() << "Текущее время (double в часах):" << timeInHours;
+
+                // Получаем timestamp (секунды с 1970)
+                uint timestamp = currentDateTime.toTime_t();
+                qDebug() << "Timestamp:" << QString::number(timestamp);
+
+                ui->widget_3->addPoint(i, timeInHours, convertedValue.floatValue);
 
                 std::ofstream fout;
                 fout.open("result.csv",std::ios::out | std::ios::app);
